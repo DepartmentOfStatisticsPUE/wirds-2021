@@ -1,5 +1,7 @@
 ---
-title: "R Notebook"
+title: "Wykład wprowadzający"
+author: "Maciej Beręsewicz"
+date: 2020-10-05
 output: html_notebook
 ---
 
@@ -7,10 +9,16 @@ Wczytujemy dane
 
 ```{r}
 dt <- read.table(file = "../data-raw/ciekawe_dane.csv", header = F, sep = ";", dec = ",")
+dt
 ```
 
 ```{r}
 summary(dt)
+```
+
+```{r}
+hist(dt$V1)
+hist(dt$V2)
 ```
 
 ```{r}
@@ -28,4 +36,5 @@ summary(m2)
 ```{r}
 plot(dt)
 ```
+
 
