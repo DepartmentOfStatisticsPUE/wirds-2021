@@ -1,0 +1,31 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Wczytujemy dane
+
+```{r}
+dt <- read.table(file = "../data-raw/ciekawe_dane.csv", header = F, sep = ";", dec = ",")
+```
+
+```{r}
+summary(dt)
+```
+
+```{r}
+cor(dt, method = "spearman")
+cor(dt, method = "pearson")
+```
+
+```{r}
+m1 <- lm(V2 ~ V1, data = dt)
+m2 <- lm(log(V2) ~ log(V1), data = dt)
+summary(m1)
+summary(m2)
+```
+
+```{r}
+plot(dt)
+```
+
