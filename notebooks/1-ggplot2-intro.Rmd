@@ -1,0 +1,57 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Ładujemy pakiet tidyverse, który uruchamia w tle pakiety ggplot2, dplyr oraz inne.
+
+```{r}
+library(tidyverse)
+```
+
+Wczytujemy dane z google mobility 
+
+```{r}
+google <- read_csv("../data-raw/google_2020_PL_Region_Mobility_Report.csv")
+```
+
+```{r}
+head(google)
+```
+
+```{r}
+pzn <- google %>% filter(str_detect(sub_region_2, "Poznań"))
+pzn
+```
+
+```{r}
+ggplot(data = pzn, 
+       mapping = aes(x = date, 
+                     y = grocery_and_pharmacy_percent_change_from_baseline, 
+                     color = sub_region_2))  + 
+  geom_point() +
+  #geom_line() +
+  geom_smooth()
+```
+
+```{r}
+ggplot(data = pzn) +
+  geom_line(aes(x = date, 
+                y = grocery_and_pharmacy_percent_change_from_baseline,
+                linetype = sub_region_2)) +
+  geom_line(aes(x = date, 
+                y = retail_and_recreation_percent_change_from_baseline,
+                color = sub_region_2))
+```
+
+```{r}
+pzn %>%
+  ggplot(data = ., aes(x = date, 
+                       y = retail_and_recreation_percent_change_from_baseline, 
+                       group = sub_region_2,
+                       color = sub_region_2)) +
+  geom_line() + 
+  scale_color_brewer(type = "qual", palette = "Set1") + 
+  labs(x = "Date", y = "Retail and recreation change", color = "Powiat") 
+```
+
