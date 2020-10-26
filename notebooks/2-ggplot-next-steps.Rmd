@@ -5,6 +5,11 @@ output: html_notebook
 
 Ładujemy pakiet tidyverse, który uruchamia w tle pakiety ggplot2, dplyr oraz inne.
 
+1. o pakiecie ggplot2 i jak z nim pracować
+2. szablon wykresu i będziemy podmieniali dane
+3. wykresy zapisywali do plików
+4. facet_wrap
+
 ```{r}
 library(tidyverse)
 pdf.options(encoding = "ISOLatin2.enc") ## opisy wykresu w plikach pdf będą zawierały polskie znaki diakrytyczne
@@ -21,7 +26,8 @@ Wybieramy dane z wielkopolski
 ```{r}
 google_wlkp <- google %>% 
   filter(sub_region_1 == "Greater Poland Voivodeship", !is.na(sub_region_2)) %>%
-  select(powiat = sub_region_2, date, 
+  select(powiat = sub_region_2, 
+         date, 
          handel_i_rekreacja = retail_and_recreation_percent_change_from_baseline,
          sklepy_i_apteki = grocery_and_pharmacy_percent_change_from_baseline, 
          parki = parks_percent_change_from_baseline,
@@ -43,18 +49,21 @@ ggplot(data = google_wlkp, aes(x = date, y = parki, group = powiat)) +
 
 wykres_wlkp <- ggplot(data = google_wlkp, aes(x = date, y = parki)) + 
   geom_line(aes(group = powiat), alpha = 0.5) +
-  geom_smooth() + 
+  geom_smooth() +
   geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
-  geom_vline(xintercept = as.Date("2020-03-20"), linetype = "dotted", color = "red") +
+  geom_vline(xintercept = as.Date("2020-03-20"), linetype = "dotted", color = "black")  +
   geom_vline(xintercept = c(as.Date("2020-07-01"), as.Date("2020-08-31")), color = "black") +
   theme_bw() +
-  labs(x = "Data", y = "Indeks popularności parków", 
+  labs(x = "Data", 
+       y = "Indeks popularności parków",
        title = "Indeks popularności parków w Wielkopolsce według Google Mobility Index",
        subtitle = "Na wykresie zaznaczono datę lockdown i wakacji",
-       caption = "Źródło: Opracowanie własne na podstawie danych Google Mobility Index") 
+       caption = "Źródło: Opracowanie własne na podstawie danych Google Mobility Index")
 
 wykres_wlkp
+```
 
+```{r}
 ggsave(plot = wykres_wlkp, filename = "../figures/parks-google-wlkp.png", width = 10, height = 7)
 ggsave(plot = wykres_wlkp, filename = "../figures/parks-google-wlkp.pdf")
 ```
@@ -62,8 +71,8 @@ ggsave(plot = wykres_wlkp, filename = "../figures/parks-google-wlkp.pdf")
 Chcemy potraktować powyższy wykres jako szablon i wykonać ten wykres dla nowych danych
 
 ```{r}
-google_west_pom <- google %>% 
-  filter(sub_region_1 == "West Pomeranian Voivodeship", !is.na(sub_region_2)) %>%
+google_masovian <- google %>% 
+  filter(sub_region_1 == "Masovian Voivodeship", !is.na(sub_region_2)) %>%
   select(powiat = sub_region_2, date, 
          handel_i_rekreacja = retail_and_recreation_percent_change_from_baseline,
          sklepy_i_apteki = grocery_and_pharmacy_percent_change_from_baseline, 
@@ -72,17 +81,33 @@ google_west_pom <- google %>%
          miejsca_pracy = workplaces_percent_change_from_baseline,
          miejsca_zamieszkania = residential_percent_change_from_baseline)
 
+google_masovian 
+```
+
+```{r}
 ## podmiana danych z wykresu wykres_wlkp
-wykres_wlkp %+% 
-  google_west_pom + 
-  labs(title = "Indeks popularności parków w Zachodniopomorskim według Google Mobility Index") 
+wykres_wlkp 
+wykres_wlkp %+% google_masovian + 
+  labs(title = "Indeks popularności parków w Mazowieckim według Google Mobility Index")
+```
+
+Zapisujemy szablon do obiektu R z funkcją saveRDS
+
+```{r}
+## zapis szablonu do obiektu R
+saveRDS(object = wykres_wlkp, file = "../figures/parks-google-wlkp-szablon.rds")
+## wczytanie szablonu do obiektu R
+szablon <- readRDS(file = "../figures/parks-google-wlkp-szablon.rds")
+## wywołanie i podmiana danych
+szablon %+% google_masovian
 ```
 
 Dodajemy do naszych danych zmienną określającą czy dany powiat jest miatem na prawach powiatu: Poznań, Konin, Kalisz i Leszno
 
 ```{r}
 google_wlkp <- google_wlkp %>% 
-  mutate(miast_pow = powiat %in% c("Kalisz County", "Konin County", "Poznań County", "Leszno County"))
+  mutate(miast_pow = ifelse(powiat %in% c("Kalisz County", "Konin County", "Poznań County", "Leszno County"),
+                            "Miasto na prawach powiatu", "Pozostałe powiaty"))
 
 wykres_wlkp %+% google_wlkp + facet_wrap(~miast_pow)
 ```
