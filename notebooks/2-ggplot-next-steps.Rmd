@@ -1,0 +1,90 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Ładujemy pakiet tidyverse, który uruchamia w tle pakiety ggplot2, dplyr oraz inne.
+
+```{r}
+library(tidyverse)
+pdf.options(encoding = "ISOLatin2.enc") ## opisy wykresu w plikach pdf będą zawierały polskie znaki diakrytyczne
+```
+
+Wczytujemy dane z google mobility 
+
+```{r}
+google <- read_csv("../data-raw/google_2020_PL_Region_Mobility_Report.csv")
+```
+
+Wybieramy dane z wielkopolski
+
+```{r}
+google_wlkp <- google %>% 
+  filter(sub_region_1 == "Greater Poland Voivodeship", !is.na(sub_region_2)) %>%
+  select(powiat = sub_region_2, date, 
+         handel_i_rekreacja = retail_and_recreation_percent_change_from_baseline,
+         sklepy_i_apteki = grocery_and_pharmacy_percent_change_from_baseline, 
+         parki = parks_percent_change_from_baseline,
+         transport_publ = transit_stations_percent_change_from_baseline,
+         miejsca_pracy = workplaces_percent_change_from_baseline,
+         miejsca_zamieszkania = residential_percent_change_from_baseline)
+```
+
+Chcemy na jednym wykresie przedstawić jak prezentuje się popularność parków w Wielkopolsce w 2020
+
+-- alpha - parametr określający prezroczystość [0,1]
+-- geom_hline -- naniesienie linii prostej (pozioma) 
+-- geom_vline -- naniesienie linii prostej (pionowej) 
+
+```{r}
+ggplot(data = google_wlkp, aes(x = date, y = parki, group = powiat)) + 
+  geom_line(alpha = 0.5) +
+  geom_smooth()
+
+wykres_wlkp <- ggplot(data = google_wlkp, aes(x = date, y = parki)) + 
+  geom_line(aes(group = powiat), alpha = 0.5) +
+  geom_smooth() + 
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  geom_vline(xintercept = as.Date("2020-03-20"), linetype = "dotted", color = "red") +
+  geom_vline(xintercept = c(as.Date("2020-07-01"), as.Date("2020-08-31")), color = "black") +
+  theme_bw() +
+  labs(x = "Data", y = "Indeks popularności parków", 
+       title = "Indeks popularności parków w Wielkopolsce według Google Mobility Index",
+       subtitle = "Na wykresie zaznaczono datę lockdown i wakacji",
+       caption = "Źródło: Opracowanie własne na podstawie danych Google Mobility Index") 
+
+wykres_wlkp
+
+ggsave(plot = wykres_wlkp, filename = "../figures/parks-google-wlkp.png", width = 10, height = 7)
+ggsave(plot = wykres_wlkp, filename = "../figures/parks-google-wlkp.pdf")
+```
+
+Chcemy potraktować powyższy wykres jako szablon i wykonać ten wykres dla nowych danych
+
+```{r}
+google_west_pom <- google %>% 
+  filter(sub_region_1 == "West Pomeranian Voivodeship", !is.na(sub_region_2)) %>%
+  select(powiat = sub_region_2, date, 
+         handel_i_rekreacja = retail_and_recreation_percent_change_from_baseline,
+         sklepy_i_apteki = grocery_and_pharmacy_percent_change_from_baseline, 
+         parki = parks_percent_change_from_baseline,
+         transport_publ = transit_stations_percent_change_from_baseline,
+         miejsca_pracy = workplaces_percent_change_from_baseline,
+         miejsca_zamieszkania = residential_percent_change_from_baseline)
+
+## podmiana danych z wykresu wykres_wlkp
+wykres_wlkp %+% 
+  google_west_pom + 
+  labs(title = "Indeks popularności parków w Zachodniopomorskim według Google Mobility Index") 
+```
+
+Dodajemy do naszych danych zmienną określającą czy dany powiat jest miatem na prawach powiatu: Poznań, Konin, Kalisz i Leszno
+
+```{r}
+google_wlkp <- google_wlkp %>% 
+  mutate(miast_pow = powiat %in% c("Kalisz County", "Konin County", "Poznań County", "Leszno County"))
+
+wykres_wlkp %+% google_wlkp + facet_wrap(~miast_pow)
+```
+
+
