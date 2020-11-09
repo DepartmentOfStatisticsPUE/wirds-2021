@@ -1,0 +1,156 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+
+```{r}
+library(tidyverse)
+library(officer) ## pakiet do tworzenia m.in. prezentacji w power point
+library(mschart) ## tworzenie edytowalnych wykresów
+```
+
+Aby stworzyć prezentację powerpoint należy zacząć od funckji `read_pptx()`
+
+- jeżeli użyjemy ją w następujący sposób: `prezentacja <- read_pptx()` to tworzymy pustą prezentację z domyślnym szablonem
+- jeżeli użyjemy ją w następujący sposób `prezentacja <- read_pptx(path="prez.pptx")` to utworzymy prezentację z szablonem z tego pliku
+
+```{r}
+prezentacja <- read_pptx()
+class(prezentacja)
+```
+
+```{r}
+layout_summary(prezentacja)
+```
+
+Wczytajmy szablon z moodle
+
+```{r}
+prez <- read_pptx(path = "../data-raw/prezentacja-przyklad.pptx")
+layout_summary(prez)
+```
+
+Jaka jest zasada tworzenia slajdów PowerPoint z poziomu R
+
+- tworzymy plik (`read_pptx()`) `%>%`
+  - dodajemy slajd (`add_slide()`) `%>%`
+    - uzupełniamy slajd (`ph_*`) `%>%`
+  - dodajemy slajd (`add_slide()`) `%>%`
+    - uzupełniamy slajd (`ph_*`) `%>%`
+  - dodajemy slajd (`add_slide()`) `%>%`
+  - uzupełniamy slajd (`ph_*`) `%>%`
+- zapisujemy do pliku (`print()`)
+
+
+Tworzymy prezentację z trzema slajdami -- slajdem tytułowym, slajdem z tytułem i treścią oraz slajdem ze słowem "Dziękuję za uwagę"
+
+
+```{r}
+prezentacja <- prezentacja %>%
+  add_slide(layout = "Title Slide", master = "Office Theme") %>%
+  ph_with(value = "Moja pierwsza prezentacja", location =  ph_location_type(type = "ctrTitle")) 
+
+```
+
+Zapiszmy prezentację do pliku
+
+```{r}
+print(prezentacja, target = "../reports/prezentacja-zajecia.pptx")
+```
+
+
+```{r}
+prezentacja <- prezentacja %>%
+  add_slide(layout = "Title and Content", master = "Office Theme") %>%
+  ph_with(value = "Najważniejsze klasy w R", location = ph_location_type(type = "title")) %>%
+  ph_with(value = c("data.frame", "list", "vector", "matrix"), 
+          location = ph_location_type(type = "body"))
+
+
+prezentacja
+print(prezentacja, target = "../reports/prezentacja-zajecia.pptx")
+```
+
+Ostatni slajd
+
+```{r}
+prezentacja <- prezentacja %>%
+  add_slide(layout = "Title Only", master = "Office Theme") %>%
+  ph_with(value = "Dziękuję za uwagę", location =  ph_location_type(type = "title")) 
+
+print(prezentacja, target = "../reports/prezentacja-zajecia.pptx")
+```
+
+Tak się standardowo pracuje z pakietem officer
+
+
+```{r}
+prezentacja <- read_pptx()  %>%
+  ## dodaję pierwszy slajd
+  add_slide(layout = "Title Slide", master = "Office Theme") %>%
+    ph_with(value = "Moja pierwsza prezentacja", 
+            location =  ph_location_type(type = "ctrTitle")) %>%
+  ## dodaję slajd z tytułem
+  add_slide(layout = "Title and Content", master = "Office Theme") %>%
+    ph_with(value = "Najważniejsze klasy w R", 
+            location = ph_location_type(type = "title")) %>%
+    ph_with(value = c("data.frame", "list", "vector", "matrix"), 
+            location = ph_location_type(type = "body")) %>%
+  ## slajd końcowy
+  add_slide(layout = "Title Only", master = "Office Theme") %>%
+    ph_with(value = "Dziękuję za uwagę", 
+            location =  ph_location_type(type = "title")) 
+```
+
+
+Stwórzmy wykres z pakietem ggplot i dodajmy go do naszej prezentacji
+
+```{r}
+wykres <- ggplot(data = mtcars, aes(x = wt, y = mpg, color = factor(am))) + 
+  geom_point() +
+  labs(x = "Waga", y = "Mile na galon", color = "Automatyczna", 
+       title = "Zależność miedzy wagą, a liczba mil na jednym galonie") +
+  scale_color_brewer(type = "qual", palette = "Set1")
+```
+
+
+```{r}
+prezentacja <- prezentacja %>%
+  add_slide(layout = "Title and Content", master = "Office Theme") %>%
+  ph_with(value = wykres, location = ph_location_type(type = "body"))
+
+print(prezentacja, target = "../reports/prezentacja-zajecia.pptx")
+```
+
+Dodajemy slajd z danymi w formie tabeli
+
+```{r}
+prezentacja <- prezentacja %>%
+  add_slide(layout = "Title and Content", master = "Office Theme") %>%
+  ph_with(value = mtcars[1:5,1:5], 
+          location = ph_location_type(type = "body"))
+
+print(prezentacja, target = "../reports/prezentacja-zajecia.pptx")
+```
+
+
+Jak można przenieść slajdy
+
+```{r}
+prezentacja <- prezentacja %>%
+  move_slide(index = 4, to = 3)
+
+print(prezentacja, target = "../reports/prezentacja-zajecia.pptx")
+```
+
+
+Wczytuję istniejącą prezentację
+
+```{r}
+prez <- read_pptx("../reports/prezentacja-zajecia.pptx")
+```
+
+
+
