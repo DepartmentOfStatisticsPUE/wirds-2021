@@ -1799,14 +1799,12 @@ summary {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShtc2NoYXJ0KVxuXG5gYGAifQ== -->
-<pre class="r"><code>library(mschart)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShydmcpXG5cbmBgYCJ9 -->
+<pre class="r"><code>library(rvg)
 </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ2RhdGEudGFibGUnOlxuICBtZXRob2QgICAgICAgICAgIGZyb21cbiAgcHJpbnQuZGF0YS50YWJsZSAgICAgXG4ifQ== -->
-<pre><code>Registered S3 method overwritten by &#39;data.table&#39;:
-  method           from
-  print.data.table     </code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoicGFja2FnZSDigJhydmfigJkgd2FzIGJ1aWx0IHVuZGVyIFIgdmVyc2lvbiAzLjYuMlxuIn0= -->
+<pre><code>package ‘rvg’ was built under R version 3.6.2</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1817,15 +1815,16 @@ summary {
 </ul>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2xhc3MocHJlemVudGFjamEpXG5cbmBgYCJ9 -->
-<pre class="r"><code>class(prezentacja)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJlemVudGFjamEgPC0gcmVhZF9wcHR4KClcbmNsYXNzKHByZXplbnRhY2phKVxuYGBgIn0= -->
+<pre class="r"><code>prezentacja &lt;- read_pptx()
+class(prezentacja)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwicnBwdHhcIlxuIn0= -->
 <pre><code>[1] &quot;rpptx&quot;</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>Funkcja <code>layout_summary</code> zwraca podsumowanie jakie dostępne są układy slajdów w obiekcie, który utworzyliśmy.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6N30sInJkZiI6Ikg0c0lBQUFBQUFBQUE4V1MzVTZETUJUSEQ3QkNoczZQK0FLOEFDVEdHNitkTWQ0dGNaanM5Z2pGTlNzdGdaSzVPNTk4MmtLcmpoZXdDZUgwMS9NL1grM0w0K1l1M3NRQUVFQVFlaEFRYlFKNXpaL1NlNENacnpjZXpHQnUvaC9hNlVZYkJsN3BMN0lIWnpsVG5DWnJ6a3BxMGZXSVVKVEpVZ3BGaGJJSEYydGFLQ1pGOGt5eHBPMVBoTDJjT01aTFdUZllzazRLUjhhWUs4RVBscEFIam1JM3FlWjhWVldzb0VtK3BUWDlOM1k2T2lLd3BwMHQxTGN3NUhpUXZlczNyTEZUZWlDbndua3I5NWtUTDR6NEU0WVZUVE1VSER1WHdjRzRSSVZaMWFJcENJNFRTU1FiY3hOYTVKdGJKUk94MTA3QVpTOU1KV1ZhYkh1eFMyOU5ndUY0WEF0clIzOXNmMHpwZjlsUXhEVkx4VHNUYm5LRTR4dmw3b0hvam9lR3M2Wmx2NjlCMHk1VFVxSHppd3ZKSFJsNmcrTTNzeld6SHN3Q0FBQT0ifQ== -->
@@ -1844,7 +1843,7 @@ summary {
 <pre class="r"><code>prez &lt;- read_pptx(path = &quot;../data-raw/prezentacja-przyklad.pptx&quot;)
 layout_summary(prez)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6MTF9LCJyZGYiOiJINHNJQUFBQUFBQUFBODFTeTA3RE1CQjAwenFvaWNwRElISE5EelFIdUhBbUNIRUQwWUI2WFJ4RHJUcDI1VGkwdmZIbEJUdXgyeVpmUUtRb3V6TTdIdTltWHgvbXQ5RThRZ2dOMFRBY29DRTJJY0p2K2VQMERxRlJZSklCR3FHeC9XNU0wYVVKTEhodTN0Z1JjYzQwcDhtTXM0STY2THFGUUJUSk8xV2FFZUJKVGpmYTB3ZHdYM2RFWHh6UVRBcE5oU2RPWjVSb0prWHlSS0dnYXUrL2xyM0NLSlBsQ2hTcnBQQkllK2F6NEZ1SDRIc09ZdW1TSzZkUDFrd3ZrZ3hXMXNaekw0em9XdEV1MTUwQnp0ZzNJLzhnNmY0ekxLQ2tsYnRyNE1DUXcxYldmbFJoQ1pVMnMrd0t4MHF1VXkrZVdQRVBhcDY0NzBBNFZON0JnMUVCR3RKUFpmUW0yL1VrSjdLWm9CRUZkcDF3VHp4UVBlQ3NGdllteFpRc2FyR2MzbGlEaG02ZmlZdmpvemhvTFlOZmR4VDJ6Vkx4eFlUZlVzemhnM0svVzZianB1RjBwZGhoa1F4YXBWcHE4SFVSa2R3alRXOW85d2V6SXFiZ1JRTUFBQT09In0= -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6MTF9LCJyZGYiOiJINHNJQUFBQUFBQUFBODFTeTA3RE1CQjAwenFvaWNwRElISE5EelFTNHNLWklNUU5SQVBxZFhFTXRlcllsZVBROXNhWEYrekVicHQ4QVpHaTdNN3NlTHliZlgyWTMwYnpDQ0UwUk1Od2dJYlloQWkvNVkvVE80UkdnVWtHYUlURzlyc3hSWmNtc09DNWVXTkh4RG5UbkNZenpncnFvT3NXQWxFazcxUnBSb0FuT2Qxb1R4L0FmZDBSZlhGQU15azBGWjQ0blZHaW1SVEpFNFdDcXIzL1d2WUtvMHlXSzFDc2tzSWo3Wm5QZ204ZGd1ODVpS1ZMcnB3K1dUTzlTREpZV1J2UHZUQ2lhMFc3WEhjR09HUGZqUHlEcFB2UHNJQ1NWdTZ1Z1FORERsdForMUdGSlZUYXpMSXJIQ3U1VHIxNFlzVS9xSG5pdmdQaFVIa0hEMFlGYUVnL2xkR2JiTmVUbk1obWdrWVUySFhDUGZGQTlZQ3pXdGliRkZPeXFNVnllbU1OR3JwOUppNk9qK0tndFF4KzNWSFlOMHZGRnhOK1N6R0hEOHI5YnBtT200YlRsV0tIUlRKb2xXcXB3ZGRGUkhLUE5MMmgzUi9WUkVSRlJRTUFBQT09In0= -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["layout"],"name":[1],"type":["chr"],"align":["left"]},{"label":["master"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"Title Slide","2":"Civic"},{"1":"Title and Vertical Text","2":"Civic"},{"1":"Vertical Title and Text","2":"Civic"},{"1":"Title and Content","2":"Civic"},{"1":"Section Header","2":"Civic"},{"1":"Two Content","2":"Civic"},{"1":"Comparison","2":"Civic"},{"1":"Title Only","2":"Civic"},{"1":"Blank","2":"Civic"},{"1":"Content with Caption","2":"Civic"},{"1":"Picture with Caption","2":"Civic"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[11]},"pages":{}}}
@@ -1860,6 +1859,9 @@ layout_summary(prez)</code></pre>
 <li>dodajemy slajd (<code>add_slide()</code>) <code>%&gt;%</code>
 <ul>
 <li>uzupełniamy slajd (<code>ph_*</code>) <code>%&gt;%</code></li>
+<li>uzupełniamy slajd (<code>ph_*</code>) <code>%&gt;%</code></li>
+<li>uzupełniamy slajd (<code>ph_*</code>) <code>%&gt;%</code></li>
+<li>uzupełniamy slajd (<code>ph_*</code>) <code>%&gt;%</code></li>
 </ul></li>
 <li>dodajemy slajd (<code>add_slide()</code>) <code>%&gt;%</code>
 <ul>
@@ -1870,7 +1872,7 @@ layout_summary(prez)</code></pre>
 </ul></li>
 <li>zapisujemy do pliku (<code>print()</code>)</li>
 </ul>
-<p>Tworzymy prezentację z trzema slajdami – slajdem tytułowym, slajdem z tytułem i treścią oraz slajdem ze słowem “Dziękuję za uwagę”</p>
+<p>Tworzymy prezentację z trzema slajdami: + slajdem tytułowym, + slajdem z tytułem i treścią + slajdem ze słowem “Dziękuję za uwagę” + slajd z wykresem z ggplot + slajd z danymi w postaci tabeli</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJlemVudGFjamFcblxuYGBgIn0= -->
@@ -1901,8 +1903,8 @@ Available layouts and their associated master(s) are:</code></pre>
 <pre class="r"><code>prezentacja
 </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoicHB0eCBkb2N1bWVudCB3aXRoIDIgc2xpZGUocylcbkF2YWlsYWJsZSBsYXlvdXRzIGFuZCB0aGVpciBhc3NvY2lhdGVkIG1hc3RlcihzKSBhcmU6XG4ifQ== -->
-<pre><code>pptx document with 2 slide(s)
+<!-- rnb-output-begin eyJkYXRhIjoicHB0eCBkb2N1bWVudCB3aXRoIDEgc2xpZGUocylcbkF2YWlsYWJsZSBsYXlvdXRzIGFuZCB0aGVpciBhc3NvY2lhdGVkIG1hc3RlcihzKSBhcmU6XG4ifQ== -->
+<pre><code>pptx document with 1 slide(s)
 Available layouts and their associated master(s) are:</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6N30sInJkZiI6Ikg0c0lBQUFBQUFBQUE4V1MzVTZETUJUSEQ3QkNoczZQK0FLOEFGem9qZGZPR08rV09FeDJlNFRpbXBXV1FNbmNuVTgrYmFGVnh3dlloSEQ2Ni9tZnIvYmxjWE1YYjJJQUNDQUlQUWlJTm9HODVrL3BQY0RNMXhzUFpqQTMvdy90ZEtNTkE2LzBGOW1EczV3cFRwTTFaeVcxNkhwRUtNcGtLWVdpUXRtRGl6VXRGSk1pZWFaWTB2WW53bDVPSE9PbHJCdHNXU2VGSTJQTWxlQUhTOGdEUjdHYlZITytxaXBXMENUZjBwcitHenNkSFJGWTA4NFc2bHNZY2p6STN2VWIxdGdwUFpCVDRieVYrOHlKRjBiOENjT0twaGtLanAzTDRHQmNvc0tzYXRFVUJNZUpKSktOdVFrdDhzMnRrb25ZYXlmZ3NoZW1rakl0dHIzWXBiY213WEE4cm9XMW96KzJQNmIwdjJ3bzRwcWw0cDBKTnpuQzhZMXk5MEIweDBQRFdkT3kzOWVnYVpjcHFkRDV4WVhramd5OXdmRWIxVk5SdTh3Q0FBQT0ifQ== -->
@@ -1914,13 +1916,44 @@ Available layouts and their associated master(s) are:</code></pre>
 <!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Ostatni slajd</p>
+<p>Dodamy slajd z tytułem oraz treścią, która będzie listą wypunktowaną (bullets)</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJlemVudGFjamEgPC0gcHJlemVudGFjamEgJT4lXG4gIGFkZF9zbGlkZShsYXlvdXQgPSBcIlRpdGxlIE9ubHlcIiwgbWFzdGVyID0gXCJPZmZpY2UgVGhlbWVcIikgJT4lXG4gIHBoX3dpdGgodmFsdWUgPSBcIkR6acSZa3VqxJkgemEgdXdhZ8SZXCIsIGxvY2F0aW9uID0gIHBoX2xvY2F0aW9uX3R5cGUodHlwZSA9IFwiY3RyVGl0bGVcIikpIFxuXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJlemVudGFjamEgPC0gcHJlemVudGFjamEgJT4lXG4gIGFkZF9zbGlkZShsYXlvdXQgPSBcIlRpdGxlIGFuZCBDb250ZW50XCIsIG1hc3RlciA9IFwiT2ZmaWNlIFRoZW1lXCIpICU+JVxuICAgIHBoX3dpdGgodmFsdWUgPSBcIk5handhxbxuaWVqc3plIGtsYXN5IHcgUlwiLCBcbiAgICAgICAgICAgIGxvY2F0aW9uID0gcGhfbG9jYXRpb25fdHlwZSh0eXBlID0gXCJ0aXRsZVwiKSkgJT4lXG4gICAgcGhfd2l0aCh2YWx1ZSA9IGMoXCJkYXRhLmZyYW1lXCIsIFwibGlzdFwiLCBcInZlY3RvclwiLCBcIm1hdHJpeFwiKSwgXG4gICAgICAgICAgICBsb2NhdGlvbiA9IHBoX2xvY2F0aW9uX3R5cGUodHlwZSA9IFwiYm9keVwiKSlcblxuXG5wcmV6ZW50YWNqYVxuYGBgIn0= -->
 <pre class="r"><code>prezentacja &lt;- prezentacja %&gt;%
-  add_slide(layout = &quot;Title Only&quot;, master = &quot;Office Theme&quot;) %&gt;%
-  ph_with(value = &quot;Dziękuję za uwagę&quot;, location =  ph_location_type(type = &quot;ctrTitle&quot;)) 
+  add_slide(layout = &quot;Title and Content&quot;, master = &quot;Office Theme&quot;) %&gt;%
+    ph_with(value = &quot;Najważniejsze klasy w R&quot;, 
+            location = ph_location_type(type = &quot;title&quot;)) %&gt;%
+    ph_with(value = c(&quot;data.frame&quot;, &quot;list&quot;, &quot;vector&quot;, &quot;matrix&quot;), 
+            location = ph_location_type(type = &quot;body&quot;))
+
+
+prezentacja</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoicHB0eCBkb2N1bWVudCB3aXRoIDIgc2xpZGUocylcbkF2YWlsYWJsZSBsYXlvdXRzIGFuZCB0aGVpciBhc3NvY2lhdGVkIG1hc3RlcihzKSBhcmU6XG4ifQ== -->
+<pre><code>pptx document with 2 slide(s)
+Available layouts and their associated master(s) are:</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6N30sInJkZiI6Ikg0c0lBQUFBQUFBQUE4V1MzVTZETUJUSEQ3QkNoczZQK0FLOEFDVEdHNitkTWQ0dGNaanM5Z2pGTlNzdGdaSzVPNTk4MmtLcmpoZXdDZUgwMS9NL1grM0w0K1l1M3NRQUVFQVFlaEFRYlFKNXpaL1NlNENacnpjZXpHQnUvaC9hNlVZYkJsN3BMN0lIWnpsVG5DWnJ6a3BxMGZXSVVKVEpVZ3BGaGJJSEYydGFLQ1pGOGt5eHBPMVBoTDJjT01aTFdUZllzazRLUjhhWUs4RVBscEFIam1JM3FlWjhWVldzb0VtK3BUWDlOM1k2T2lLd3BwMHQxTGN3NUhpUXZlczNyTEZUZWlDbndua3I5NWtUTDR6NEU0WVZUVE1VSER1WHdjRzRSSVZaMWFJcENJNFRTU1FiY3hOYTVKdGJKUk94MTA3QVpTOU1KV1ZhYkh1eFMyOU5ndUY0WEF0clIzOXNmMHpwZjlsUXhEVkx4VHNUYm5LRTR4dmw3b0hvam9lR3M2Wmx2NjlCMHk1VFVxSHppd3ZKSFJsNmcrTTNzeld6SHN3Q0FBQT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["layout"],"name":[1],"type":["chr"],"align":["left"]},{"label":["master"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"Title Slide","2":"Office Theme"},{"1":"Title and Content","2":"Office Theme"},{"1":"Section Header","2":"Office Theme"},{"1":"Two Content","2":"Office Theme"},{"1":"Comparison","2":"Office Theme"},{"1":"Title Only","2":"Office Theme"},{"1":"Blank","2":"Office Theme"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[7]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQocHJlemVudGFjamEsIHRhcmdldCA9IFwiLi4vcmVwb3J0cy9wcmV6ZW50YWNqYS16YWplY2lhLnBwdHhcIilcbmBgYCJ9 -->
+<pre class="r"><code>print(prezentacja, target = &quot;../reports/prezentacja-zajecia.pptx&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Ostatni slajd z podziękowaniem</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJlemVudGFjamEgPC0gcHJlemVudGFjamEgJT4lXG4gIGFkZF9zbGlkZShsYXlvdXQgPSBcIlNlY3Rpb24gSGVhZGVyXCIsIG1hc3RlciA9IFwiT2ZmaWNlIFRoZW1lXCIpICU+JVxuICBwaF93aXRoKHZhbHVlID0gXCJEemnEmWt1asSZIHphIHV3YWfEmVwiLCBsb2NhdGlvbiA9ICBwaF9sb2NhdGlvbl90eXBlKHR5cGUgPSBcInRpdGxlXCIpKSAlPiVcbiAgcGhfd2l0aCh2YWx1ZSA9IFwiS29udGFrdDogaW1pZS5uYXp3aXNrb0BtYWlsLmNvbVwiLCBsb2NhdGlvbiA9ICBwaF9sb2NhdGlvbl90eXBlKHR5cGUgPSBcInN1YlRpdGxlXCIpKSBcblxuYGBgIn0= -->
+<pre class="r"><code>prezentacja &lt;- prezentacja %&gt;%
+  add_slide(layout = &quot;Section Header&quot;, master = &quot;Office Theme&quot;) %&gt;%
+  ph_with(value = &quot;Dziękuję za uwagę&quot;, location =  ph_location_type(type = &quot;title&quot;)) %&gt;%
+  ph_with(value = &quot;Kontakt: imie.nazwisko@mail.com&quot;, location =  ph_location_type(type = &quot;subTitle&quot;)) 
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gZ2V0X3BoX2xvYyhkb2MsIGxheW91dCA9IGxheW91dCwgbWFzdGVyID0gbWFzdGVyLCB0eXBlID0geCR0eXBlLCAgOiBcbiAgbm8gc2VsZWN0ZWQgcm93XG4ifQ== -->
@@ -1964,7 +1997,7 @@ Available layouts and their associated master(s) are:</code></pre>
 <p>Dodajemy slajd z danymi w formie tabeli</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6NSwibnJvdyI6NX0sInJkZiI6Ikg0c0lBQUFBQUFBQUEyMVNTMDdETUJCMWs2YVFTRTJMMkxETUJSSUJhWUVOVWhZVllzT21nRnFwS3pkSjI0alV0aHluZkZhOUM5eUFhOENhTFNjcDJJa2RrWWlSckRmei9NYnprY2VqcVc5TkxRQ0FEdlJPQytnR2Q0RnhmM2ZsWGdEUTFualFBbTFnQ256aW9rTnh5NDh0TUJpQ3dpbzgreEQyR1F3WGhRV243NzZ3U244a2RRcjdqZGdCeWtwOUpIbUZNNG1rRkFhYmJWMC8yMHFkeEVsUWorUHZ1cjVYdE9kWGFNdis5MSsvckV2eUZwaSs3TCsyQ0FQQmRaeHhwMThzb3lUMU5Wa3FOM3hPcGR1T2tveElYMXVSaXFXUU5SNDFLWDcwL252WXZJRXZFWFRHMDRFa3VoWGhUS0NxYVkwZ3kzTGtuSjhjUzhhK3hoVEZ6Qms0STVwc1lza2VTUGFXWU1yZ0hPZk5Qb3d3aFpucVFaRldCQm4wRnBTM3g2TmRJMlVQRTVaZ3hKTTA5VDMrSnJkb2cramxTQXdhdWVFcVJ3L3VRQlFvcnN2VGxXalVmVkZTKzJrc3B4T2paWUxVY0VZSzU3RmF2YzBYV3V6VEl6UkJURTNDMmN4am1FR2xzMEtjS3FhWURleCtBUWJralJzVkF3QUEifQ== -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6NSwibnJvdyI6NX0sInJkZiI6Ikg0c0lBQUFBQUFBQUEyMVNQVTdETUJSMms2YVFTRTJMV0JoemdVYVV0TUNDbEtGQ0xDd0YxRXFkM0NSdEkxTGJjcHdXbUhvWHVBSFhnSm1Wa3hUc3hJNUl4Sk9zNzczUDMvUDdrY2VqcVdkTkxRQ0FEdlJXQStnR2Q0SHhjSC9kdXdTZ3FmR2dBWnJBRlBqRVJjZmlsaDlib0Q4RXVaVjQvaUhzMHg4dWN2UFAzajFocGY1RTZoUjJhN0VEbEJYNlVQSUtaeEpKSWZRM3U2cCt0cE02aVJPL0drZmZWWDBuYjg4cjBaYjlINzUrV1Zma3pUYzkyWDlsRVFhQzZ5amxUamRmUmtIcWE3SlVidkNjU0xjWnhpbVJ2cllpSlVzaHF6MXFVcngxLzN2WXZJVXZJWFRHMDRFazJpWGhUS0NxYVkwZ1N6UGtYUFJQSldQZllJb2k1Z3ljRVkwM2tXU1BKSHRITUdWd2pyTjZIMGFRd0ZUMW9FZ3JoQXk2QzhyYjQ5RytsbktBQ1lzeDRrbWEraDUva3h1MFJuUXlKQVlOZThFcVE0Kzl2aWlRWHhlbkxkR28rcUtrOWxOYlRpdEN5eGlwNFl3RXppTzFlcHN2Tk4rblMyaU1tSnFFczZuTE1JTktad1U0VVV3K0c5ai9BdTFJMmk0VkF3QUEifQ== -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"160","4":"110","5":"3.90","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160","4":"110","5":"3.90","_rn_":"Mazda RX4 Wag"},{"1":"22.8","2":"4","3":"108","4":"93","5":"3.85","_rn_":"Datsun 710"},{"1":"21.4","2":"6","3":"258","4":"110","5":"3.08","_rn_":"Hornet 4 Drive"},{"1":"18.7","2":"8","3":"360","4":"175","5":"3.15","_rn_":"Hornet Sportabout"}],"options":{"columns":{"min":{},"max":[10],"total":[5]},"rows":{"min":[10],"max":[10],"total":[5]},"pages":{}}}
@@ -1973,7 +2006,33 @@ Available layouts and their associated master(s) are:</code></pre>
 <!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Jak można przenieść slajdy</p>
+<p>Jak można przenieść slajdy? Możemy wykorzystać do tego funkcję <code>move_slide</code></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGVuZ3RoKHByZXplbnRhY2phKVxuXG5gYGAifQ== -->
+<pre class="r"><code>length(prezentacja)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDZcbiJ9 -->
+<pre><code>[1] 6</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Tworzymy edytowalny wykres</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJlemVudGFjamEgPC0gcHJlemVudGFjamEgJT4lXG4gIGFkZF9zbGlkZShsYXlvdXQgPSBcIlRpdGxlIGFuZCBDb250ZW50XCIsIG1hc3RlciA9IFwiT2ZmaWNlIFRoZW1lXCIpICU+JVxuICBwaF93aXRoKHZhbHVlID0gd3lrcmVzX2VkaXQsIGxvY2F0aW9uID0gcGhfbG9jYXRpb25fZnVsbHNpemUoKSlcblxuYGBgIn0= -->
+<pre class="r"><code>prezentacja &lt;- prezentacja %&gt;%
+  add_slide(layout = &quot;Title and Content&quot;, master = &quot;Office Theme&quot;) %&gt;%
+  ph_with(value = wykres_edit, location = ph_location_fullsize())
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoicGFja2FnZSDigJhnZHRvb2xz4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gMy42LjJcbiJ9 -->
+<pre><code>package ‘gdtools’ was built under R version 3.6.2</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Usuwamy slajd</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-chunk-end -->
@@ -1985,11 +2044,11 @@ Available layouts and their associated master(s) are:</code></pre>
 <pre class="r"><code>prez
 </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoicHB0eCBkb2N1bWVudCB3aXRoIDUgc2xpZGUocylcbkF2YWlsYWJsZSBsYXlvdXRzIGFuZCB0aGVpciBhc3NvY2lhdGVkIG1hc3RlcihzKSBhcmU6XG4ifQ== -->
-<pre><code>pptx document with 5 slide(s)
+<!-- rnb-output-begin eyJkYXRhIjoicHB0eCBkb2N1bWVudCB3aXRoIDcgc2xpZGUocylcbkF2YWlsYWJsZSBsYXlvdXRzIGFuZCB0aGVpciBhc3NvY2lhdGVkIG1hc3RlcihzKSBhcmU6XG4ifQ== -->
+<pre><code>pptx document with 7 slide(s)
 Available layouts and their associated master(s) are:</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6N30sInJkZiI6Ikg0c0lBQUFBQUFBQUE4V1MzVTZETUJUSEQ3QkNoczZQK0FLOEFGem9qZGZPR08rV09FeDJlNFRpbXBXV1FNbmNuVTgrYmFGVnh3dlloSEQ2Ni9tZnIvYmxjWE1YYjJJQUNDQUlQUWlJTm9HODVrL3BQY0RNMXhzUFpqQTMvdy90ZEtNTkE2LzBGOW1EczV3cFRwTTFaeVcxNkhwRUtNcGtLWVdpUXRtRGl6VXRGSk1pZWFaWTB2WW53bDVPSE9PbHJCdHNXU2VGSTJQTWxlQUhTOGdEUjdHYlZITytxaXBXMENUZjBwcitHenNkSFJGWTA4NFc2bHNZY2p6STN2VWIxdGdwUFpCVDRieVYrOHlKRjBiOENjT0twaGtLanAzTDRHQmNvc0tzYXRFVUJNZUpKSktOdVFrdDhzMnRrb25ZYXlmZ3NoZW1rakl0dHIzWXBiY213WEE4cm9XMW96KzJQNmIwdjJ3bzRwcWw0cDBKTnpuQzhZMXk5MEIweDBQRFdkT3kzOWVnYVpjcHFkRDV4WVhramd5OXdmRWIxVk5SdTh3Q0FBQT0ifQ== -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6N30sInJkZiI6Ikg0c0lBQUFBQUFBQUE4V1MzVTZETUJUSEQ3QkNoczZQK0FLOEFOem9oZGZPR08rV09FeDJlNFRpbXBXV1FNbmNuVTgrYmFGVnh3dlloSEQ2Ni9tZnIvYmxjWE1iYjJJQUNDQUlQUWlJTm9HODVrL3BQY0RNMXhzUFpqQTMvdy90ZEtNTkE2LzBGOW1EczV3cFRwTTFaeVcxNkhwRUtNcGtLWVdpUXRtRGl6VXRGSk1pZWFaWTB2WW53bDVPSE9PbHJCdHNXU2VGSTJQTWxlQUhTOGdEUjdHYlZITytxaXBXMENUZjBwcitHenNkSFJGWTA4NFc2bHNZY2p6STN2VWIxdGdwUFpCVDRieVYrOHlKRjBiOENjT0twaGtLanAzTDRHQmNvc0tzYXRFVUJNZUpKSktOdVFrdDhzMnRrb25ZYXlmZ3NoZW1rakl0dHIzWXBYY213WEE4cm9XMW96KzJQNmIwdjJ3bzRwcWw0cDBKTnpuQzhZMXk5MEIweDBQRFdkT3kzOWVnYVpjcHFkRDV4WVhramd5OXdmRWJXSm5rSzh3Q0FBQT0ifQ== -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["layout"],"name":[1],"type":["chr"],"align":["left"]},{"label":["master"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"Title Slide","2":"Office Theme"},{"1":"Title and Content","2":"Office Theme"},{"1":"Section Header","2":"Office Theme"},{"1":"Two Content","2":"Office Theme"},{"1":"Comparison","2":"Office Theme"},{"1":"Title Only","2":"Office Theme"},{"1":"Blank","2":"Office Theme"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[7]},"pages":{}}}
@@ -2000,7 +2059,7 @@ Available layouts and their associated master(s) are:</code></pre>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKCgpgYGB7cn0KbGlicmFyeSh0aWR5dmVyc2UpCmxpYnJhcnkob2ZmaWNlcikgIyMgcGFraWV0IGRvIHR3b3J6ZW5pYSBtLmluLiBwcmV6ZW50YWNqaSB3IHBvd2VyIHBvaW50CmxpYnJhcnkobXNjaGFydCkgIyMgdHdvcnplbmllIGVkeXRvd2FsbnljaCB3eWtyZXPDs3cKYGBgCgpBYnkgc3R3b3J6ecSHIHByZXplbnRhY2rEmSBwb3dlcnBvaW50IG5hbGXFvHkgemFjesSFxIcgb2QgZnVuY2tqaSBgcmVhZF9wcHR4KClgCgotIGplxbxlbGkgdcW8eWplbXkgasSFIHcgbmFzdMSZcHVqxIVjeSBzcG9zw7NiOiBgcHJlemVudGFjamEgPC0gcmVhZF9wcHR4KClgIHRvIHR3b3J6eW15IHB1c3TEhSBwcmV6ZW50YWNqxJkgeiBkb215xZtsbnltIHN6YWJsb25lbQotIGplxbxlbGkgdcW8eWplbXkgasSFIHcgbmFzdMSZcHVqxIVjeSBzcG9zw7NiIGBwcmV6ZW50YWNqYSA8LSByZWFkX3BwdHgocGF0aD0icHJlei5wcHR4IilgIHRvIHV0d29yenlteSBwcmV6ZW50YWNqxJkgeiBzemFibG9uZW0geiB0ZWdvIHBsaWt1CgpgYGB7cn0KcHJlemVudGFjamEgPC0gcmVhZF9wcHR4KCkKY2xhc3MocHJlemVudGFjamEpCmBgYAoKYGBge3J9CmxheW91dF9zdW1tYXJ5KHByZXplbnRhY2phKQpgYGAKCldjenl0YWpteSBzemFibG9uIHogbW9vZGxlCgpgYGB7cn0KcHJleiA8LSByZWFkX3BwdHgocGF0aCA9ICIuLi9kYXRhLXJhdy9wcmV6ZW50YWNqYS1wcnp5a2xhZC5wcHR4IikKbGF5b3V0X3N1bW1hcnkocHJleikKYGBgCgpKYWthIGplc3QgemFzYWRhIHR3b3J6ZW5pYSBzbGFqZMOzdyBQb3dlclBvaW50IHogcG96aW9tdSBSCgotIHR3b3J6eW15IHBsaWsgKGByZWFkX3BwdHgoKWApIGAlPiVgCiAgLSBkb2RhamVteSBzbGFqZCAoYGFkZF9zbGlkZSgpYCkgYCU+JWAKICAgIC0gdXp1cGXFgm5pYW15IHNsYWpkIChgcGhfKmApIGAlPiVgCiAgLSBkb2RhamVteSBzbGFqZCAoYGFkZF9zbGlkZSgpYCkgYCU+JWAKICAgIC0gdXp1cGXFgm5pYW15IHNsYWpkIChgcGhfKmApIGAlPiVgCiAgLSBkb2RhamVteSBzbGFqZCAoYGFkZF9zbGlkZSgpYCkgYCU+JWAKICAtIHV6dXBlxYJuaWFteSBzbGFqZCAoYHBoXypgKSBgJT4lYAotIHphcGlzdWplbXkgZG8gcGxpa3UgKGBwcmludCgpYCkKCgpUd29yenlteSBwcmV6ZW50YWNqxJkgeiB0cnplbWEgc2xhamRhbWkgLS0gc2xhamRlbSB0eXR1xYJvd3ltLCBzbGFqZGVtIHogdHl0dcWCZW0gaSB0cmXFm2NpxIUgb3JheiBzbGFqZGVtIHplIHPFgm93ZW0gIkR6acSZa3VqxJkgemEgdXdhZ8SZIgoKCmBgYHtyfQpwcmV6ZW50YWNqYSA8LSBwcmV6ZW50YWNqYSAlPiUKICBhZGRfc2xpZGUobGF5b3V0ID0gIlRpdGxlIFNsaWRlIiwgbWFzdGVyID0gIk9mZmljZSBUaGVtZSIpICU+JQogIHBoX3dpdGgodmFsdWUgPSAiTW9qYSBwaWVyd3N6YSBwcmV6ZW50YWNqYSIsIGxvY2F0aW9uID0gIHBoX2xvY2F0aW9uX3R5cGUodHlwZSA9ICJjdHJUaXRsZSIpKSAKCmBgYAoKWmFwaXN6bXkgcHJlemVudGFjasSZIGRvIHBsaWt1CgpgYGB7cn0KcHJpbnQocHJlemVudGFjamEsIHRhcmdldCA9ICIuLi9yZXBvcnRzL3ByZXplbnRhY2phLXphamVjaWEucHB0eCIpCmBgYAoKCmBgYHtyfQpwcmV6ZW50YWNqYSA8LSBwcmV6ZW50YWNqYSAlPiUKICBhZGRfc2xpZGUobGF5b3V0ID0gIlRpdGxlIGFuZCBDb250ZW50IiwgbWFzdGVyID0gIk9mZmljZSBUaGVtZSIpICU+JQogIHBoX3dpdGgodmFsdWUgPSAiTmFqd2HFvG5pZWpzemUga2xhc3kgdyBSIiwgbG9jYXRpb24gPSBwaF9sb2NhdGlvbl90eXBlKHR5cGUgPSAidGl0bGUiKSkgJT4lCiAgcGhfd2l0aCh2YWx1ZSA9IGMoImRhdGEuZnJhbWUiLCAibGlzdCIsICJ2ZWN0b3IiLCAibWF0cml4IiksIAogICAgICAgICAgbG9jYXRpb24gPSBwaF9sb2NhdGlvbl90eXBlKHR5cGUgPSAiYm9keSIpKQoKCnByZXplbnRhY2phCnByaW50KHByZXplbnRhY2phLCB0YXJnZXQgPSAiLi4vcmVwb3J0cy9wcmV6ZW50YWNqYS16YWplY2lhLnBwdHgiKQpgYGAKCk9zdGF0bmkgc2xhamQKCmBgYHtyfQpwcmV6ZW50YWNqYSA8LSBwcmV6ZW50YWNqYSAlPiUKICBhZGRfc2xpZGUobGF5b3V0ID0gIlRpdGxlIE9ubHkiLCBtYXN0ZXIgPSAiT2ZmaWNlIFRoZW1lIikgJT4lCiAgcGhfd2l0aCh2YWx1ZSA9ICJEemnEmWt1asSZIHphIHV3YWfEmSIsIGxvY2F0aW9uID0gIHBoX2xvY2F0aW9uX3R5cGUodHlwZSA9ICJ0aXRsZSIpKSAKCnByaW50KHByZXplbnRhY2phLCB0YXJnZXQgPSAiLi4vcmVwb3J0cy9wcmV6ZW50YWNqYS16YWplY2lhLnBwdHgiKQpgYGAKClRhayBzacSZIHN0YW5kYXJkb3dvIHByYWN1amUgeiBwYWtpZXRlbSBvZmZpY2VyCgoKYGBge3J9CnByZXplbnRhY2phIDwtIHJlYWRfcHB0eCgpICAlPiUKICAjIyBkb2RhasSZIHBpZXJ3c3p5IHNsYWpkCiAgYWRkX3NsaWRlKGxheW91dCA9ICJUaXRsZSBTbGlkZSIsIG1hc3RlciA9ICJPZmZpY2UgVGhlbWUiKSAlPiUKICAgIHBoX3dpdGgodmFsdWUgPSAiTW9qYSBwaWVyd3N6YSBwcmV6ZW50YWNqYSIsIAogICAgICAgICAgICBsb2NhdGlvbiA9ICBwaF9sb2NhdGlvbl90eXBlKHR5cGUgPSAiY3RyVGl0bGUiKSkgJT4lCiAgIyMgZG9kYWrEmSBzbGFqZCB6IHR5dHXFgmVtCiAgYWRkX3NsaWRlKGxheW91dCA9ICJUaXRsZSBhbmQgQ29udGVudCIsIG1hc3RlciA9ICJPZmZpY2UgVGhlbWUiKSAlPiUKICAgIHBoX3dpdGgodmFsdWUgPSAiTmFqd2HFvG5pZWpzemUga2xhc3kgdyBSIiwgCiAgICAgICAgICAgIGxvY2F0aW9uID0gcGhfbG9jYXRpb25fdHlwZSh0eXBlID0gInRpdGxlIikpICU+JQogICAgcGhfd2l0aCh2YWx1ZSA9IGMoImRhdGEuZnJhbWUiLCAibGlzdCIsICJ2ZWN0b3IiLCAibWF0cml4IiksIAogICAgICAgICAgICBsb2NhdGlvbiA9IHBoX2xvY2F0aW9uX3R5cGUodHlwZSA9ICJib2R5IikpICU+JQogICMjIHNsYWpkIGtvxYRjb3d5CiAgYWRkX3NsaWRlKGxheW91dCA9ICJUaXRsZSBPbmx5IiwgbWFzdGVyID0gIk9mZmljZSBUaGVtZSIpICU+JQogICAgcGhfd2l0aCh2YWx1ZSA9ICJEemnEmWt1asSZIHphIHV3YWfEmSIsIAogICAgICAgICAgICBsb2NhdGlvbiA9ICBwaF9sb2NhdGlvbl90eXBlKHR5cGUgPSAidGl0bGUiKSkgCmBgYAoKClN0d8OzcnpteSB3eWtyZXMgeiBwYWtpZXRlbSBnZ3Bsb3QgaSBkb2Rham15IGdvIGRvIG5hc3plaiBwcmV6ZW50YWNqaQoKYGBge3J9Cnd5a3JlcyA8LSBnZ3Bsb3QoZGF0YSA9IG10Y2FycywgYWVzKHggPSB3dCwgeSA9IG1wZywgY29sb3IgPSBmYWN0b3IoYW0pKSkgKyAKICBnZW9tX3BvaW50KCkgKwogIGxhYnMoeCA9ICJXYWdhIiwgeSA9ICJNaWxlIG5hIGdhbG9uIiwgY29sb3IgPSAiQXV0b21hdHljem5hIiwgCiAgICAgICB0aXRsZSA9ICJaYWxlxbxub8WbxIcgbWllZHp5IHdhZ8SFLCBhIGxpY3piYSBtaWwgbmEgamVkbnltIGdhbG9uaWUiKSArCiAgc2NhbGVfY29sb3JfYnJld2VyKHR5cGUgPSAicXVhbCIsIHBhbGV0dGUgPSAiU2V0MSIpCmBgYAoKCmBgYHtyfQpwcmV6ZW50YWNqYSA8LSBwcmV6ZW50YWNqYSAlPiUKICBhZGRfc2xpZGUobGF5b3V0ID0gIlRpdGxlIGFuZCBDb250ZW50IiwgbWFzdGVyID0gIk9mZmljZSBUaGVtZSIpICU+JQogIHBoX3dpdGgodmFsdWUgPSB3eWtyZXMsIGxvY2F0aW9uID0gcGhfbG9jYXRpb25fdHlwZSh0eXBlID0gImJvZHkiKSkKCnByaW50KHByZXplbnRhY2phLCB0YXJnZXQgPSAiLi4vcmVwb3J0cy9wcmV6ZW50YWNqYS16YWplY2lhLnBwdHgiKQpgYGAKCkRvZGFqZW15IHNsYWpkIHogZGFueW1pIHcgZm9ybWllIHRhYmVsaQoKYGBge3J9CnByZXplbnRhY2phIDwtIHByZXplbnRhY2phICU+JQogIGFkZF9zbGlkZShsYXlvdXQgPSAiVGl0bGUgYW5kIENvbnRlbnQiLCBtYXN0ZXIgPSAiT2ZmaWNlIFRoZW1lIikgJT4lCiAgcGhfd2l0aCh2YWx1ZSA9IG10Y2Fyc1sxOjUsMTo1XSwgCiAgICAgICAgICBsb2NhdGlvbiA9IHBoX2xvY2F0aW9uX3R5cGUodHlwZSA9ICJib2R5IikpCgpwcmludChwcmV6ZW50YWNqYSwgdGFyZ2V0ID0gIi4uL3JlcG9ydHMvcHJlemVudGFjamEtemFqZWNpYS5wcHR4IikKYGBgCgoKSmFrIG1vxbxuYSBwcnplbmllxZvEhyBzbGFqZHkKCmBgYHtyfQpwcmV6ZW50YWNqYSA8LSBwcmV6ZW50YWNqYSAlPiUKICBtb3ZlX3NsaWRlKGluZGV4ID0gNCwgdG8gPSAzKQoKcHJpbnQocHJlemVudGFjamEsIHRhcmdldCA9ICIuLi9yZXBvcnRzL3ByZXplbnRhY2phLXphamVjaWEucHB0eCIpCmBgYAoKCldjenl0dWrEmSBpc3RuaWVqxIVjxIUgcHJlemVudGFjasSZCgpgYGB7cn0KcHJleiA8LSByZWFkX3BwdHgoIi4uL3JlcG9ydHMvcHJlemVudGFjamEtemFqZWNpYS5wcHR4IikKYGBgCgoKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKCgpgYGB7cn0KbGlicmFyeSh0aWR5dmVyc2UpCmxpYnJhcnkob2ZmaWNlcikgIyMgcGFraWV0IGRvIHR3b3J6ZW5pYSBtLmluLiBwcmV6ZW50YWNqaSB3IHBvd2VyIHBvaW50CmxpYnJhcnkobXNjaGFydCkgIyMgdHdvcnplbmllIGVkeXRvd2FsbnljaCB3eWtyZXPDs3cKbGlicmFyeShydmcpICMjIGRvIHR3b3J6ZW5pZSBlZHl0b3dhbG55Y2ggd3lrcmVzw7N3CmBgYAoKQWJ5IHN0d29yennEhyBwcmV6ZW50YWNqxJkgcG93ZXJwb2ludCBuYWxlxbx5IHphY3rEhcSHIG9kIGZ1bmNramkgYHJlYWRfcHB0eCgpYAoKLSBqZcW8ZWxpIHXFvHlqZW15IGrEhSB3IG5hc3TEmXB1asSFY3kgc3Bvc8OzYjogYHByZXplbnRhY2phIDwtIHJlYWRfcHB0eCgpYCB0byB0d29yenlteSBwdXN0xIUgcHJlemVudGFjasSZIHogZG9tecWbbG55bSBzemFibG9uZW0KLSBqZcW8ZWxpIHXFvHlqZW15IGrEhSB3IG5hc3TEmXB1asSFY3kgc3Bvc8OzYiBgcHJlemVudGFjamEgPC0gcmVhZF9wcHR4KHBhdGg9InByZXoucHB0eCIpYCB0byB1dHdvcnp5bXkgcHJlemVudGFjasSZIHogc3phYmxvbmVtIHogdGVnbyBwbGlrdQoKYGBge3J9CiMjIHR3b3J6eW15IHB1c3TEhSBwcmV6ZW50YWNqxJkgeiBmdW5rY2rEhSByZWFkX3BwdHgKcHJlemVudGFjamEgPC0gcmVhZF9wcHR4KCkKCmNsYXNzKHByZXplbnRhY2phKQpgYGAKCkZ1bmtjamEgYGxheW91dF9zdW1tYXJ5YCB6d3JhY2EgcG9kc3Vtb3dhbmllIGpha2llIGRvc3TEmXBuZSBzxIUgdWvFgmFkeSBzbGFqZMOzdyB3IG9iaWVrY2llLCBrdMOzcnkgdXR3b3J6eWxpxZtteS4KCmBgYHtyfQpsYXlvdXRfc3VtbWFyeShwcmV6ZW50YWNqYSkKYGBgCgpXY3p5dGFqbXkgc3phYmxvbiB6IG1vb2RsZQoKYGBge3J9CnByZXogPC0gcmVhZF9wcHR4KHBhdGggPSAiLi4vZGF0YS1yYXcvcHJlemVudGFjamEtcHJ6eWtsYWQucHB0eCIpCmxheW91dF9zdW1tYXJ5KHByZXopCmBgYAoKSmFrYSBqZXN0IHphc2FkYSB0d29yemVuaWEgc2xhamTDs3cgUG93ZXJQb2ludCB6IHBvemlvbXUgUgoKLSB0d29yenlteSBwbGlrIChgcmVhZF9wcHR4KClgKSBgJT4lYAogIC0gZG9kYWplbXkgc2xhamQgKGBhZGRfc2xpZGUoKWApIGAlPiVgCiAgICAtIHV6dXBlxYJuaWFteSBzbGFqZCAoYHBoXypgKSBgJT4lYAogICAgLSB1enVwZcWCbmlhbXkgc2xhamQgKGBwaF8qYCkgYCU+JWAKICAgIC0gdXp1cGXFgm5pYW15IHNsYWpkIChgcGhfKmApIGAlPiVgCiAgICAtIHV6dXBlxYJuaWFteSBzbGFqZCAoYHBoXypgKSBgJT4lYAogIC0gZG9kYWplbXkgc2xhamQgKGBhZGRfc2xpZGUoKWApIGAlPiVgCiAgICAtIHV6dXBlxYJuaWFteSBzbGFqZCAoYHBoXypgKSBgJT4lYAogIC0gZG9kYWplbXkgc2xhamQgKGBhZGRfc2xpZGUoKWApIGAlPiVgCiAgLSB1enVwZcWCbmlhbXkgc2xhamQgKGBwaF8qYCkgYCU+JWAKLSB6YXBpc3VqZW15IGRvIHBsaWt1IChgcHJpbnQoKWApCgoKVHdvcnp5bXkgcHJlemVudGFjasSZIHogdHJ6ZW1hIHNsYWpkYW1pOgogICsgc2xhamRlbSB0eXR1xYJvd3ltLCAKICArIHNsYWpkZW0geiB0eXR1xYJlbSBpIHRyZcWbY2nEhSAKICArIHNsYWpkZW0gemUgc8WCb3dlbSAiRHppxJlrdWrEmSB6YSB1d2FnxJkiCiAgKyBzbGFqZCB6IHd5a3Jlc2VtIHogZ2dwbG90CiAgKyBzbGFqZCB6IGRhbnltaSB3IHBvc3RhY2kgdGFiZWxpCgoKYGBge3J9CnByZXplbnRhY2phIDwtIHByZXplbnRhY2phICU+JQogIGFkZF9zbGlkZShsYXlvdXQgPSAiVGl0bGUgU2xpZGUiLCBtYXN0ZXIgPSAiT2ZmaWNlIFRoZW1lIikgJT4lCiAgICBwaF93aXRoKHZhbHVlID0gIlR5dHXFgiBwcmV6ZW50YWNqaSIsIAogICAgICAgICAgICBsb2NhdGlvbiA9ICBwaF9sb2NhdGlvbl90eXBlKHR5cGUgPSAiY3RyVGl0bGUiKSkgCgpgYGAKClphcGlzem15IHByZXplbnRhY2rEmSBkbyBwbGlrdQoKYGBge3J9CnByaW50KHByZXplbnRhY2phLCB0YXJnZXQgPSAiLi4vcmVwb3J0cy9wcmV6ZW50YWNqYS16YWplY2lhLnBwdHgiKQpgYGAKCmBgYHtyfQpwcmV6ZW50YWNqYQpgYGAKCkRvZGFteSBzbGFqZCB6IHR5dHXFgmVtIG9yYXogdHJlxZtjacSFLCBrdMOzcmEgYsSZZHppZSBsaXN0xIUgd3lwdW5rdG93YW7EhSAoYnVsbGV0cykKCmBgYHtyfQpwcmV6ZW50YWNqYSA8LSBwcmV6ZW50YWNqYSAlPiUKICBhZGRfc2xpZGUobGF5b3V0ID0gIlRpdGxlIGFuZCBDb250ZW50IiwgbWFzdGVyID0gIk9mZmljZSBUaGVtZSIpICU+JQogICAgcGhfd2l0aCh2YWx1ZSA9ICJOYWp3YcW8bmllanN6ZSBrbGFzeSB3IFIiLCAKICAgICAgICAgICAgbG9jYXRpb24gPSBwaF9sb2NhdGlvbl90eXBlKHR5cGUgPSAidGl0bGUiKSkgJT4lCiAgICBwaF93aXRoKHZhbHVlID0gYygiZGF0YS5mcmFtZSIsICJsaXN0IiwgInZlY3RvciIsICJtYXRyaXgiKSwgCiAgICAgICAgICAgIGxvY2F0aW9uID0gcGhfbG9jYXRpb25fdHlwZSh0eXBlID0gImJvZHkiKSkKCgpwcmV6ZW50YWNqYQpwcmludChwcmV6ZW50YWNqYSwgdGFyZ2V0ID0gIi4uL3JlcG9ydHMvcHJlemVudGFjamEtemFqZWNpYS5wcHR4IikKYGBgCgpPc3RhdG5pIHNsYWpkIHogcG9kemnEmWtvd2FuaWVtCgpgYGB7cn0KcHJlemVudGFjamEgPC0gcHJlemVudGFjamEgJT4lCiAgYWRkX3NsaWRlKGxheW91dCA9ICJTZWN0aW9uIEhlYWRlciIsIG1hc3RlciA9ICJPZmZpY2UgVGhlbWUiKSAlPiUKICBwaF93aXRoKHZhbHVlID0gIkR6acSZa3VqxJkgemEgdXdhZ8SZIiwgbG9jYXRpb24gPSAgcGhfbG9jYXRpb25fdHlwZSh0eXBlID0gInRpdGxlIikpIAoKcHJpbnQocHJlemVudGFjamEsIHRhcmdldCA9ICIuLi9yZXBvcnRzL3ByZXplbnRhY2phLXphamVjaWEucHB0eCIpCmBgYAoKVGFrIHNpxJkgc3RhbmRhcmRvd28gcHJhY3VqZSB6IHBha2lldGVtIG9mZmljZXIKCgpgYGB7cn0KcHJlemVudGFjamEgPC0gcmVhZF9wcHR4KCkgICU+JQogICMjIGRvZGFqxJkgcGllcndzenkgc2xhamQKICBhZGRfc2xpZGUobGF5b3V0ID0gIlRpdGxlIFNsaWRlIiwgbWFzdGVyID0gIk9mZmljZSBUaGVtZSIpICU+JQogICAgcGhfd2l0aCh2YWx1ZSA9ICJNb2phIHBpZXJ3c3phIHByZXplbnRhY2phIiwgCiAgICAgICAgICAgIGxvY2F0aW9uID0gIHBoX2xvY2F0aW9uX3R5cGUodHlwZSA9ICJjdHJUaXRsZSIpKSAlPiUKICAjIyBkb2RhasSZIHNsYWpkIHogdHl0dcWCZW0KICBhZGRfc2xpZGUobGF5b3V0ID0gIlRpdGxlIGFuZCBDb250ZW50IiwgbWFzdGVyID0gIk9mZmljZSBUaGVtZSIpICU+JQogICAgcGhfd2l0aCh2YWx1ZSA9ICJOYWp3YcW8bmllanN6ZSBrbGFzeSB3IFIiLCAKICAgICAgICAgICAgbG9jYXRpb24gPSBwaF9sb2NhdGlvbl90eXBlKHR5cGUgPSAidGl0bGUiKSkgJT4lCiAgICBwaF93aXRoKHZhbHVlID0gYygiZGF0YS5mcmFtZSIsICJsaXN0IiwgInZlY3RvciIsICJtYXRyaXgiKSwgCiAgICAgICAgICAgIGxvY2F0aW9uID0gcGhfbG9jYXRpb25fdHlwZSh0eXBlID0gImJvZHkiKSkgJT4lCiAgIyMgc2xhamQga2/FhGNvd3kKICBhZGRfc2xpZGUobGF5b3V0ID0gIlNlY3Rpb24gSGVhZGVyIiwgbWFzdGVyID0gIk9mZmljZSBUaGVtZSIpICU+JQogICAgcGhfd2l0aCh2YWx1ZSA9ICJEemnEmWt1asSZIHphIHV3YWfEmSIsIAogICAgICAgICAgICBsb2NhdGlvbiA9ICBwaF9sb2NhdGlvbl90eXBlKHR5cGUgPSAidGl0bGUiKSkgCmBgYAoKClN0d8OzcnpteSB3eWtyZXMgeiBwYWtpZXRlbSBnZ3Bsb3QgaSBkb2Rham15IGdvIGRvIG5hc3plaiBwcmV6ZW50YWNqaQoKYGBge3J9Cnd5a3JlcyA8LSBnZ3Bsb3QoZGF0YSA9IG10Y2FycywgYWVzKHggPSB3dCwgeSA9IG1wZywgY29sb3IgPSBmYWN0b3IoYW0pKSkgKyAKICBnZW9tX3BvaW50KCkgKwogIGxhYnMoeCA9ICJXYWdhIiwgeSA9ICJNaWxlIG5hIGdhbG9uIiwgY29sb3IgPSAiQXV0b21hdHljem5hIiwgCiAgICAgICB0aXRsZSA9ICJaYWxlxbxub8WbxIcgbWllZHp5IHdhZ8SFLCBhIGxpY3piYSBtaWwgbmEgamVkbnltIGdhbG9uaWUiKSArCiAgc2NhbGVfY29sb3JfYnJld2VyKHR5cGUgPSAicXVhbCIsIHBhbGV0dGUgPSAiU2V0MSIpCgp3eWtyZXMKYGBgCgoKYGBge3J9CiMjIHdzdGF3aWFteSB3eWtyZXMgZG8gY3rEmcWbY2kgZ2R6aWUgamVzdCAiYm9keSIKCnByZXplbnRhY2phIDwtIHByZXplbnRhY2phICU+JQogIGFkZF9zbGlkZShsYXlvdXQgPSAiVGl0bGUgYW5kIENvbnRlbnQiLCBtYXN0ZXIgPSAiT2ZmaWNlIFRoZW1lIikgJT4lCiAgcGhfd2l0aCh2YWx1ZSA9IHd5a3JlcywgbG9jYXRpb24gPSBwaF9sb2NhdGlvbl90eXBlKHR5cGUgPSAiYm9keSIpKQoKIyMgd3N0YXdpYW15IHd5a3JlcyByb3pjacSFZ25pxJl0eSBuYSBjYcWCeSBzbGFqZApwcmV6ZW50YWNqYSA8LSBwcmV6ZW50YWNqYSAlPiUKICBhZGRfc2xpZGUobGF5b3V0ID0gIlRpdGxlIGFuZCBDb250ZW50IiwgbWFzdGVyID0gIk9mZmljZSBUaGVtZSIpICU+JQogIHBoX3dpdGgodmFsdWUgPSB3eWtyZXMsIGxvY2F0aW9uID0gcGhfbG9jYXRpb25fZnVsbHNpemUoKSkKCgpwcmludChwcmV6ZW50YWNqYSwgdGFyZ2V0ID0gIi4uL3JlcG9ydHMvcHJlemVudGFjamEtemFqZWNpYS5wcHR4IikKYGBgCgpEb2RhamVteSBzbGFqZCB6IGRhbnltaSB3IGZvcm1pZSB0YWJlbGkKCmBgYHtyfQpwcmV6ZW50YWNqYSA8LSBwcmV6ZW50YWNqYSAlPiUKICBhZGRfc2xpZGUobGF5b3V0ID0gIlRpdGxlIGFuZCBDb250ZW50IiwgbWFzdGVyID0gIk9mZmljZSBUaGVtZSIpICU+JQogIHBoX3dpdGgodmFsdWUgPSBtdGNhcnNbMToxMCwxOjVdLCAKICAgICAgICAgIGxvY2F0aW9uID0gcGhfbG9jYXRpb25fdHlwZSh0eXBlID0gImJvZHkiKSkKCnByaW50KHByZXplbnRhY2phLCB0YXJnZXQgPSAiLi4vcmVwb3J0cy9wcmV6ZW50YWNqYS16YWplY2lhLnBwdHgiKQpgYGAKCgpKYWsgbW/FvG5hIHByemVuaWXFm8SHIHNsYWpkeT8gTW/FvGVteSB3eWtvcnp5c3RhxIcgZG8gdGVnbyBmdW5rY2rEmSBgbW92ZV9zbGlkZWAKCmBgYHtyfQpwcmV6ZW50YWNqYSA8LSBwcmV6ZW50YWNqYSAlPiUKICBtb3ZlX3NsaWRlKGluZGV4ID0gMywgdG8gPSBsZW5ndGgocHJlemVudGFjamEpKQoKcHJpbnQocHJlemVudGFjamEsIHRhcmdldCA9ICIuLi9yZXBvcnRzL3ByZXplbnRhY2phLXphamVjaWEucHB0eCIpCmBgYAoKClR3b3J6eW15IGVkeXRvd2Fsbnkgd3lrcmVzCgpgYGB7cn0Kd3lrcmVzX2VkaXQgPC0gZG1sKGdnb2JqID0gd3lrcmVzKQoKcHJlemVudGFjamEgPC0gcHJlemVudGFjamEgJT4lCiAgYWRkX3NsaWRlKGxheW91dCA9ICJUaXRsZSBhbmQgQ29udGVudCIsIG1hc3RlciA9ICJPZmZpY2UgVGhlbWUiKSAlPiUKICBwaF93aXRoKHZhbHVlID0gd3lrcmVzX2VkaXQsIGxvY2F0aW9uID0gcGhfbG9jYXRpb25fZnVsbHNpemUoKSkKCnByaW50KHByZXplbnRhY2phLCB0YXJnZXQgPSAiLi4vcmVwb3J0cy9wcmV6ZW50YWNqYS16YWplY2lhLnBwdHgiKQpgYGAKCgpVc3V3YW15IHNsYWpkCgpgYGB7cn0KcHJlemVudGFjamEgPC0gcHJlemVudGFjamEgJT4lCiAgcmVtb3ZlX3NsaWRlKGluZGV4ID0gbGVuZ3RoKHByZXplbnRhY2phKS0xKQoKcHJpbnQocHJlemVudGFjamEsIHRhcmdldCA9ICIuLi9yZXBvcnRzL3ByZXplbnRhY2phLXphamVjaWEucHB0eCIpCmBgYAoKCldjenl0dWrEmSBpc3RuaWVqxIVjxIUgcHJlemVudGFjasSZCgpgYGB7cn0KcHJleiA8LSByZWFkX3BwdHgoIi4uL3JlcG9ydHMvcHJlemVudGFjamEtemFqZWNpYS5wcHR4IikKcHJlegpgYGAKCgoK</div>
 
 
 

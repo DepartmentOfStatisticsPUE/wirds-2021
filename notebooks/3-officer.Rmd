@@ -9,6 +9,7 @@ output: html_notebook
 library(tidyverse)
 library(officer) ## pakiet do tworzenia m.in. prezentacji w power point
 library(mschart) ## tworzenie edytowalnych wykresów
+library(rvg) ## do tworzenie edytowalnych wykresów
 ```
 
 Aby stworzyć prezentację powerpoint należy zacząć od funckji `read_pptx()`
@@ -17,9 +18,13 @@ Aby stworzyć prezentację powerpoint należy zacząć od funckji `read_pptx()`
 - jeżeli użyjemy ją w następujący sposób `prezentacja <- read_pptx(path="prez.pptx")` to utworzymy prezentację z szablonem z tego pliku
 
 ```{r}
+## tworzymy pustą prezentację z funkcją read_pptx
 prezentacja <- read_pptx()
+
 class(prezentacja)
 ```
+
+Funkcja `layout_summary` zwraca podsumowanie jakie dostępne są układy slajdów w obiekcie, który utworzyliśmy.
 
 ```{r}
 layout_summary(prezentacja)
@@ -37,6 +42,9 @@ Jaka jest zasada tworzenia slajdów PowerPoint z poziomu R
 - tworzymy plik (`read_pptx()`) `%>%`
   - dodajemy slajd (`add_slide()`) `%>%`
     - uzupełniamy slajd (`ph_*`) `%>%`
+    - uzupełniamy slajd (`ph_*`) `%>%`
+    - uzupełniamy slajd (`ph_*`) `%>%`
+    - uzupełniamy slajd (`ph_*`) `%>%`
   - dodajemy slajd (`add_slide()`) `%>%`
     - uzupełniamy slajd (`ph_*`) `%>%`
   - dodajemy slajd (`add_slide()`) `%>%`
@@ -44,13 +52,19 @@ Jaka jest zasada tworzenia slajdów PowerPoint z poziomu R
 - zapisujemy do pliku (`print()`)
 
 
-Tworzymy prezentację z trzema slajdami -- slajdem tytułowym, slajdem z tytułem i treścią oraz slajdem ze słowem "Dziękuję za uwagę"
+Tworzymy prezentację z trzema slajdami:
+  + slajdem tytułowym, 
+  + slajdem z tytułem i treścią 
+  + slajdem ze słowem "Dziękuję za uwagę"
+  + slajd z wykresem z ggplot
+  + slajd z danymi w postaci tabeli
 
 
 ```{r}
 prezentacja <- prezentacja %>%
   add_slide(layout = "Title Slide", master = "Office Theme") %>%
-  ph_with(value = "Moja pierwsza prezentacja", location =  ph_location_type(type = "ctrTitle")) 
+    ph_with(value = "Tytuł prezentacji", 
+            location =  ph_location_type(type = "ctrTitle")) 
 
 ```
 
@@ -60,24 +74,30 @@ Zapiszmy prezentację do pliku
 print(prezentacja, target = "../reports/prezentacja-zajecia.pptx")
 ```
 
+```{r}
+prezentacja
+```
+
+Dodamy slajd z tytułem oraz treścią, która będzie listą wypunktowaną (bullets)
 
 ```{r}
 prezentacja <- prezentacja %>%
   add_slide(layout = "Title and Content", master = "Office Theme") %>%
-  ph_with(value = "Najważniejsze klasy w R", location = ph_location_type(type = "title")) %>%
-  ph_with(value = c("data.frame", "list", "vector", "matrix"), 
-          location = ph_location_type(type = "body"))
+    ph_with(value = "Najważniejsze klasy w R", 
+            location = ph_location_type(type = "title")) %>%
+    ph_with(value = c("data.frame", "list", "vector", "matrix"), 
+            location = ph_location_type(type = "body"))
 
 
 prezentacja
 print(prezentacja, target = "../reports/prezentacja-zajecia.pptx")
 ```
 
-Ostatni slajd
+Ostatni slajd z podziękowaniem
 
 ```{r}
 prezentacja <- prezentacja %>%
-  add_slide(layout = "Title Only", master = "Office Theme") %>%
+  add_slide(layout = "Section Header", master = "Office Theme") %>%
   ph_with(value = "Dziękuję za uwagę", location =  ph_location_type(type = "title")) 
 
 print(prezentacja, target = "../reports/prezentacja-zajecia.pptx")
@@ -99,7 +119,7 @@ prezentacja <- read_pptx()  %>%
     ph_with(value = c("data.frame", "list", "vector", "matrix"), 
             location = ph_location_type(type = "body")) %>%
   ## slajd końcowy
-  add_slide(layout = "Title Only", master = "Office Theme") %>%
+  add_slide(layout = "Section Header", master = "Office Theme") %>%
     ph_with(value = "Dziękuję za uwagę", 
             location =  ph_location_type(type = "title")) 
 ```
@@ -113,13 +133,23 @@ wykres <- ggplot(data = mtcars, aes(x = wt, y = mpg, color = factor(am))) +
   labs(x = "Waga", y = "Mile na galon", color = "Automatyczna", 
        title = "Zależność miedzy wagą, a liczba mil na jednym galonie") +
   scale_color_brewer(type = "qual", palette = "Set1")
+
+wykres
 ```
 
 
 ```{r}
+## wstawiamy wykres do części gdzie jest "body"
+
 prezentacja <- prezentacja %>%
   add_slide(layout = "Title and Content", master = "Office Theme") %>%
   ph_with(value = wykres, location = ph_location_type(type = "body"))
+
+## wstawiamy wykres rozciągnięty na cały slajd
+prezentacja <- prezentacja %>%
+  add_slide(layout = "Title and Content", master = "Office Theme") %>%
+  ph_with(value = wykres, location = ph_location_fullsize())
+
 
 print(prezentacja, target = "../reports/prezentacja-zajecia.pptx")
 ```
@@ -129,18 +159,41 @@ Dodajemy slajd z danymi w formie tabeli
 ```{r}
 prezentacja <- prezentacja %>%
   add_slide(layout = "Title and Content", master = "Office Theme") %>%
-  ph_with(value = mtcars[1:5,1:5], 
+  ph_with(value = mtcars[1:10,1:5], 
           location = ph_location_type(type = "body"))
 
 print(prezentacja, target = "../reports/prezentacja-zajecia.pptx")
 ```
 
 
-Jak można przenieść slajdy
+Jak można przenieść slajdy? Możemy wykorzystać do tego funkcję `move_slide`
 
 ```{r}
 prezentacja <- prezentacja %>%
-  move_slide(index = 4, to = 3)
+  move_slide(index = 3, to = length(prezentacja))
+
+print(prezentacja, target = "../reports/prezentacja-zajecia.pptx")
+```
+
+
+Tworzymy edytowalny wykres
+
+```{r}
+wykres_edit <- dml(ggobj = wykres)
+
+prezentacja <- prezentacja %>%
+  add_slide(layout = "Title and Content", master = "Office Theme") %>%
+  ph_with(value = wykres_edit, location = ph_location_fullsize())
+
+print(prezentacja, target = "../reports/prezentacja-zajecia.pptx")
+```
+
+
+Usuwamy slajd
+
+```{r}
+prezentacja <- prezentacja %>%
+  remove_slide(index = length(prezentacja)-1)
 
 print(prezentacja, target = "../reports/prezentacja-zajecia.pptx")
 ```
@@ -150,6 +203,7 @@ Wczytuję istniejącą prezentację
 
 ```{r}
 prez <- read_pptx("../reports/prezentacja-zajecia.pptx")
+prez
 ```
 
 
