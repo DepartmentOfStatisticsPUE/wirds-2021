@@ -1,0 +1,153 @@
+---
+title: "Tworzenie raportów z openxlsx"
+output: html_notebook
+---
+
+
+writexl -- pakiet do zapisywania plików do xlsx/xls ale bez formatowania
+
+```{r}
+library(openxlsx)
+```
+
+Aby zapisać plik MS Excel z określoną ramką danych (obiekt typu `data.frame`) należy użyć funkcji `write.xlsx`
+
+
+```{r}
+write.xlsx(x = mtcars, file = "../reports/xlsx/1-plik-mtcars.xlsx", asTable = T)
+```
+
+Zakładamy, że nie mamy jednego obiektu typu ramka danych, ale tych obiektów mamy kilka. Chcemy aby dla każdej ramki danych został stworzony oddzielny arkusz.
+
+```{r}
+list_danych <- list("iris" = iris, 
+                    "dane mtcars" = mtcars, 
+                    "kwartet Anscomba" = anscombe)
+str(list_danych,1)
+
+write.xlsx(x = list_danych, file = "../reports/xlsx/2-wiele-tabel.xlsx", asTable = T)
+```
+
+Jak nadać format wyświetlanym danym w pliku MS Excel
+
++ openxlsx.borderColour
++ openxlsx.borderStyle
++ openxlsx.dateFormat
++ openxlsx.numFmt
++ openxlsx.datetimeFormat
++ openxlsx.paperSize
++ openxlsx.orientation
+
+```{r}
+getOption("openxlsx.borderColour")
+options("openxlsx.numFmt" = "0.00")
+write.xlsx(x = list_danych, file = "../reports/xlsx/3-format.xlsx", asTable = T)
+```
+
+
+Tworzymy skoroszyt MS Excel, który będzie zawierał:
+- kilka arkuszy
+- pierwszy wiersz będzie zablokowany (freeze pane)
+- formaty danych 
+- itp.
+
+
+```{r}
+## tworzymy skoroszyt excela bez żadnych arkuszy
+skoroszyt <- createWorkbook(creator = "Maciej")
+
+## jeżeli chcemy dodać arkusz musimy użyć funkcji addWorksheet
+addWorksheet(wb = skoroszyt, sheetName = "Spis treści", gridLines = FALSE)
+
+
+## dodajemy kolejny arkusz
+addWorksheet(wb = skoroszyt, sheetName = "Dane źródłowe")
+## chcemy aby pierwszy wiersz był zablokowany
+freezePane(wb = skoroszyt, sheet = "Dane źródłowe", firstRow = TRUE)
+## chcemy zapisać dane do tego arkusza musimy użyć funkcji writeData/writeDataTable
+writeDataTable(wb = skoroszyt, sheet = "Dane źródłowe",  x =  mtcars,
+               colNames = TRUE, tableStyle = "TableStyleMedium8")
+```
+
+Tworzymy model regresji liniowej i zapiszemy wyniki do pliku MS Excel
+
+```{r}
+model1 <- lm(formula = mpg ~ wt + factor(cyl) + am, data = mtcars)
+
+addWorksheet(wb = skoroszyt, sheetName = "Regresja")
+writeData(wb = skoroszyt, sheet = "Regresja", xy = c("C", 4), x = model1)
+```
+
+Celem będzie storzenie spisu treści z tytułem "Spis treści" oraz hiperłącza do określonych arkuszy w tym skoroszycie. Możemy określić format komórki z użyciem funkcji `createStyle`
+
+```{r}
+moj_styl <- createStyle(fontSize = "20", fontName = "Arial", textDecoration  = "bold")
+writeData(wb = skoroszyt, sheet = "Spis treści", x = "Spis treści", xy = c("B", 5))
+addStyle(wb = skoroszyt, sheet = "Spis treści", style = moj_styl, rows = 5, cols = 2)
+```
+
+Dodajemy hiperłącza do arkuszy, które mają być w komórkach B7 i B8
+
+```{r}
+# dodajemy na dwa sposoby
+writeFormula(wb = skoroszyt, sheet = "Spis treści", xy = c("B", 7),
+             x = makeHyperlinkString(sheet = "Dane źródłowe", row = 1, col = 1, text = "1. DANE ŹRÓDŁOWE"))
+writeFormula(wb = skoroszyt, sheet = "Spis treści", xy = c("B", 8), 
+             x = '=HYPERLINK("#Regresja!A1", "2. REGRESJA")')
+
+```
+
+Do arkusza regresja w komórce A1 napszemy, że A1 = A2 + A3
+
+```{r}
+writeFormula(wb = skoroszyt, sheet = "Regresja", xy = c("A", 1), x = "A2 + A3")
+```
+
+
+Tworzymy formatowanie warunkowe według następujacych warunków:
+
+- kolumna z mpg -> jeżeli wieksza od średniej to ma być na czerwono
+- kolumna cyl -> formatowanie według stylu excela
+
+```{r}
+removeWorksheet(wb = skoroszyt, sheet  = "Formatowanie")
+
+addWorksheet(wb = skoroszyt, sheetName = "Formatowanie")
+
+writeData(wb = skoroszyt, sheet = "Formatowanie", x = mtcars)
+
+nasz_format <- createStyle(bgFill = "#FFC7CE")
+
+conditionalFormatting(wb = skoroszyt, sheet = "Formatowanie",
+                      cols = 1, rows = 2:33,
+                      rule = ">20.09", style = nasz_format)
+
+conditionalFormatting(wb = skoroszyt, sheet = "Formatowanie", 
+                      cols = 2, rows = 2:33,
+                      type = "databar") ## słupki
+```
+
+
+
+```{r}
+saveWorkbook(wb = skoroszyt, file = "../reports/xlsx/4-krok-po-kroku.xlsx", overwrite = TRUE)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
