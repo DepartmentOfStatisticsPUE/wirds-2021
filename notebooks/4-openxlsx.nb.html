@@ -1757,32 +1757,27 @@ summary {
 <p>Aby zapisać plik MS Excel z określoną ramką danych (obiekt typu <code>data.frame</code>) należy użyć funkcji <code>write.xlsx</code></p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud3JpdGUueGxzeCh4ID0gbXRjYXJzLCBmaWxlID0gXCIuLi9yZXBvcnRzL3hsc3gvMS1wbGlrLW10Y2Fycy54bHN4XCIsIGFzVGFibGUgPSBUKVxuXG5gYGAifQ== -->
-<pre class="r"><code>write.xlsx(x = mtcars, file = &quot;../reports/xlsx/1-plik-mtcars.xlsx&quot;, asTable = T)
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gd3JpdGUueGxzeCh4ID0gbXRjYXJzLCBmaWxlID0gXCIuLi9yZXBvcnRzL3hsc3gvMS1wbGlrLW10Y2Fycy54bHN4XCIsICA6IFxuICBjb3VsZCBub3QgZmluZCBmdW5jdGlvbiBcIndyaXRlLnhsc3hcIlxuIn0= -->
-<pre><code>Error in write.xlsx(x = mtcars, file = &quot;../reports/xlsx/1-plik-mtcars.xlsx&quot;,  : 
-  could not find function &quot;write.xlsx&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Zakładamy, że nie mamy jednego obiektu typu ramka danych, ale tych obiektów mamy kilka. Chcemy aby dla każdej ramki danych został stworzony oddzielny arkusz.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlzdF9kYW55Y2ggPC0gbGlzdChcImlyaXNcIiA9IGlyaXMsIFxuICAgICAgICAgICAgICAgICAgICBcImRhbmUgbXRjYXJzXCIgPSBtdGNhcnMsIFxuICAgICAgICAgICAgICAgICAgICBcImt3YXJ0ZXQgQW5zY29tYmFcIiA9IGFuc2NvbWJlKVxuc3RyKGxpc3RfZGFueWNoLDEpXG5cbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlzdF9kYW55Y2ggPC0gbGlzdChcImlyaXNcIiA9IGlyaXMsIFxuICAgICAgICAgICAgICAgICAgICBcImRhbmUgbXRjYXJzXCIgPSBtdGNhcnMsIFxuICAgICAgICAgICAgICAgICAgICBcImt3YXJ0ZXQgQW5zY29tYmVhXCIgPSBhbnNjb21iZSlcbnN0cihsaXN0X2RhbnljaCwxKVxuYGBgIn0= -->
 <pre class="r"><code>list_danych &lt;- list(&quot;iris&quot; = iris, 
                     &quot;dane mtcars&quot; = mtcars, 
-                    &quot;kwartet Anscomba&quot; = anscombe)
-str(list_danych,1)
-</code></pre>
+                    &quot;kwartet Anscombea&quot; = anscombe)
+str(list_danych,1)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTGlzdCBvZiAzXG4gJCBpcmlzICAgICAgICAgICAgOidkYXRhLmZyYW1lJzpcdDE1MCBvYnMuIG9mICA1IHZhcmlhYmxlczpcbiAkIGRhbmUgbXRjYXJzICAgICA6J2RhdGEuZnJhbWUnOlx0MzIgb2JzLiBvZiAgMTEgdmFyaWFibGVzOlxuICQga3dhcnRldCBBbnNjb21iYTonZGF0YS5mcmFtZSc6XHQxMSBvYnMuIG9mICA4IHZhcmlhYmxlczpcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiTGlzdCBvZiAzXG4gJCBpcmlzICAgICAgICAgICAgIDonZGF0YS5mcmFtZSc6XHQxNTAgb2JzLiBvZiAgNSB2YXJpYWJsZXM6XG4gJCBkYW5lIG10Y2FycyAgICAgIDonZGF0YS5mcmFtZSc6XHQzMiBvYnMuIG9mICAxMSB2YXJpYWJsZXM6XG4gJCBrd2FydGV0IEFuc2NvbWJlYTonZGF0YS5mcmFtZSc6XHQxMSBvYnMuIG9mICA4IHZhcmlhYmxlczpcbiJ9 -->
 <pre><code>List of 3
- $ iris            :&#39;data.frame&#39;:   150 obs. of  5 variables:
- $ dane mtcars     :&#39;data.frame&#39;:   32 obs. of  11 variables:
- $ kwartet Anscomba:&#39;data.frame&#39;:   11 obs. of  8 variables:</code></pre>
+ $ iris             :&#39;data.frame&#39;:  150 obs. of  5 variables:
+ $ dane mtcars      :&#39;data.frame&#39;:  32 obs. of  11 variables:
+ $ kwartet Anscombea:&#39;data.frame&#39;:  11 obs. of  8 variables:</code></pre>
 <!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Jak nadać format wyświetlanym danym w pliku MS Excel</p>
@@ -1790,91 +1785,143 @@ str(list_danych,1)
 <li>openxlsx.borderColour</li>
 <li>openxlsx.borderStyle</li>
 <li>openxlsx.dateFormat</li>
-<li>openxlsx.numFmt</li>
 <li>openxlsx.datetimeFormat</li>
+<li>openxlsx.numFmt</li>
 <li>openxlsx.paperSize</li>
 <li>openxlsx.orientation</li>
 </ul>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0T3B0aW9uKFwib3Blbnhsc3guYm9yZGVyQ29sb3VyXCIpXG5cbmBgYCJ9 -->
-<pre class="r"><code>getOption(&quot;openxlsx.borderColour&quot;)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub3B0aW9ucyhcIm9wZW54bHN4Lm51bUZtdFwiID0gXCIwLjAwXCIpXG53cml0ZS54bHN4KHggPSBsaXN0X2RhbnljaCwgZmlsZSA9IFwiLi4vcmVwb3J0cy94bHN4LzMtZm9ybWF0Lnhsc3hcIiwgYXNUYWJsZSA9IFQpXG5gYGAifQ== -->
+<pre class="r"><code>options(&quot;openxlsx.numFmt&quot; = &quot;0.00&quot;)
+write.xlsx(x = list_danych, file = &quot;../reports/xlsx/3-format.xlsx&quot;, asTable = T)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTlVMTFxuIn0= -->
-<pre><code>NULL</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Tworzymy skoroszyt MS Excel, który będzie zawierał: - kilka arkuszy - pierwszy wiersz będzie zablokowany (freeze pane) - formaty danych - itp.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MTEsIm5yb3ciOjMyfSwicmRmIjoiSDRzSUFBQUFBQUFBQTYxWFRXd2JSUlRlT0U3aXZ6Z09TU1I2S1h2Z1VCQjJ2R3NucEVEeGdKMFFxbFNrQ1VxaU5xbzB0amZ4MHMzT1puYnROR21SY3VtNTRsakVBYWtjVVE5d3liR2lFaWVReXFrM1JDOWNLRklrVkFSSUJIWjMzdHZFRzl3WXlrak9tL2U5disrOW1mVTZDNVVWTmJHU2tDUXBJdlgyOVVpUlhuY2JqYmgvZXFTb0ZQZmtOVW5xSFhFM1NmZVRkajh5bVpEOEZjakpiN3oxTFpsWTh4ZFJ2eXg0aTZpbmJydnJZL0xLYlNHbndJNytCYkdJQW5vZTdNcWMwSE9ndndoMmxGbkFJUUY1RS9WZmhENnhLM2lOQXovTTh6THd3THF2UTUzWHdBL3pqS01mOUpIRGZvVTltTVB6Z0tQTWhIUzVnNTdwNEIvMjYxYUc4NFhsZjQwL2diK0VjNmdEanZJeVNFc0VrTmF1a0VaSXJ5NkplVk9ZZHgzT0QrWG1HK0o4d3ZKRGlMOXhUOGpyb0M5K0x1d0xqNFc4K0xYSWY2VmZTUHNINFdjRHZ5Ym8yNkF2UXI0ckk2TCtNc1EzOTRFdjhPY1B3SSsweitFeThFQzVUTnAxRGVwZEF0ejhWTWozb1A0eTFnL0p0ZDEvbGpyRWZ3QjVEZkNmQi90NXlEc1A5VlpBVnUrMVMrU0IvREIrQ2V5ckVHZUYrbkQyb1Q5aGwzQU9RL0I4b1V6RGN4dTc4ekJ4enZxTXhBSHZIOTE1OU03ZFVSSy82Mi9JNE0zVGV4ZC91a21HVnM4OCtlclc2akVadStWdmpza0J5MHU4U1dMUWI5d3JjK2NoeWJqSlR1OHRrSkU5ZjBNeVhyV2RSMlFRN2x0UUgvZ01RaHp5eFBoaGlFLzdORjRLOHFRODljeXZKQVYrR2NFam1FTVU3QVBBS3dKODQ1QXZDZjBtb2Y4VTJnRkhYb0VmeUl4ZmZqYmdtejduRnlaalVHZnNpMng2S1hxS2pGSEJzMGYwVy9wZCtKZitoSG4yQW84VTlKWDB4M0dkcExGZmovNlQrNlVENktQSEwvOUM2YmVKMG8yZlAycVFPT1RwaDNqazN5LzRCSFBJTjBXODBpZjRxNStJdUFLY0crTEZLVkYzSE9aUmhING1mNFQzQ254ZnE2QXIrTDZBODFUQlgvbEQ5S0Y4Sjg1RnVlb043akVwWEJQNVZaaGpBZklVL1lPNVQvTGYrLzBkdm44d1B0VmVOdy92aFR6b1dhaUw3NXNzbkpzcWVPRWNwTkFxN2JmTE1ON0pyMU5jdCt0Wjg1M0U5eW4rL2h6K3J6NmVkVDByajVQbStKVDg0cm5JQ09XWWpKMGdPOFYxRzk5dHZuOGJQOXFsQkgrcHd4ekM4eUpTU00rMDQ0SHNsbi9ZTDFRM1hDK01INnNYNXRmSkwvdzdTc0xWOW9PN3o2UWJtdmNUeFF0TEF0aTdZYTNqdHJadHdEWmExMjBMOXBHR0ZhQ2NPb2h1NFM2NmFXczFSRnMyN3VnRzJ0YzF5bkZmbzd3YW9oWG5iQ3QzbEpxTWhndDBwMDdsaFpVaUFJTUJJQzlUWkoyb1VNZHVtdktyU2g2UTlDempwdWJJUmJuQzlaWUc2RENnaXhiakRxMnlKdklmV0tLR1RrMG55TmUwSFkzTGhjbDh3RVBqTlZrdDVpc0F4QVJReUxmclU2R0FxWHdaYy9wQWNTSy9PSDBNbVFNa2VZaGcySE5sV3RjTmc5YmtHVVBUbkMzRzZtQVptZFBOR2pOTXVjeE1SemMxMDZGNGRNUGxCdCsyRGJlRGR6Y3NqZXVCSVRhalUwZFcxQ2tzT010TWQ1cGx2YVhqOGFYZlo5dk1jVEhHbVZzWHgzNEVOUkhNVkZoOVhaUExEV29ZbXJtdTRRa24zN3BRbHMvVGxtYm9KdlphcGh1VU0vbFNVRG96NzlIMit0SzVWdFU1dGhYM0thNG8yYk5ZZXA1eHU5YlE1TE5LTWFzQ21KcGpUdE9XcDV1Y1dVZ25QY040WFo1M2oxSGpWTWFacG1ZMHppblg1WXB1c3NOTFpMcytqaTYvelRpR0o1YVkwV0t5VWxTbnd3OU56YUEyM2t3RUUzWHEwTndhZHkrdHF4MkVRZ2FZNWVqTWRJTWkzciszZmFIZ0hoNENocHFtZC8zcjJWcWphVjdOS2w0QjN5dytneURsSS91a0tCbjVDMUwxUWFwKzl5amM2NERjRFZyVjhQalQ3bVBtUDJVNWkrdUh0OTFGN1p6RER1OVB3cjFYaVBpOVNRZC9BOWxJTkR6TUR3QUEifQ== -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.620","7":"16.46","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.875","7":"17.02","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4 Wag"},{"1":"22.8","2":"4","3":"108.0","4":"93","5":"3.85","6":"2.320","7":"18.61","8":"1","9":"1","10":"4","11":"1","_rn_":"Datsun 710"},{"1":"21.4","2":"6","3":"258.0","4":"110","5":"3.08","6":"3.215","7":"19.44","8":"1","9":"0","10":"3","11":"1","_rn_":"Hornet 4 Drive"},{"1":"18.7","2":"8","3":"360.0","4":"175","5":"3.15","6":"3.440","7":"17.02","8":"0","9":"0","10":"3","11":"2","_rn_":"Hornet Sportabout"},{"1":"18.1","2":"6","3":"225.0","4":"105","5":"2.76","6":"3.460","7":"20.22","8":"1","9":"0","10":"3","11":"1","_rn_":"Valiant"},{"1":"14.3","2":"8","3":"360.0","4":"245","5":"3.21","6":"3.570","7":"15.84","8":"0","9":"0","10":"3","11":"4","_rn_":"Duster 360"},{"1":"24.4","2":"4","3":"146.7","4":"62","5":"3.69","6":"3.190","7":"20.00","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 240D"},{"1":"22.8","2":"4","3":"140.8","4":"95","5":"3.92","6":"3.150","7":"22.90","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 230"},{"1":"19.2","2":"6","3":"167.6","4":"123","5":"3.92","6":"3.440","7":"18.30","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280"},{"1":"17.8","2":"6","3":"167.6","4":"123","5":"3.92","6":"3.440","7":"18.90","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280C"},{"1":"16.4","2":"8","3":"275.8","4":"180","5":"3.07","6":"4.070","7":"17.40","8":"0","9":"0","10":"3","11":"3","_rn_":"Merc 450SE"},{"1":"17.3","2":"8","3":"275.8","4":"180","5":"3.07","6":"3.730","7":"17.60","8":"0","9":"0","10":"3","11":"3","_rn_":"Merc 450SL"},{"1":"15.2","2":"8","3":"275.8","4":"180","5":"3.07","6":"3.780","7":"18.00","8":"0","9":"0","10":"3","11":"3","_rn_":"Merc 450SLC"},{"1":"10.4","2":"8","3":"472.0","4":"205","5":"2.93","6":"5.250","7":"17.98","8":"0","9":"0","10":"3","11":"4","_rn_":"Cadillac Fleetwood"},{"1":"10.4","2":"8","3":"460.0","4":"215","5":"3.00","6":"5.424","7":"17.82","8":"0","9":"0","10":"3","11":"4","_rn_":"Lincoln Continental"},{"1":"14.7","2":"8","3":"440.0","4":"230","5":"3.23","6":"5.345","7":"17.42","8":"0","9":"0","10":"3","11":"4","_rn_":"Chrysler Imperial"},{"1":"32.4","2":"4","3":"78.7","4":"66","5":"4.08","6":"2.200","7":"19.47","8":"1","9":"1","10":"4","11":"1","_rn_":"Fiat 128"},{"1":"30.4","2":"4","3":"75.7","4":"52","5":"4.93","6":"1.615","7":"18.52","8":"1","9":"1","10":"4","11":"2","_rn_":"Honda Civic"},{"1":"33.9","2":"4","3":"71.1","4":"65","5":"4.22","6":"1.835","7":"19.90","8":"1","9":"1","10":"4","11":"1","_rn_":"Toyota Corolla"},{"1":"21.5","2":"4","3":"120.1","4":"97","5":"3.70","6":"2.465","7":"20.01","8":"1","9":"0","10":"3","11":"1","_rn_":"Toyota Corona"},{"1":"15.5","2":"8","3":"318.0","4":"150","5":"2.76","6":"3.520","7":"16.87","8":"0","9":"0","10":"3","11":"2","_rn_":"Dodge Challenger"},{"1":"15.2","2":"8","3":"304.0","4":"150","5":"3.15","6":"3.435","7":"17.30","8":"0","9":"0","10":"3","11":"2","_rn_":"AMC Javelin"},{"1":"13.3","2":"8","3":"350.0","4":"245","5":"3.73","6":"3.840","7":"15.41","8":"0","9":"0","10":"3","11":"4","_rn_":"Camaro Z28"},{"1":"19.2","2":"8","3":"400.0","4":"175","5":"3.08","6":"3.845","7":"17.05","8":"0","9":"0","10":"3","11":"2","_rn_":"Pontiac Firebird"},{"1":"27.3","2":"4","3":"79.0","4":"66","5":"4.08","6":"1.935","7":"18.90","8":"1","9":"1","10":"4","11":"1","_rn_":"Fiat X1-9"},{"1":"26.0","2":"4","3":"120.3","4":"91","5":"4.43","6":"2.140","7":"16.70","8":"0","9":"1","10":"5","11":"2","_rn_":"Porsche 914-2"},{"1":"30.4","2":"4","3":"95.1","4":"113","5":"3.77","6":"1.513","7":"16.90","8":"1","9":"1","10":"5","11":"2","_rn_":"Lotus Europa"},{"1":"15.8","2":"8","3":"351.0","4":"264","5":"4.22","6":"3.170","7":"14.50","8":"0","9":"1","10":"5","11":"4","_rn_":"Ford Pantera L"},{"1":"19.7","2":"6","3":"145.0","4":"175","5":"3.62","6":"2.770","7":"15.50","8":"0","9":"1","10":"5","11":"6","_rn_":"Ferrari Dino"},{"1":"15.0","2":"8","3":"301.0","4":"335","5":"3.54","6":"3.570","7":"14.60","8":"0","9":"1","10":"5","11":"8","_rn_":"Maserati Bora"},{"1":"21.4","2":"4","3":"121.0","4":"109","5":"4.11","6":"2.780","7":"18.60","8":"1","9":"1","10":"4","11":"2","_rn_":"Volvo 142E"}],"options":{"columns":{"min":{},"max":[10],"total":[11]},"rows":{"min":[10],"max":[10],"total":[32]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2tvcm9zenl0XG5cbmBgYCJ9 -->
+<pre class="r"><code>skoroszyt
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiQSBXb3JrYm9vayBvYmplY3QuXG4gXG5Xb3Jrc2hlZXRzOlxuIE5vIHdvcmtzaGVldHMgYXR0YWNoZWRcbiJ9 -->
+<pre><code>A Workbook object.
+ 
+Worksheets:
+ No worksheets attached</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Tworzymy model regresji liniowej i zapiszemy wyniki do pliku MS Excel</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShtb2RlbDEpXG5cbmBgYCJ9 -->
-<pre class="r"><code>summary(model1)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyMgdHdvcnp5bXkgbW9kZWwgcmVncmVzamkgbGluaW93ZWpcbm1vZGVsMSA8LSBsbShmb3JtdWxhID0gbXBnIH4gd3QgKyBmYWN0b3IoY3lsKSArIGFtLCBkYXRhID0gbXRjYXJzKVxuXG4jIyBkb2RhamVteSBvZHBvd2llZG5pIGFya3VzelxuYWRkV29ya3NoZWV0KHdiID0gc2tvcm9zenl0LCBzaGVldE5hbWUgPSBcIlJlZ3Jlc2phXCIpXG4jIyB6YXBpc3VqZW15IGRhbmUgeiBmdW5rY2rEhSB3cml0ZURhdGFcbndyaXRlRGF0YSh3YiA9IHNrb3Jvc3p5dCwgc2hlZXQgPSBcIlJlZ3Jlc2phXCIsIHh5ID0gYyhcIkNcIiwgNCksIHggPSBtb2RlbDEpXG5cbnNhdmVXb3JrYm9vayh3YiA9IHNrb3Jvc3p5dCwgZmlsZSA9IFwiLi4vcmVwb3J0cy94bHN4LzQta3Jvay1wby1rcm9rdS54bHN4XCIsIG92ZXJ3cml0ZSA9IFRSVUUpXG5gYGAifQ== -->
+<pre class="r"><code>## tworzymy model regresji liniowej
+model1 &lt;- lm(formula = mpg ~ wt + factor(cyl) + am, data = mtcars)
+
+## dodajemy odpowiedni arkusz
+addWorksheet(wb = skoroszyt, sheetName = &quot;Regresja&quot;)
+## zapisujemy dane z funkcją writeData
+writeData(wb = skoroszyt, sheet = &quot;Regresja&quot;, xy = c(&quot;C&quot;, 4), x = model1)
+
+saveWorkbook(wb = skoroszyt, file = &quot;../reports/xlsx/4-krok-po-kroku.xlsx&quot;, overwrite = TRUE)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IG1wZyB+IHd0ICsgZmFjdG9yKGN5bCkgKyBhbSwgZGF0YSA9IG10Y2FycylcblxuUmVzaWR1YWxzOlxuICAgIE1pbiAgICAgIDFRICBNZWRpYW4gICAgICAzUSAgICAgTWF4IFxuLTQuNDg5OCAtMS4zMTE2IC0wLjUwMzkgIDEuNDE2MiAgNS43NzU4IFxuXG5Db2VmZmljaWVudHM6XG4gICAgICAgICAgICAgRXN0aW1hdGUgU3RkLiBFcnJvciB0IHZhbHVlIFByKD58dHwpICAgIFxuKEludGVyY2VwdCkgICAzMy43NTM2ICAgICAyLjgxMzUgIDExLjk5NyAgMi41ZS0xMiAqKipcbnd0ICAgICAgICAgICAgLTMuMTQ5NiAgICAgMC45MDgwICAtMy40NjkgIDAuMDAxNzcgKiogXG5mYWN0b3IoY3lsKTYgIC00LjI1NzMgICAgIDEuNDExMiAgLTMuMDE3ICAwLjAwNTUxICoqIFxuZmFjdG9yKGN5bCk4ICAtNi4wNzkxICAgICAxLjY4MzcgIC0zLjYxMSAgMC4wMDEyMyAqKiBcbmFtICAgICAgICAgICAgIDAuMTUwMSAgICAgMS4zMDAyICAgMC4xMTUgIDAuOTA4OTUgICAgXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuUmVzaWR1YWwgc3RhbmRhcmQgZXJyb3I6IDIuNjAzIG9uIDI3IGRlZ3JlZXMgb2YgZnJlZWRvbVxuTXVsdGlwbGUgUi1zcXVhcmVkOiAgMC44Mzc1LFx0QWRqdXN0ZWQgUi1zcXVhcmVkOiAgMC44MTM0IFxuRi1zdGF0aXN0aWM6IDM0Ljc5IG9uIDQgYW5kIDI3IERGLCAgcC12YWx1ZTogMi43M2UtMTBcbiJ9 -->
-<pre><code>
-Call:
-lm(formula = mpg ~ wt + factor(cyl) + am, data = mtcars)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--4.4898 -1.3116 -0.5039  1.4162  5.7758 
-
-Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   33.7536     2.8135  11.997  2.5e-12 ***
-wt            -3.1496     0.9080  -3.469  0.00177 ** 
-factor(cyl)6  -4.2573     1.4112  -3.017  0.00551 ** 
-factor(cyl)8  -6.0791     1.6837  -3.611  0.00123 ** 
-am             0.1501     1.3002   0.115  0.90895    
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-Residual standard error: 2.603 on 27 degrees of freedom
-Multiple R-squared:  0.8375,    Adjusted R-squared:  0.8134 
-F-statistic: 34.79 on 4 and 27 DF,  p-value: 2.73e-10</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Celem będzie storzenie spisu treści z tytułem “Spis treści” oraz hiperłącza do określonych arkuszy w tym skoroszycie. Możemy określić format komórki z użyciem funkcji <code>createStyle</code></p>
+<p>Celem będzie storzenie spisu treści z tytułem “Spis treści” oraz hiperłącza do określonych arkuszy w tym skoroszycie.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9qX3N0eWwgPC0gY3JlYXRlU3R5bGUoZm9udFNpemUgPSBcIjIwXCIsIGZvbnROYW1lID0gXCJBcmlhbFwiLCB0ZXh0RGVjb3JhdGlvbiAgPSBcImJvbGRcIilcbndyaXRlRGF0YSh3YiA9IHNrb3Jvc3p5dCwgc2hlZXQgPSBcIlNwaXMgdHJlxZtjaVwiLCB4ID0gXCJTcGlzIHRyZcWbY2lcIiwgeHkgPSBjKFwiQlwiLCA1KSlcbmFkZFN0eWxlKHdiID0gc2tvcm9zenl0LCBzaGVldCA9IFwiU3BpcyB0cmXFm2NpXCIsIHN0eWxlID0gbW9qX3N0eWwsIHJvd3MgPSA1LCBjb2xzID0gMilcbmBgYCJ9 -->
-<pre class="r"><code>moj_styl &lt;- createStyle(fontSize = &quot;20&quot;, fontName = &quot;Arial&quot;, textDecoration  = &quot;bold&quot;)
-writeData(wb = skoroszyt, sheet = &quot;Spis treści&quot;, x = &quot;Spis treści&quot;, xy = c(&quot;B&quot;, 5))
-addStyle(wb = skoroszyt, sheet = &quot;Spis treści&quot;, style = moj_styl, rows = 5, cols = 2)</code></pre>
-<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Możemy określić format komórki z użyciem funkcji <code>createStyle</code></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Dodajemy hiperłącza do arkuszy, które mają być w komórkach B7 i B8</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBkb2RhamVteSBuYSBkd2Egc3Bvc29ieVxud3JpdGVGb3JtdWxhKHdiID0gc2tvcm9zenl0LCBzaGVldCA9IFwiU3BpcyB0cmXFm2NpXCIsIHh5ID0gYyhcIkJcIiwgNyksXG4gICAgICAgICAgICAgeCA9IG1ha2VIeXBlcmxpbmtTdHJpbmcoc2hlZXQgPSBcIkRhbmUgxbpyw7NkxYJvd2VcIiwgcm93ID0gMSwgY29sID0gMSwgdGV4dCA9IFwiMS4gREFORSDFuVLDk0TFgU9XRVwiKSlcbndyaXRlRm9ybXVsYSh3YiA9IHNrb3Jvc3p5dCwgc2hlZXQgPSBcIlNwaXMgdHJlxZtjaVwiLCB4eSA9IGMoXCJCXCIsIDgpLCBcbiAgICAgICAgICAgICB4ID0gJz1IWVBFUkxJTksoXCIjUmVncmVzamEhQTFcIiwgXCIyLiBSRUdSRVNKQVwiKScpXG5gYGAifQ== -->
-<pre class="r"><code># dodajemy na dwa sposoby
-writeFormula(wb = skoroszyt, sheet = &quot;Spis treści&quot;, xy = c(&quot;B&quot;, 7),
-             x = makeHyperlinkString(sheet = &quot;Dane źródłowe&quot;, row = 1, col = 1, text = &quot;1. DANE ŹRÓDŁOWE&quot;))
-writeFormula(wb = skoroszyt, sheet = &quot;Spis treści&quot;, xy = c(&quot;B&quot;, 8), 
-             x = &#39;=HYPERLINK(&quot;#Regresja!A1&quot;, &quot;2. REGRESJA&quot;)&#39;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFrZUh5cGVybGlua1N0cmluZyhzaGVldCA9IFwiRGFuZSDFunLDs2TFgm93ZVwiLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByb3cgPSAxLCBjb2wgPSAzLCB0ZXh0ID0gXCIxLiBEQU5FIMW5UsOTRMWBT1dFXCIpXG5cbmBgYCJ9 -->
+<pre class="r"><code>makeHyperlinkString(sheet = &quot;Dane źródłowe&quot;, 
+                                     row = 1, col = 3, text = &quot;1. DANE ŹRÓDŁOWE&quot;)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiPUhZUEVSTElOSyhcXFwiIydEYW5lIMW6csOzZMWCb3dlJyFDMVxcXCIsIFxcXCIxLiBEQU5FIMW5UsOTRMWBT1dFXFxcIilcIlxuIn0= -->
+<pre><code>[1] &quot;=HYPERLINK(\&quot;#&#39;Dane źródłowe&#39;!C1\&quot;, \&quot;1. DANE ŹRÓDŁOWE\&quot;)&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Do arkusza <code>Regresja</code> w komórce A1 napszemy, że A1 = ROUND(SQRT(A2*A3),2), A2=10, A3=4</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyMgd3Bpc3VqZW15IGRhbmUgZG8ga29tw7NyZWsgQTIgaSBBMyBcbndyaXRlRGF0YSh3YiA9IHNrb3Jvc3p5dCwgc2hlZXQgPSBcIlJlZ3Jlc2phXCIsIHh5ID0gYyhcIkFcIiwgMiksIHggPSAxMClcbndyaXRlRGF0YSh3YiA9IHNrb3Jvc3p5dCwgc2hlZXQgPSBcIlJlZ3Jlc2phXCIsIHh5ID0gYyhcIkFcIiwgMyksIHggPSA0KVxuIyMgZnVua2NqxIUgd3JpdGVGb3JtdWxhIHdwaXN1amVteSBmb3JtdWzEmSwga3TDs3LEhSBjaGNlbXkgd3lsaWN6ecSHXG53cml0ZUZvcm11bGEod2IgPSBza29yb3N6eXQsIHNoZWV0ID0gXCJSZWdyZXNqYVwiLCB4eSA9IGMoXCJBXCIsIDEpLCB4ID0gXCJST1VORChTUVJUKEEyKkEzKSwyKVwiKVxuXG5zYXZlV29ya2Jvb2sod2IgPSBza29yb3N6eXQsIGZpbGUgPSBcIi4uL3JlcG9ydHMveGxzeC80LWtyb2stcG8ta3Jva3UueGxzeFwiLCBvdmVyd3JpdGUgPSBUUlVFKVxuYGBgIn0= -->
+<pre class="r"><code>## wpisujemy dane do komórek A2 i A3 
+writeData(wb = skoroszyt, sheet = &quot;Regresja&quot;, xy = c(&quot;A&quot;, 2), x = 10)
+writeData(wb = skoroszyt, sheet = &quot;Regresja&quot;, xy = c(&quot;A&quot;, 3), x = 4)
+## funkcją writeFormula wpisujemy formulę, którą chcemy wyliczyć
+writeFormula(wb = skoroszyt, sheet = &quot;Regresja&quot;, xy = c(&quot;A&quot;, 1), x = &quot;ROUND(SQRT(A2*A3),2)&quot;)
+
+saveWorkbook(wb = skoroszyt, file = &quot;../reports/xlsx/4-krok-po-kroku.xlsx&quot;, overwrite = TRUE)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Do arkusza regresja w komórce A1 napszemy, że A1 = A2 + A3</p>
+<p>Tworzymy i wyrzucamy arkusz</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyMgYWRkIHdvcmtzaGVldCAtLSBkb2RhbmllIGFya3VzemFcbmFkZFdvcmtzaGVldCh3YiA9IHNrb3Jvc3p5dCwgc2hlZXROYW1lID0gXCJGb3JtYXRvd2FuaWVcIilcbnNrb3Jvc3p5dFxuYGBgIn0= -->
+<pre class="r"><code>## add worksheet -- dodanie arkusza
+addWorksheet(wb = skoroszyt, sheetName = &quot;Formatowanie&quot;)
+skoroszyt</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiQSBXb3JrYm9vayBvYmplY3QuXG4gXG5Xb3Jrc2hlZXRzOlxuIFNoZWV0IDE6IFwiU3BpcyB0cmXFm2NpXCJcbiBcblxuIFNoZWV0IDI6IFwiRGFuZSDFunLDs2TFgm93ZVwiXG4gXG5cbiBTaGVldCAzOiBcIlJlZ3Jlc2phXCJcbiBcblxuIFNoZWV0IDQ6IFwiRm9ybWF0b3dhbmllXCJcbiBcblxuIFxuIFdvcmtzaGVldCB3cml0ZSBvcmRlcjogMSwgMiwgMywgNFxuIn0= -->
+<pre><code>A Workbook object.
+ 
+Worksheets:
+ Sheet 1: &quot;Spis treści&quot;
+ 
+
+ Sheet 2: &quot;Dane źródłowe&quot;
+ 
+
+ Sheet 3: &quot;Regresja&quot;
+ 
+
+ Sheet 4: &quot;Formatowanie&quot;
+ 
+
+ 
+ Worksheet write order: 1, 2, 3, 4</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyMgcmVtb3ZlIHdvcmtzaGVldCAtLSB1c3VuaWVjaWUgYXJrdXN6YVxucmVtb3ZlV29ya3NoZWV0KHdiID0gc2tvcm9zenl0LCBzaGVldCAgPSBcIkZvcm1hdG93YW5pZVwiKVxuc2tvcm9zenl0XG5gYGAifQ== -->
+<pre class="r"><code>## remove worksheet -- usuniecie arkusza
+removeWorksheet(wb = skoroszyt, sheet  = &quot;Formatowanie&quot;)
+skoroszyt</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiQSBXb3JrYm9vayBvYmplY3QuXG4gXG5Xb3Jrc2hlZXRzOlxuIFNoZWV0IDE6IFwiU3BpcyB0cmXFm2NpXCJcbiBcblxuIFNoZWV0IDI6IFwiRGFuZSDFunLDs2TFgm93ZVwiXG4gXG5cbiBTaGVldCAzOiBcIlJlZ3Jlc2phXCJcbiBcblxuIFxuIFdvcmtzaGVldCB3cml0ZSBvcmRlcjogMSwgMiwgM1xuIn0= -->
+<pre><code>A Workbook object.
+ 
+Worksheets:
+ Sheet 1: &quot;Spis treści&quot;
+ 
+
+ Sheet 2: &quot;Dane źródłowe&quot;
+ 
+
+ Sheet 3: &quot;Regresja&quot;
+ 
+
+ 
+ Worksheet write order: 1, 2, 3</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Tworzymy formatowanie warunkowe według następujacych warunków:</p>
@@ -1884,26 +1931,66 @@ writeFormula(wb = skoroszyt, sheet = &quot;Spis treści&quot;, xy = c(&quot;B&qu
 </ul>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVtb3ZlV29ya3NoZWV0KHdiID0gc2tvcm9zenl0LCBzaGVldE5hbWUgPSBcIkZvcm1hdG93YW5pZVwiKVxuXG5gYGAifQ== -->
-<pre class="r"><code>removeWorksheet(wb = skoroszyt, sheetName = &quot;Formatowanie&quot;)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyMgdHdvcnrEmSBhcmt1c3ogZm9ybWF0b3dhbmllXG5hZGRXb3Jrc2hlZXQod2IgPSBza29yb3N6eXQsIHNoZWV0TmFtZSA9IFwiRm9ybWF0b3dhbmllXCIpXG4jIyB6YXBpc3VqxJkgZGFuZVxud3JpdGVEYXRhKHdiID0gc2tvcm9zenl0LCBzaGVldCA9IFwiRm9ybWF0b3dhbmllXCIsIHggPSBtdGNhcnMpXG4jIyB6YXBpc3VqxJkgcGxpa1xuc2F2ZVdvcmtib29rKHdiID0gc2tvcm9zenl0LCBmaWxlID0gXCIuLi9yZXBvcnRzL3hsc3gvNC1rcm9rLXBvLWtyb2t1Lnhsc3hcIiwgb3ZlcndyaXRlID0gVFJVRSlcblxuYGBgIn0= -->
+<pre class="r"><code>## tworzę arkusz formatowanie
+addWorksheet(wb = skoroszyt, sheetName = &quot;Formatowanie&quot;)
+## zapisuję dane
+writeData(wb = skoroszyt, sheet = &quot;Formatowanie&quot;, x = mtcars)
+## zapisuję plik
+saveWorkbook(wb = skoroszyt, file = &quot;../reports/xlsx/4-krok-po-kroku.xlsx&quot;, overwrite = TRUE)
 </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gcmVtb3ZlV29ya3NoZWV0KHdiID0gc2tvcm9zenl0LCBzaGVldE5hbWUgPSBcIkZvcm1hdG93YW5pZVwiKSA6IFxuICB1bnVzZWQgYXJndW1lbnQgKHNoZWV0TmFtZSA9IFwiRm9ybWF0b3dhbmllXCIpXG4ifQ== -->
-<pre><code>Error in removeWorksheet(wb = skoroszyt, sheetName = &quot;Formatowanie&quot;) : 
-  unused argument (sheetName = &quot;Formatowanie&quot;)</code></pre>
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Stworzymy databars (słupki), które w zależnosci od wartości cechy będą różniły się długością</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29uZGl0aW9uYWxGb3JtYXR0aW5nKHdiID0gc2tvcm9zenl0LCBzaGVldCA9IFwiRm9ybWF0b3dhbmllXCIsIFxuICAgICAgICAgICAgICAgICAgICAgIGNvbHMgPSAyOjQsIHJvd3MgPSAyOjMzLFxuICAgICAgICAgICAgICAgICAgICAgIHR5cGUgPSBcImRhdGFiYXJcIikgIyMgc8WCdXBraVxuXG5zYXZlV29ya2Jvb2sod2IgPSBza29yb3N6eXQsIGZpbGUgPSBcIi4uL3JlcG9ydHMveGxzeC80LWtyb2stcG8ta3Jva3UueGxzeFwiLCBvdmVyd3JpdGUgPSBUUlVFKVxuXG5gYGAifQ== -->
+<pre class="r"><code>conditionalFormatting(wb = skoroszyt, sheet = &quot;Formatowanie&quot;, 
+                      cols = 2:4, rows = 2:33,
+                      type = &quot;databar&quot;) ## słupki
+
+saveWorkbook(wb = skoroszyt, file = &quot;../reports/xlsx/4-krok-po-kroku.xlsx&quot;, overwrite = TRUE)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Warunkowe porównanie z wykorzystaniem określonego warunku / formuły</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubmFzel9mb3JtYXQgPC0gY3JlYXRlU3R5bGUoYmdGaWxsID0gXCIjRkZDN0NFXCIpXG5cbmNvbmRpdGlvbmFsRm9ybWF0dGluZyh3YiA9IHNrb3Jvc3p5dCwgc2hlZXQgPSBcIkZvcm1hdG93YW5pZVwiLFxuICAgICAgICAgICAgICAgICAgICAgIGNvbHMgPSAxLCByb3dzID0gMjozMyxcbiAgICAgICAgICAgICAgICAgICAgICBydWxlID0gcGFzdGUwKFwiPlwiLCBtZWFuKG10Y2FycyRtcGcpKSwgXG4gICAgICAgICAgICAgICAgICAgICAgI3J1bGUgPSBcIj4yMC4wOVwiLCBcbiAgICAgICAgICAgICAgICAgICAgICBzdHlsZSA9IG5hc3pfZm9ybWF0KVxuXG5cbmBgYCJ9 -->
+<pre class="r"><code>nasz_format &lt;- createStyle(bgFill = &quot;#FFC7CE&quot;)
+
+conditionalFormatting(wb = skoroszyt, sheet = &quot;Formatowanie&quot;,
+                      cols = 1, rows = 2:33,
+                      rule = paste0(&quot;&gt;&quot;, mean(mtcars$mpg)), 
+                      #rule = &quot;&gt;20.09&quot;, 
+                      style = nasz_format)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Dodajemy hasło do arkusza i całego pliku</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJvdGVjdFdvcmtzaGVldCh3YiA9IHNrb3Jvc3p5dCwgc2hlZXQgPSBcIlJlZ3Jlc3Npb25cIiwgcGFzc3dvcmQgPSBcIndpcmRzMjAyMVwiLCBcbiAgICAgICAgICAgICAgICAgbG9ja0luc2VydGluZ1Jvd3MgPSBUUlVFKVxuXG5gYGAifQ== -->
+<pre class="r"><code>protectWorksheet(wb = skoroszyt, sheet = &quot;Regression&quot;, password = &quot;wirds2021&quot;, 
+                 lockInsertingRows = TRUE)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IFNoZWV0ICdSZWdyZXNzaW9uJyBkb2VzIG5vdCBleGlzdC5cbiJ9 -->
+<pre><code>Error: Sheet &#39;Regression&#39; does not exist.</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>Do całego pliku</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2F2ZVdvcmtib29rKHdiID0gc2tvcm9zenl0LCBmaWxlID0gXCIuLi9yZXBvcnRzL3hsc3gvNC1rcm9rLXBvLWtyb2t1Lnhsc3hcIiwgb3ZlcndyaXRlID0gVFJVRSlcbmBgYCJ9 -->
-<pre class="r"><code>saveWorkbook(wb = skoroszyt, file = &quot;../reports/xlsx/4-krok-po-kroku.xlsx&quot;, overwrite = TRUE)</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiVHdvcnplbmllIHJhcG9ydMOzdyB6IG9wZW54bHN4IgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgoKd3JpdGV4bCAtLSBwYWtpZXQgZG8gemFwaXN5d2FuaWEgcGxpa8OzdyBkbyB4bHN4L3hscyBhbGUgYmV6IGZvcm1hdG93YW5pYQoKYGBge3J9CmxpYnJhcnkob3Blbnhsc3gpCmBgYAoKQWJ5IHphcGlzYcSHIHBsaWsgTVMgRXhjZWwgeiBva3JlxZtsb27EhSByYW1rxIUgZGFueWNoIChvYmlla3QgdHlwdSBgZGF0YS5mcmFtZWApIG5hbGXFvHkgdcW8ecSHIGZ1bmtjamkgYHdyaXRlLnhsc3hgCgoKYGBge3J9CndyaXRlLnhsc3goeCA9IG10Y2FycywgZmlsZSA9ICIuLi9yZXBvcnRzL3hsc3gvMS1wbGlrLW10Y2Fycy54bHN4IiwgYXNUYWJsZSA9IFQpCmBgYAoKWmFrxYJhZGFteSwgxbxlIG5pZSBtYW15IGplZG5lZ28gb2JpZWt0dSB0eXB1IHJhbWthIGRhbnljaCwgYWxlIHR5Y2ggb2JpZWt0w7N3IG1hbXkga2lsa2EuIENoY2VteSBhYnkgZGxhIGthxbxkZWogcmFta2kgZGFueWNoIHpvc3RhxYIgc3R3b3J6b255IG9kZHppZWxueSBhcmt1c3ouCgpgYGB7cn0KbGlzdF9kYW55Y2ggPC0gbGlzdCgiaXJpcyIgPSBpcmlzLCAKICAgICAgICAgICAgICAgICAgICAiZGFuZSBtdGNhcnMiID0gbXRjYXJzLCAKICAgICAgICAgICAgICAgICAgICAia3dhcnRldCBBbnNjb21iYSIgPSBhbnNjb21iZSkKc3RyKGxpc3RfZGFueWNoLDEpCgp3cml0ZS54bHN4KHggPSBsaXN0X2RhbnljaCwgZmlsZSA9ICIuLi9yZXBvcnRzL3hsc3gvMi13aWVsZS10YWJlbC54bHN4IiwgYXNUYWJsZSA9IFQpCmBgYAoKSmFrIG5hZGHEhyBmb3JtYXQgd3nFm3dpZXRsYW55bSBkYW55bSB3IHBsaWt1IE1TIEV4Y2VsCgorIG9wZW54bHN4LmJvcmRlckNvbG91cgorIG9wZW54bHN4LmJvcmRlclN0eWxlCisgb3Blbnhsc3guZGF0ZUZvcm1hdAorIG9wZW54bHN4Lm51bUZtdAorIG9wZW54bHN4LmRhdGV0aW1lRm9ybWF0Cisgb3Blbnhsc3gucGFwZXJTaXplCisgb3Blbnhsc3gub3JpZW50YXRpb24KCmBgYHtyfQpnZXRPcHRpb24oIm9wZW54bHN4LmJvcmRlckNvbG91ciIpCm9wdGlvbnMoIm9wZW54bHN4Lm51bUZtdCIgPSAiMC4wMCIpCndyaXRlLnhsc3goeCA9IGxpc3RfZGFueWNoLCBmaWxlID0gIi4uL3JlcG9ydHMveGxzeC8zLWZvcm1hdC54bHN4IiwgYXNUYWJsZSA9IFQpCmBgYAoKClR3b3J6eW15IHNrb3Jvc3p5dCBNUyBFeGNlbCwga3TDs3J5IGLEmWR6aWUgemF3aWVyYcWCOgotIGtpbGthIGFya3VzenkKLSBwaWVyd3N6eSB3aWVyc3ogYsSZZHppZSB6YWJsb2tvd2FueSAoZnJlZXplIHBhbmUpCi0gZm9ybWF0eSBkYW55Y2ggCi0gaXRwLgoKCmBgYHtyfQojIyB0d29yenlteSBza29yb3N6eXQgZXhjZWxhIGJleiDFvGFkbnljaCBhcmt1c3p5CnNrb3Jvc3p5dCA8LSBjcmVhdGVXb3JrYm9vayhjcmVhdG9yID0gIk1hY2llaiIpCgojIyBqZcW8ZWxpIGNoY2VteSBkb2RhxIcgYXJrdXN6IG11c2lteSB1xbx5xIcgZnVua2NqaSBhZGRXb3Jrc2hlZXQKYWRkV29ya3NoZWV0KHdiID0gc2tvcm9zenl0LCBzaGVldE5hbWUgPSAiU3BpcyB0cmXFm2NpIiwgZ3JpZExpbmVzID0gRkFMU0UpCgoKIyMgZG9kYWplbXkga29sZWpueSBhcmt1c3oKYWRkV29ya3NoZWV0KHdiID0gc2tvcm9zenl0LCBzaGVldE5hbWUgPSAiRGFuZSDFunLDs2TFgm93ZSIpCiMjIGNoY2VteSBhYnkgcGllcndzenkgd2llcnN6IGJ5xYIgemFibG9rb3dhbnkKZnJlZXplUGFuZSh3YiA9IHNrb3Jvc3p5dCwgc2hlZXQgPSAiRGFuZSDFunLDs2TFgm93ZSIsIGZpcnN0Um93ID0gVFJVRSkKIyMgY2hjZW15IHphcGlzYcSHIGRhbmUgZG8gdGVnbyBhcmt1c3phIG11c2lteSB1xbx5xIcgZnVua2NqaSB3cml0ZURhdGEvd3JpdGVEYXRhVGFibGUKd3JpdGVEYXRhVGFibGUod2IgPSBza29yb3N6eXQsIHNoZWV0ID0gIkRhbmUgxbpyw7NkxYJvd2UiLCAgeCA9ICBtdGNhcnMsCiAgICAgICAgICAgICAgIGNvbE5hbWVzID0gVFJVRSwgdGFibGVTdHlsZSA9ICJUYWJsZVN0eWxlTWVkaXVtOCIpCmBgYAoKVHdvcnp5bXkgbW9kZWwgcmVncmVzamkgbGluaW93ZWogaSB6YXBpc3plbXkgd3luaWtpIGRvIHBsaWt1IE1TIEV4Y2VsCgpgYGB7cn0KbW9kZWwxIDwtIGxtKGZvcm11bGEgPSBtcGcgfiB3dCArIGZhY3RvcihjeWwpICsgYW0sIGRhdGEgPSBtdGNhcnMpCgphZGRXb3Jrc2hlZXQod2IgPSBza29yb3N6eXQsIHNoZWV0TmFtZSA9ICJSZWdyZXNqYSIpCndyaXRlRGF0YSh3YiA9IHNrb3Jvc3p5dCwgc2hlZXQgPSAiUmVncmVzamEiLCB4eSA9IGMoIkMiLCA0KSwgeCA9IG1vZGVsMSkKYGBgCgpDZWxlbSBixJlkemllIHN0b3J6ZW5pZSBzcGlzdSB0cmXFm2NpIHogdHl0dcWCZW0gIlNwaXMgdHJlxZtjaSIgb3JheiBoaXBlcsWCxIVjemEgZG8gb2tyZcWbbG9ueWNoIGFya3VzenkgdyB0eW0gc2tvcm9zenljaWUuIE1vxbxlbXkgb2tyZcWbbGnEhyBmb3JtYXQga29tw7Nya2kgeiB1xbx5Y2llbSBmdW5rY2ppIGBjcmVhdGVTdHlsZWAKCmBgYHtyfQptb2pfc3R5bCA8LSBjcmVhdGVTdHlsZShmb250U2l6ZSA9ICIyMCIsIGZvbnROYW1lID0gIkFyaWFsIiwgdGV4dERlY29yYXRpb24gID0gImJvbGQiKQp3cml0ZURhdGEod2IgPSBza29yb3N6eXQsIHNoZWV0ID0gIlNwaXMgdHJlxZtjaSIsIHggPSAiU3BpcyB0cmXFm2NpIiwgeHkgPSBjKCJCIiwgNSkpCmFkZFN0eWxlKHdiID0gc2tvcm9zenl0LCBzaGVldCA9ICJTcGlzIHRyZcWbY2kiLCBzdHlsZSA9IG1val9zdHlsLCByb3dzID0gNSwgY29scyA9IDIpCmBgYAoKRG9kYWplbXkgaGlwZXLFgsSFY3phIGRvIGFya3VzenksIGt0w7NyZSBtYWrEhSBiecSHIHcga29tw7Nya2FjaCBCNyBpIEI4CgpgYGB7cn0KIyBkb2RhamVteSBuYSBkd2Egc3Bvc29ieQp3cml0ZUZvcm11bGEod2IgPSBza29yb3N6eXQsIHNoZWV0ID0gIlNwaXMgdHJlxZtjaSIsIHh5ID0gYygiQiIsIDcpLAogICAgICAgICAgICAgeCA9IG1ha2VIeXBlcmxpbmtTdHJpbmcoc2hlZXQgPSAiRGFuZSDFunLDs2TFgm93ZSIsIHJvdyA9IDEsIGNvbCA9IDEsIHRleHQgPSAiMS4gREFORSDFuVLDk0TFgU9XRSIpKQp3cml0ZUZvcm11bGEod2IgPSBza29yb3N6eXQsIHNoZWV0ID0gIlNwaXMgdHJlxZtjaSIsIHh5ID0gYygiQiIsIDgpLCAKICAgICAgICAgICAgIHggPSAnPUhZUEVSTElOSygiI1JlZ3Jlc2phIUExIiwgIjIuIFJFR1JFU0pBIiknKQoKYGBgCgpEbyBhcmt1c3phIHJlZ3Jlc2phIHcga29tw7NyY2UgQTEgbmFwc3plbXksIMW8ZSBBMSA9IEEyICsgQTMKCmBgYHtyfQp3cml0ZUZvcm11bGEod2IgPSBza29yb3N6eXQsIHNoZWV0ID0gIlJlZ3Jlc2phIiwgeHkgPSBjKCJBIiwgMSksIHggPSAiQTIgKyBBMyIpCmBgYAoKClR3b3J6eW15IGZvcm1hdG93YW5pZSB3YXJ1bmtvd2Ugd2VkxYJ1ZyBuYXN0xJlwdWphY3ljaCB3YXJ1bmvDs3c6CgotIGtvbHVtbmEgeiBtcGcgLT4gamXFvGVsaSB3aWVrc3phIG9kIMWbcmVkbmllaiB0byBtYSBiecSHIG5hIGN6ZXJ3b25vCi0ga29sdW1uYSBjeWwgLT4gZm9ybWF0b3dhbmllIHdlZMWCdWcgc3R5bHUgZXhjZWxhCgpgYGB7cn0KcmVtb3ZlV29ya3NoZWV0KHdiID0gc2tvcm9zenl0LCBzaGVldCAgPSAiRm9ybWF0b3dhbmllIikKCmFkZFdvcmtzaGVldCh3YiA9IHNrb3Jvc3p5dCwgc2hlZXROYW1lID0gIkZvcm1hdG93YW5pZSIpCgp3cml0ZURhdGEod2IgPSBza29yb3N6eXQsIHNoZWV0ID0gIkZvcm1hdG93YW5pZSIsIHggPSBtdGNhcnMpCgpuYXN6X2Zvcm1hdCA8LSBjcmVhdGVTdHlsZShiZ0ZpbGwgPSAiI0ZGQzdDRSIpCgpjb25kaXRpb25hbEZvcm1hdHRpbmcod2IgPSBza29yb3N6eXQsIHNoZWV0ID0gIkZvcm1hdG93YW5pZSIsCiAgICAgICAgICAgICAgICAgICAgICBjb2xzID0gMSwgcm93cyA9IDI6MzMsCiAgICAgICAgICAgICAgICAgICAgICBydWxlID0gIj4yMC4wOSIsIHN0eWxlID0gbmFzel9mb3JtYXQpCgpjb25kaXRpb25hbEZvcm1hdHRpbmcod2IgPSBza29yb3N6eXQsIHNoZWV0ID0gIkZvcm1hdG93YW5pZSIsIAogICAgICAgICAgICAgICAgICAgICAgY29scyA9IDIsIHJvd3MgPSAyOjMzLAogICAgICAgICAgICAgICAgICAgICAgdHlwZSA9ICJkYXRhYmFyIikgIyMgc8WCdXBraQpgYGAKCgoKYGBge3J9CnNhdmVXb3JrYm9vayh3YiA9IHNrb3Jvc3p5dCwgZmlsZSA9ICIuLi9yZXBvcnRzL3hsc3gvNC1rcm9rLXBvLWtyb2t1Lnhsc3giLCBvdmVyd3JpdGUgPSBUUlVFKQpgYGAKCgoKCgoKCgoKCgoKCgoKCgoKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiVHdvcnplbmllIHJhcG9ydMOzdyB6IG9wZW54bHN4IgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgoKd3JpdGV4bCAtLSBwYWtpZXQgZG8gemFwaXN5d2FuaWEgcGxpa8OzdyBkbyB4bHN4L3hscyBhbGUgYmV6IGZvcm1hdG93YW5pYQoKYGBge3J9CmxpYnJhcnkob3Blbnhsc3gpCmBgYAoKQWJ5IHphcGlzYcSHIHBsaWsgTVMgRXhjZWwgeiBva3JlxZtsb27EhSByYW1rxIUgZGFueWNoIChvYmlla3QgdHlwdSBgZGF0YS5mcmFtZWApIG5hbGXFvHkgdcW8ecSHIGZ1bmtjamkgYHdyaXRlLnhsc3hgCgoKYGBge3J9CndyaXRlLnhsc3goeCA9IG10Y2FycywgZmlsZSA9ICIuLi9yZXBvcnRzL3hsc3gvMS1wbGlrLW10Y2Fycy54bHN4IiwgYXNUYWJsZSA9IFQpCmBgYAoKCgpaYWvFgmFkYW15LCDFvGUgbmllIG1hbXkgamVkbmVnbyBvYmlla3R1IHR5cHUgcmFta2EgZGFueWNoLCBhbGUgdHljaCBvYmlla3TDs3cgbWFteSBraWxrYS4gQ2hjZW15IGFieSBkbGEga2HFvGRlaiByYW1raSBkYW55Y2ggem9zdGHFgiBzdHdvcnpvbnkgb2RkemllbG55IGFya3Vzei4KCmBgYHtyfQpsaXN0X2RhbnljaCA8LSBsaXN0KCJpcmlzIiA9IGlyaXMsIAogICAgICAgICAgICAgICAgICAgICJkYW5lIG10Y2FycyIgPSBtdGNhcnMsIAogICAgICAgICAgICAgICAgICAgICJrd2FydGV0IEFuc2NvbWJlYSIgPSBhbnNjb21iZSkKc3RyKGxpc3RfZGFueWNoLDEpCgpgYGAKCmBgYHtyfQp3cml0ZS54bHN4KHggPSBsaXN0X2RhbnljaCwgZmlsZSA9ICIuLi9yZXBvcnRzL3hsc3gvMi13aWVsZS10YWJlbC54bHN4IiwgYXNUYWJsZSA9IFQpCmBgYAoKSmFrIG5hZGHEhyBmb3JtYXQgd3nFm3dpZXRsYW55bSBkYW55bSB3IHBsaWt1IE1TIEV4Y2VsCgorIG9wZW54bHN4LmJvcmRlckNvbG91cgorIG9wZW54bHN4LmJvcmRlclN0eWxlCisgb3Blbnhsc3guZGF0ZUZvcm1hdAorIG9wZW54bHN4LmRhdGV0aW1lRm9ybWF0Cisgb3Blbnhsc3gubnVtRm10Cisgb3Blbnhsc3gucGFwZXJTaXplCisgb3Blbnhsc3gub3JpZW50YXRpb24KCgoKYGBge3J9Cm9wdGlvbnMoIm9wZW54bHN4Lm51bUZtdCIgPSAiMC4wMCIpCndyaXRlLnhsc3goeCA9IGxpc3RfZGFueWNoLCBmaWxlID0gIi4uL3JlcG9ydHMveGxzeC8zLWZvcm1hdC54bHN4IiwgYXNUYWJsZSA9IFQpCmBgYAoKClR3b3J6eW15IHNrb3Jvc3p5dCBNUyBFeGNlbCwga3TDs3J5IGLEmWR6aWUgemF3aWVyYcWCOgotIGtpbGthIGFya3VzenkKLSBwaWVyd3N6eSB3aWVyc3ogYsSZZHppZSB6YWJsb2tvd2FueSAoZnJlZXplIHBhbmUpCi0gZm9ybWF0eSBkYW55Y2ggCi0gaXRwLgoKCmBgYHtyfQojIyB0d29yenlteSBza29yb3N6eXQgZXhjZWxhIGJleiDFvGFkbnljaCBhcmt1c3p5CnNrb3Jvc3p5dCA8LSBjcmVhdGVXb3JrYm9vayhjcmVhdG9yID0gIk1hY2llaiIpCnNrb3Jvc3p5dApgYGAKCmBgYHtyfQojIyBqZcW8ZWxpIGNoY2VteSBkb2RhxIcgYXJrdXN6IG11c2lteSB1xbx5xIcgZnVua2NqaSBhZGRXb3Jrc2hlZXQKYWRkV29ya3NoZWV0KHdiID0gc2tvcm9zenl0LCBzaGVldE5hbWUgPSAiU3BpcyB0cmXFm2NpIiwgZ3JpZExpbmVzID0gRkFMU0UpCgojIyB6YXBpcyBkbyBwbGlrdQpzYXZlV29ya2Jvb2sod2IgPSBza29yb3N6eXQsIGZpbGUgPSAiLi4vcmVwb3J0cy94bHN4LzQta3Jvay1wby1rcm9rdS54bHN4Iiwgb3ZlcndyaXRlID0gVFJVRSkKYGBgCgoKYGBge3J9CiMjIGRvZGFqZW15IGtvbGVqbnkgYXJrdXN6CmFkZFdvcmtzaGVldCh3YiA9IHNrb3Jvc3p5dCwgc2hlZXROYW1lID0gIkRhbmUgxbpyw7NkxYJvd2UiKQoKIyMgY2hjZW15IGFieSBwaWVyd3N6eSB3aWVyc3ogYnnFgiB6YWJsb2tvd2FueQpmcmVlemVQYW5lKHdiID0gc2tvcm9zenl0LCBzaGVldCA9ICJEYW5lIMW6csOzZMWCb3dlIiwgZmlyc3RSb3cgPSBUUlVFKQoKIyMgY2hjZW15IHphcGlzYcSHIGRhbmUgZG8gdGVnbyBhcmt1c3phIG11c2lteSB1xbx5xIcgZnVua2NqaSB3cml0ZURhdGEvd3JpdGVEYXRhVGFibGUKd3JpdGVEYXRhVGFibGUod2IgPSBza29yb3N6eXQsIHNoZWV0ID0gIkRhbmUgxbpyw7NkxYJvd2UiLCAgeCA9ICBtdGNhcnMsCiAgICAgICAgICAgICAgIGNvbE5hbWVzID0gVFJVRSwgdGFibGVTdHlsZSA9ICJUYWJsZVN0eWxlTWVkaXVtMyIpCgpzYXZlV29ya2Jvb2sod2IgPSBza29yb3N6eXQsIGZpbGUgPSAiLi4vcmVwb3J0cy94bHN4LzQta3Jvay1wby1rcm9rdS54bHN4Iiwgb3ZlcndyaXRlID0gVFJVRSkKCmBgYAoKClR3b3J6eW15IG1vZGVsIHJlZ3Jlc2ppIGxpbmlvd2VqIGkgemFwaXN6ZW15IHd5bmlraSBkbyBwbGlrdSBNUyBFeGNlbAoKYGBge3J9CiMjIHR3b3J6eW15IG1vZGVsIHJlZ3Jlc2ppIGxpbmlvd2VqCm1vZGVsMSA8LSBsbShmb3JtdWxhID0gbXBnIH4gd3QgKyBmYWN0b3IoY3lsKSArIGFtLCBkYXRhID0gbXRjYXJzKQoKIyMgZG9kYWplbXkgb2Rwb3dpZWRuaSBhcmt1c3oKYWRkV29ya3NoZWV0KHdiID0gc2tvcm9zenl0LCBzaGVldE5hbWUgPSAiUmVncmVzamEiKQojIyB6YXBpc3VqZW15IGRhbmUgeiBmdW5rY2rEhSB3cml0ZURhdGEKd3JpdGVEYXRhKHdiID0gc2tvcm9zenl0LCBzaGVldCA9ICJSZWdyZXNqYSIsIHh5ID0gYygiQyIsIDQpLCB4ID0gbW9kZWwxKQoKc2F2ZVdvcmtib29rKHdiID0gc2tvcm9zenl0LCBmaWxlID0gIi4uL3JlcG9ydHMveGxzeC80LWtyb2stcG8ta3Jva3UueGxzeCIsIG92ZXJ3cml0ZSA9IFRSVUUpCmBgYAoKCgpDZWxlbSBixJlkemllIHN0b3J6ZW5pZSBzcGlzdSB0cmXFm2NpIHogdHl0dcWCZW0gIlNwaXMgdHJlxZtjaSIgb3JheiBoaXBlcsWCxIVjemEgZG8gb2tyZcWbbG9ueWNoIGFya3VzenkgdyB0eW0gc2tvcm9zenljaWUuIAoKYGBge3J9CndyaXRlRGF0YSh3YiA9IHNrb3Jvc3p5dCwgc2hlZXQgPSAiU3BpcyB0cmXFm2NpIiwgeCA9ICJTcGlzIHRyZcWbY2kiLCB4eSA9IGMoIkIiLCA1KSkKCnNhdmVXb3JrYm9vayh3YiA9IHNrb3Jvc3p5dCwgZmlsZSA9ICIuLi9yZXBvcnRzL3hsc3gvNC1rcm9rLXBvLWtyb2t1Lnhsc3giLCBvdmVyd3JpdGUgPSBUUlVFKQpgYGAKCk1vxbxlbXkgb2tyZcWbbGnEhyBmb3JtYXQga29tw7Nya2kgeiB1xbx5Y2llbSBmdW5rY2ppIGBjcmVhdGVTdHlsZWAKCmBgYHtyfQojIyBmdW5rY2phIGNyZWF0ZSBzdHlsZSBwb3p3YWxhIG5hIG9rcmXFm2xlbmllIGtvbmtyZXRuZWdvIHN0eWx1IAptb2pfc3R5bCA8LSBjcmVhdGVTdHlsZShmb250U2l6ZSA9IDIwLCBmb250TmFtZSA9ICJBcmlhbCIsIAogICAgICAgICAgICAgICAgICAgICAgICB0ZXh0RGVjb3JhdGlvbiAgPSAiYm9sZCIsIHRleHRSb3RhdGlvbiA9IDI1KQoKYWRkU3R5bGUod2IgPSBza29yb3N6eXQsIHNoZWV0ID0gIlNwaXMgdHJlxZtjaSIsIHN0eWxlID0gbW9qX3N0eWwsIHJvd3MgPSA1LCBjb2xzID0gMikKCnNhdmVXb3JrYm9vayh3YiA9IHNrb3Jvc3p5dCwgZmlsZSA9ICIuLi9yZXBvcnRzL3hsc3gvNC1rcm9rLXBvLWtyb2t1Lnhsc3giLCBvdmVyd3JpdGUgPSBUUlVFKQpgYGAKCkRvZGFqZW15IGhpcGVyxYLEhWN6YSBkbyBhcmt1c3p5LCBrdMOzcmUgbWFqxIUgYnnEhyB3IGtvbcOzcmthY2ggQjcgaSBCOAoKYGBge3J9CiMgZG9kYWplbXkgbmEgZHdhIHNwb3NvYnkKd3JpdGVGb3JtdWxhKHdiID0gc2tvcm9zenl0LCBzaGVldCA9ICJTcGlzIHRyZcWbY2kiLCB4eSA9IGMoIkIiLCA3KSwKICAgICAgICAgICAgIHggPSBtYWtlSHlwZXJsaW5rU3RyaW5nKHNoZWV0ID0gIkRhbmUgxbpyw7NkxYJvd2UiLCAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJvdyA9IDEsIGNvbCA9IDMsIHRleHQgPSAiMS4gREFORSDFuVLDk0TFgU9XRSIpKQoKd3JpdGVGb3JtdWxhKHdiID0gc2tvcm9zenl0LCBzaGVldCA9ICJTcGlzIHRyZcWbY2kiLCB4eSA9IGMoIkIiLCA4KSwgCiAgICAgICAgICAgICB4ID0gJz1IWVBFUkxJTksoIiNSZWdyZXNqYSFDNCIsICIyLiBSRUdSRVNKQSIpJykKCnNhdmVXb3JrYm9vayh3YiA9IHNrb3Jvc3p5dCwgZmlsZSA9ICIuLi9yZXBvcnRzL3hsc3gvNC1rcm9rLXBvLWtyb2t1Lnhsc3giLCBvdmVyd3JpdGUgPSBUUlVFKQpgYGAKCkRvIGFya3VzemEgYFJlZ3Jlc2phYCB3IGtvbcOzcmNlIEExIG5hcHN6ZW15LCDFvGUgQTEgPSBST1VORChTUVJUKEEyKkEzKSwyKSwgQTI9MTAsIEEzPTQKCmBgYHtyfQojIyB3cGlzdWplbXkgZGFuZSBkbyBrb23Ds3JlayBBMiBpIEEzIAp3cml0ZURhdGEod2IgPSBza29yb3N6eXQsIHNoZWV0ID0gIlJlZ3Jlc2phIiwgeHkgPSBjKCJBIiwgMiksIHggPSAxMCkKd3JpdGVEYXRhKHdiID0gc2tvcm9zenl0LCBzaGVldCA9ICJSZWdyZXNqYSIsIHh5ID0gYygiQSIsIDMpLCB4ID0gNCkKIyMgZnVua2NqxIUgd3JpdGVGb3JtdWxhIHdwaXN1amVteSBmb3JtdWzEmSwga3TDs3LEhSBjaGNlbXkgd3lsaWN6ecSHCndyaXRlRm9ybXVsYSh3YiA9IHNrb3Jvc3p5dCwgc2hlZXQgPSAiUmVncmVzamEiLCB4eSA9IGMoIkEiLCAxKSwgeCA9ICJST1VORChTUVJUKEEyKkEzKSwyKSIpCgpzYXZlV29ya2Jvb2sod2IgPSBza29yb3N6eXQsIGZpbGUgPSAiLi4vcmVwb3J0cy94bHN4LzQta3Jvay1wby1rcm9rdS54bHN4Iiwgb3ZlcndyaXRlID0gVFJVRSkKYGBgCgoKVHdvcnp5bXkgaSB3eXJ6dWNhbXkgYXJrdXN6CgpgYGB7cn0KIyMgYWRkIHdvcmtzaGVldCAtLSBkb2RhbmllIGFya3VzemEKYWRkV29ya3NoZWV0KHdiID0gc2tvcm9zenl0LCBzaGVldE5hbWUgPSAiRm9ybWF0b3dhbmllIikKc2tvcm9zenl0CiMjIHJlbW92ZSB3b3Jrc2hlZXQgLS0gdXN1bmllY2llIGFya3VzemEKcmVtb3ZlV29ya3NoZWV0KHdiID0gc2tvcm9zenl0LCBzaGVldCAgPSAiRm9ybWF0b3dhbmllIikKc2tvcm9zenl0CmBgYAoKClR3b3J6eW15IGZvcm1hdG93YW5pZSB3YXJ1bmtvd2Ugd2VkxYJ1ZyBuYXN0xJlwdWphY3ljaCB3YXJ1bmvDs3c6CgotIGtvbHVtbmEgeiBtcGcgLT4gamXFvGVsaSB3aWVrc3phIG9kIMWbcmVkbmllaiB0byBtYSBiecSHIG5hIGN6ZXJ3b25vCi0ga29sdW1uYSBjeWwgLT4gZm9ybWF0b3dhbmllIHdlZMWCdWcgc3R5bHUgZXhjZWxhCgpgYGB7cn0KIyMgdHdvcnrEmSBhcmt1c3ogZm9ybWF0b3dhbmllCmFkZFdvcmtzaGVldCh3YiA9IHNrb3Jvc3p5dCwgc2hlZXROYW1lID0gIkZvcm1hdG93YW5pZSIpCiMjIHphcGlzdWrEmSBkYW5lCndyaXRlRGF0YSh3YiA9IHNrb3Jvc3p5dCwgc2hlZXQgPSAiRm9ybWF0b3dhbmllIiwgeCA9IG10Y2FycykKIyMgemFwaXN1asSZIHBsaWsKc2F2ZVdvcmtib29rKHdiID0gc2tvcm9zenl0LCBmaWxlID0gIi4uL3JlcG9ydHMveGxzeC80LWtyb2stcG8ta3Jva3UueGxzeCIsIG92ZXJ3cml0ZSA9IFRSVUUpCgpgYGAKClN0d29yenlteSBkYXRhYmFycyAoc8WCdXBraSksIGt0w7NyZSB3IHphbGXFvG5vc2NpIG9kIHdhcnRvxZtjaSBjZWNoeSBixJlkxIUgcsOzxbxuacWCeSBzacSZIGTFgnVnb8WbY2nEhQoKYGBge3J9CmNvbmRpdGlvbmFsRm9ybWF0dGluZyh3YiA9IHNrb3Jvc3p5dCwgc2hlZXQgPSAiRm9ybWF0b3dhbmllIiwgCiAgICAgICAgICAgICAgICAgICAgICBjb2xzID0gMjo0LCByb3dzID0gMjozMywKICAgICAgICAgICAgICAgICAgICAgIHR5cGUgPSAiZGF0YWJhciIpICMjIHPFgnVwa2kKCnNhdmVXb3JrYm9vayh3YiA9IHNrb3Jvc3p5dCwgZmlsZSA9ICIuLi9yZXBvcnRzL3hsc3gvNC1rcm9rLXBvLWtyb2t1Lnhsc3giLCBvdmVyd3JpdGUgPSBUUlVFKQoKYGBgCgpXYXJ1bmtvd2UgcG9yw7N3bmFuaWUgeiB3eWtvcnp5c3RhbmllbSBva3JlxZtsb25lZ28gd2FydW5rdSAvIGZvcm11xYJ5CmBgYHtyfQpuYXN6X2Zvcm1hdCA8LSBjcmVhdGVTdHlsZShiZ0ZpbGwgPSAiI0ZGQzdDRSIpCgpjb25kaXRpb25hbEZvcm1hdHRpbmcod2IgPSBza29yb3N6eXQsIHNoZWV0ID0gIkZvcm1hdG93YW5pZSIsCiAgICAgICAgICAgICAgICAgICAgICBjb2xzID0gMSwgcm93cyA9IDI6MzMsCiAgICAgICAgICAgICAgICAgICAgICBydWxlID0gcGFzdGUwKCI+IiwgbWVhbihtdGNhcnMkbXBnKSksIAogICAgICAgICAgICAgICAgICAgICAgI3J1bGUgPSAiPjIwLjA5IiwgCiAgICAgICAgICAgICAgICAgICAgICBzdHlsZSA9IG5hc3pfZm9ybWF0KQoKc2F2ZVdvcmtib29rKHdiID0gc2tvcm9zenl0LCBmaWxlID0gIi4uL3JlcG9ydHMveGxzeC80LWtyb2stcG8ta3Jva3UueGxzeCIsIG92ZXJ3cml0ZSA9IFRSVUUpCmBgYAoKCkRvZGFqZW15IGhhc8WCbyBkbyBhcmt1c3phIGkgY2HFgmVnbyBwbGlrdQoKYGBge3J9CnByb3RlY3RXb3Jrc2hlZXQod2IgPSBza29yb3N6eXQsIHNoZWV0ID0gIlJlZ3Jlc2phIiwgCiAgICAgICAgICAgICAgICAgcGFzc3dvcmQgPSAid2lyZHMyMDIxIiwgCiAgICAgICAgICAgICAgICAgbG9ja0luc2VydGluZ1Jvd3MgPSBUUlVFKQoKc2F2ZVdvcmtib29rKHdiID0gc2tvcm9zenl0LCBmaWxlID0gIi4uL3JlcG9ydHMveGxzeC80LWtyb2stcG8ta3Jva3UueGxzeCIsIG92ZXJ3cml0ZSA9IFRSVUUpCmBgYAoKCkRvIGNhxYJlZ28gcGxpa3UKCmBgYHtyfQpwcm90ZWN0V29ya2Jvb2sod2IgPSBza29yb3N6eXQsIHByb3RlY3QgPSBUUlVFLCBwYXNzd29yZCA9ICJ1ZXAyMDIxIiwgbG9ja1N0cnVjdHVyZSA9IFRSVUUpCgpzYXZlV29ya2Jvb2sod2IgPSBza29yb3N6eXQsIGZpbGUgPSAiLi4vcmVwb3J0cy94bHN4LzQta3Jvay1wby1rcm9rdS54bHN4Iiwgb3ZlcndyaXRlID0gVFJVRSkKYGBgCgoKCgoKCgoKCgoKCgoKCgoKCg==</div>
 
 
 
