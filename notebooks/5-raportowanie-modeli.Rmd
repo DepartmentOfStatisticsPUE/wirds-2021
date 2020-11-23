@@ -8,7 +8,7 @@ output:
 ---
 
 ```{r}
-#install.packages(c("sjPlot", "stargazer", "texreg", "jtools", "huxtable"))
+#", "stargazer", "texreg", "jtools", "huxtable"))
 library(sjPlot)
 library(jtools)
 library(texreg)
@@ -19,16 +19,17 @@ library(huxtable)
 Zacznijmy od zbudowania trzech modeli
 
 ```{r}
-## etykieta dla zmiennej
-attr(mtcars$wt, "label") <- "waga"
+data("mtcars")
+## dopisujemy atrybut label do kolumny
+attr(mtcars$wt, "label") <- "Waga sam."
 
-## typ factor (zmienna jakościowa)
-mtcars$cyl <- factor(mtcars$cyl, 
-                     levels = c(4, 6, 8),
-                     label = c("4ry", "6ść", "8siem"))
+## zmienna cyl będzie zmienną jakosciową
+mtcars$cyl <- factor(x = mtcars$cyl, 
+                     levels = c(4,6,8), 
+                     labels = c("Cztery", "Sześć", "Osiem"))
 
 model1 <- lm(formula = mpg ~ wt, data = mtcars)
-model2 <- lm(formula = mpg ~ am + wt + cyl, data = mtcars)
+model2 <- lm(formula = mpg ~ wt + am + cyl, data = mtcars)
 model3 <- lm(formula = mpg ~ wt + am + cyl + hp, data = mtcars)
 ```
 
@@ -36,25 +37,26 @@ Zaczniemy od pakiety sjPlot
 
 ```{r}
 tab_model(
-  model1, 
-  model2,
-  dv.labels = c("Model 1", "Model 2"), ## etykiety dla modeli
-  string.pred = "Zmienne", ## etykieta dla zmiennych
-  string.est = "Parametr", ## etykieta dla parametrów
-  string.se =  "Błąd std.", ## etykieta dla błędu std.
-  string.p = "P-value", ## etykieta dla p-value
-  show.stat = TRUE, ## pokazanie statystyki t / z / Walda
-  show.reflvl = TRUE, ## pokazanie poziomu referncyjnego dla zmiennych jak.
-  prefix.labels = "varname", ## pokazanie nazwy zmiennej jak.
-  collapse.se = TRUE, ## błędy standardowe poniżej
-  digits = 4,  ## 4 miejsca po przecinku
-  show.ci = FALSE,  ## brak przedziału ufności
-  show.se = TRUE,  ## pokazanie błędów standardowych
-  show.aic = TRUE, ## pokazanie statystyki AIC
-  emph.p = FALSE,
-  CSS = css_theme("cells"),
-  file = "../reports/sjplot-modele.html" ## zapis wyniów do pliku HTML
-  )
+ model1,
+ model2,
+ dv.labels = c("Model1", "Model2"), ## etykiety dla modeli
+ string.pred = "Zmienne", ## etykieta dla zmiennych (predyktorów)
+ string.intercept = "(Wyraz wolny)", ## etykieta dla wyrazu wolne
+ string.est = "Parametry", ## etykieta dla szacowań
+ string.p = "P-value", ## etykieta dla p-value
+ string.se = "Błąd", ## etykieta dla SE
+ string.stat = "Statystyka", ## etykieta dla statystyki testowej
+ show.ci = FALSE, ## nie pokazuje przedziałów ufności
+ show.stat = TRUE, ## pokaże statystykę t / z / walda 
+ show.se = TRUE, ## pokaze błędy standardowe
+ collapse.se = TRUE, ## dodanie błędów standardowych poniżej oszacowań
+ emph.p = FALSE, ## pogrubienie p-value - wyłączamy
+ digits = 3,  ## liczba miejsc po przecinku
+ show.reflvl = TRUE, ## dodanie poziomu referencyjnego dla factors
+ prefix.labels = "varname", ## dopisanie nazwy zmiennej
+ #CSS = css_theme("cells")
+ file = "../reports/sjplot-modele.html"
+)
 ```
 
 
@@ -67,24 +69,23 @@ z_i = x_i - \bar{x}
 $$
 
 ```{r}
-summ(model = model3,
-     vifs = TRUE, 
+summ(model3, 
      center = TRUE, 
      confint = TRUE, 
-     pvals = FALSE)
-```
-
-Można określić globalne opcje
-
-```{r}
-set_summ_defaults(digits = 4, vifs = FALSE)
+     pvals = FALSE, 
+     digits = 3, 
+     vifs = TRUE)
 ```
 
 ```{r}
-export_summs(model1,model2, model3, 
-             model.names = c("M1", "M2", "M3") 
-             #coefs = c("Waga" = "wt")
-             )
+set_summ_defaults(digits = 4)
+```
+
+Możemy porównać więcej modeli
+
+```{r}
+export_summs(model1, model2, 
+             model.names = c("M1", "M2"))
 ```
 
 Przejdzmy teraz do pakietu texreg
@@ -95,21 +96,17 @@ htmlreg -- do pliku html
 
 
 ```{r}
-screenreg(l = list(M1 = model1, M2 = model2), 
-          single.row = TRUE, 
-          stars = 0.001,
+screenreg(l = list("M 1" = model1, "M 2" = model2), 
+          star.symbol = "",
           digits = 4,
-          star.symbol = "!",
-          custom.note = "Uwaga: p < 0.001, należy jednak uważać.",
-          caption = "Porównanie wyników",
-          bold = 0.05,
+          custom.note = "Uwaga: coś tam coś tam.",
           custom.coef.names = c(
-            "Wyraz wolny",
-            "waga",
-            "automat",
-            "cyl: 6",
-            "cyl: 8"
-          ))
-
+            "(Wyraz wolny)", 
+            "Waga", 
+            "Automat", 
+            "Cyl: 6", 
+            "Cyl: 8"
+            ),
+          groups = list("Cylindry (ref = 4)" = 4:5))
 ```
 
