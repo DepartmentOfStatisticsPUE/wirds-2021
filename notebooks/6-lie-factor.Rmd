@@ -1,0 +1,66 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Wyliczamy wskaźnik przekłamania (ang. lie factor) według następującego wzoru
+
+$$
+\text{Lie Factor} = \frac{\text{Efekt na wykresie}}{\text{Efekt w danych}}
+$$
+
+Efekt na wykresie / w danych wyliczamy zgodnie ze wzorem
+
+$$
+\text{Efekt} = \frac{|y_2 - y_1|}{y_1}
+$$
+
+
+gdzie $y_1, y_2$ to odpowiednio wartości dla 1 i 2 grupy.
+
+
+1. Liczmy lie factor dla wykresu o składkach
+
+```{r}
+## obliczamy mianownik wskaźnika przekłamania danych
+mianownik <- abs(1445-1092)/1092
+
+## obliczamy licznik wskaźnika
+licznik <- abs(330-53)/53
+
+## wyliczamy ten wskaźnik
+licznik/mianownik
+```
+
+Poprawmy wykres aby zobaczyć jaka jest prawdziwa zależnosć w tych danych.
+
+```{r}
+library(ggplot2)
+
+dane_wykres1 <- data.frame(rok = 2015:2020, 
+                           skladki = c(1092, 1121, 1172, 1228, 1316, 1445))
+
+ggplot(data = dane_wykres1, aes(x = factor(rok), y = skladki)) + 
+  geom_col(fill = "white", color = "black")
+```
+
+Wyliczamy lie factor dla drugiego wykresu
+
+```{r}
+## zależność w danych
+mianownik <- abs(103-98)/98
+
+## zależnosć według wykresu (tylko wysokość)
+licznik1 <- abs(434-125)/125
+
+## wyliczamy zależność ale według pola powierzchi
+pow1 <- 145 * 440 ## pole prostokąta w który wpisany jest 1 kłos
+pow2 <- 60 * 125 ## pole prostokąta w który wpisany jest 4 kłost
+
+licznik2 <- abs(pow1 - pow2) / pow2
+
+## lie factor tylko według wysokosci
+licznik1/mianownik
+licznik2/mianownik
+```
+

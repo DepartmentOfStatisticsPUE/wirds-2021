@@ -1,0 +1,109 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(broom)
+library(parameters)
+library(tidyverse)
+```
+
+Zastosujemy pakiet broom do wyciągnięcia najważniejszych rzeczy z okreslonych modeli. W tym pakiecie mamy 3 najważniejsze funkcje
+
++ tidy -- do zapisania parametrów modelu w postaci ramki danych
++ glance -- do zapisania miar jakosci modelu w postaci ramki danych
++ augument -- do dodania do ramki danych z danymi wejściowymi miar jakości modelu (fitted, resid, itp)
+
+Budujemy dwa modele z wykorzystaniem funkcji lm
+
+```{r}
+## zmieniamy typ zmiennej cyl na factor
+mtcars$cyl <- factor(mtcars$cyl)
+
+## budujemy modle
+model1 <- lm(formula = mpg ~ wt + am + cyl, data = mtcars)
+model2 <- lm(formula = mpg ~ wt + am + cyl + disp + gear, data = mtcars)
+```
+
+Stosujemy funkcję tidy do wyciągnięcia
+
+```{r}
+tidy(model1, conf.int = TRUE, conf.level = 0.80)
+```
+
+Tworzymy tabelę, w której będą wyniki dwóch modeli aby stworzyć wykres do porównania paramtrów
+
+```{r}
+## wyciągam parametry
+parametry_m1 <- tidy(model1, conf.int = TRUE, conf.level = 0.80)
+parametry_m2 <- tidy(model2, conf.int = TRUE, conf.level = 0.80)
+
+do_wykresu <- parametry_m1 %>%
+  select(term, estimate, conf.low, conf.high) %>%
+  mutate(model = "1") %>%
+  bind_rows(
+    parametry_m2 %>% 
+      select(term, estimate, conf.low, conf.high) %>%
+      mutate(model = "2")
+    ) %>%
+  filter(term != "(Intercept)")
+
+do_wykresu
+```
+
+Tworzymy wykres
+
+```{r}
+ggplot(data = do_wykresu, 
+       aes(x = term, y  = estimate, ymin = conf.low, ymax = conf.high,
+           color = model)) +
+  geom_point(position = position_dodge(width = 0.5)) +
+  geom_errorbar(position = position_dodge(width = 0.5), width = 0.5) 
+  #geom_pointrange(position = position_dodge(width = 0.5), width = 0.5)
+```
+
+Funkcja glance
+
+```{r}
+glance(model1) ## model 1 -- informacje
+
+map_df(list(model1, model2), glance, .id = "model") ## użycie funkcji map na liście
+```
+
+Funkcja augument
+
+.fitted -- oszacowania z danego modelu ($\hat{y}$)
+.resid -- reszty z modelu ($y - \hat{y}$)
+.std.resid -- reszty (.resid) standaryzowane
+.hat  -- miara wpływu zmiennej na parametry
+.sigma -- jak zmiena się błąd standardowy reszt jak usuniemy daną obserwację
+.cooksd -- Miara Cooka, która mówi o tym jak wpływowa jest dana obserwacja 
+
+```{r}
+augment(model2)
+```
+
+Zastosujemy pakiet parameters
+
+```{r}
+parameters(model1) ## model_parameters
+parameters(model2) ## model_parameters
+```
+
+```{r}
+parameters(model1)  %>%
+  parameters_table()
+```
+
+```{r}
+## zmieniamy typ zmiennej cyl na factor
+mtcars$cyl <- as.factor(mtcars$cyl)
+## przeliczamy raz jeszcze model 1 z uwzględnieniem zmiennej cyl jako factor
+model1 <- lm(formula = mpg ~ wt + am + cyl, data = mtcars)
+## zapisujemy parametry modelu z wykorzystaniem funkcji parameters oraz tidy
+parameters(model1)
+tidy(model1)
+```
+
