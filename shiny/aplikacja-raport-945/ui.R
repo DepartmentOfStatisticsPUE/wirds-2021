@@ -8,11 +8,12 @@
 #
 
 library(shiny)
+library(shinythemes)
 
 # Define UI for application that draws a histogram
 shinyUI(
     fluidPage(
-
+    theme = shinytheme("paper"),
     # Application title
     titlePanel("Aplikacja powstała w ramach przedmiotu WiRDS"),
 
@@ -31,7 +32,7 @@ shinyUI(
             tabsetPanel(type = "tabs",
                         tabPanel("Histogram", plotOutput("distPlot")),
                         tabPanel("Dane", dataTableOutput("rawData")),
-                        tabPanel("Zależność", plotOutput("scatterPlot")),
+                        tabPanel("Zależność", plotlyOutput("scatterPlot")),
                         tabPanel("Regresja1", verbatimTextOutput("reg1")))
         )
     )

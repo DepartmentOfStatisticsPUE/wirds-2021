@@ -10,6 +10,7 @@
 library(shiny)
 library(ggplot2)
 library(plotly)
+library(shinythemes)
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
@@ -31,14 +32,14 @@ shinyServer(function(input, output) {
         faithful[1:input$bins,]
     })
     
-    output$scatterPlot <- renderPlot({
+    output$scatterPlot <- renderPlotly({
         #plot(x = faithful[,1], y = faithful[, 2],
         #     xlab = "eruptions", ylab = "waiting",
         #     main = "Zależność między zmiennymi: eruptions i waiting")
         
         wykres <- ggplot(data = faithful, aes(x  = eruptions, y = waiting)) + 
             geom_point()
-        wykres
+        ggplotly(wykres)
     })
     
     output$reg1 <- renderPrint({
