@@ -19,19 +19,26 @@ shinyUI(
                  sidebarPanel(
                      fileInput("text_file", "Wybierz plik:", 
                                accept = ".csv",
-                               buttonLabel = "Przeglądaj..."),
-                     actionButton("refresh", "Pobierz dane", class = "btn-primary")
+                               buttonLabel = "Przeglądaj...")
                  ),
                  mainPanel(
-                     verbatimTextOutput("informacje"), ## informacje o pliku
-                     verbatimTextOutput("test") ## informacje o pliku
+                     textOutput("informacje"), ## informacje o pliku
                  )
         ),
         
         ## raporty
-        tabPanel("Raport", "Nic tu nie ma"),
+        tabPanel("Raport", 
+                 sidebarPanel(
+                     downloadButton("download_report", "Pobierz raport")
+                 ),
+                 mainPanel(
+                     dataTableOutput("google_wynik_tab")
+                 )),
         
         ## wizualizacje danych
-        tabPanel("Wizualizacja", "Nic tu nie ma")
+        tabPanel("Wizualizacja", 
+                 mainPanel(
+                     plotOutput("google_wykres")
+                 ))
     )
 )
