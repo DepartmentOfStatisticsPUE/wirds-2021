@@ -21,14 +21,25 @@ shinyUI(
                                buttonLabel = "Przeglądaj...")
                  ),
                  mainPanel(
-                     verbatimTextOutput("file_summary"),
-                     tableOutput("file_head")
+                     textOutput("file_summary")
                  )),
         
-        tabPanel("Raport", "jeszcze cos dodamy"),
+        tabPanel("Raport", 
+                 sidebarPanel(
+                     downloadButton("tab_download", "Zapisz plik do xlsx")
+                 ),
+                 mainPanel(
+                     dataTableOutput("pzn_tab")
+                 )),
         
         tabPanel("Wizualizacja", 
-                 plotOutput("pzn_summary")),
+                 sidebarPanel(
+                     downloadButton("plot_download", "Zapisz wykres do PNG")
+                 ),
+                 mainPanel(
+                     plotOutput("pzn_summary") 
+                 )
+                 ),
         
         navbarMenu("O aplikacji",
                    tabPanel("O autorze", "TBA"),
