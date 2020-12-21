@@ -1,0 +1,18 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+install.packages("rpivotTable")
+## jeżeli chcemy użyc tego w shiny to możemy skorzystać z pakietu renderRpivotTable
+```
+
+```{r}
+library(rpivotTable)
+```
+
+```{r}
+rpivotTable(mtcars)
+```
+
