@@ -13,3 +13,4 @@ Materiały z zajęć:
 + [Przetwarzanie obietków](notebooks/7-przetwarzanie-obiektow.Rmd)
 + [Aplikacja shiny](shiny/)
 + [Interaktywana tabela przestwawna](notebooks/8-pivot.Rmd)
++ [Wprowadzenie do Binder](https://mybinder.org/)

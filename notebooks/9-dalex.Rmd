@@ -1,0 +1,64 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+install.packages("DALEX")
+```
+
+
+```{r}
+library(DALEX)
+head(titanic_imputed)
+```
+
+```{r}
+m1 <- glm(survived ~ age*gender + class + embarked + fare + sibsp + parch, 
+          data = titanic_imputed,
+          family = binomial())
+summary(m1)
+```
+
+```{r}
+m1_explain <- explain(m1, 
+              data = titanic_imputed,
+              y = titanic_imputed$survived, 
+              label = "glm")
+```
+
+```{r}
+vi_rf <- model_parts(m1_explain)
+head(vi_rf)
+```
+
+```{r}
+plot(vi_rf)
+```
+
+```{r}
+vr_age  <- model_profile(m1_explain, variables =  "age")
+plot(vr_age)
+```
+
+```{r}
+vr_class  <- model_profile(m1_explain, variables =  "class")
+plot(vr_class)
+```
+
+
+```{r}
+new_passanger <- data.frame(
+  class = factor("1st", levels = c("1st", "2nd", "3rd", "deck crew", "engineering crew", "restaurant staff", "victualling crew")),
+  gender = factor("male", levels = c("female", "male")),
+  age = 8,
+  sibsp = 0,
+  parch = 0,
+  fare = 72,
+  embarked = factor("Southampton", levels = c("Belfast", "Cherbourg", "Queenstown", "Southampton"))
+)
+
+sp_rf <- predict_parts(m1_explain, new_passanger)
+plot(sp_rf)
+```
+
