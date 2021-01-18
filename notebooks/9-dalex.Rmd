@@ -7,34 +7,64 @@ output: html_notebook
 install.packages("DALEX")
 ```
 
-
 ```{r}
 library(DALEX)
+data(titanic_imputed)
 head(titanic_imputed)
 ```
 
 ```{r}
-m1 <- glm(survived ~ age*gender + class + embarked + fare + sibsp + parch, 
+table(titanic_imputed$embarked)
+```
+
+```{r}
+m1 <- glm(survived ~ age + gender + class + embarked + fare + sibsp + parch, 
           data = titanic_imputed,
           family = binomial())
 summary(m1)
 ```
 
+Chcemy odpowiedzieć na następujace pytania:
+
+1. ktore zmienne sa ważne i jak bardzo?
+2. jak wygląda zależność między poszczególnymi zmiennymi, a zmienną celu? 
+3. jak należy rozumieć predykcję z tego modelu? 
+
+
+W pakiecie DALEX jest główna funkcja, która nazywa się explain
+
+
 ```{r}
-m1_explain <- explain(m1, 
-              data = titanic_imputed,
-              y = titanic_imputed$survived, 
-              label = "glm")
+m1_explain <- explain(model = m1, 
+                      data = titanic_imputed,
+                      y = titanic_imputed$survived, 
+                      label = "glm")
+```
+
+Funkcja do oceny, które zmienne są ważne z punktu widzenia możliwości predykcji
+
+```{r}
+set.seed(123)
+x1 <- sample(c('a',"b","c"), size = 1000, replace = T)
+x2 <- sample(c('x',"y","z"), size = 1000, replace = T)
+X <- data.frame(x1,x2)
+head(X)
+
+head(data.frame(x1, x2 = x2[sample(1:1000, replace = T)]))
 ```
 
 ```{r}
 vi_rf <- model_parts(m1_explain)
-head(vi_rf)
+vi_rf
 ```
+
+
 
 ```{r}
 plot(vi_rf)
 ```
+
+model_profile odpowiada nam na drugie pytanie czyli jak zmienia się prawdopodobieństwo w zależności od konkretnej zmiennej
 
 ```{r}
 vr_age  <- model_profile(m1_explain, variables =  "age")
@@ -57,8 +87,55 @@ new_passanger <- data.frame(
   fare = 72,
   embarked = factor("Southampton", levels = c("Belfast", "Cherbourg", "Queenstown", "Southampton"))
 )
+new_passanger
+```
 
+```{r}
+predict(m1, new_passanger)
+```
+
+Chcemy odpowiedzieć na 3 pytanie czyli skąd wzięła się ta wartość przewidywana. Możemy w tym celu wykorzystać funkcję `predict_parts`, która dekomponuje wartość przewidywaną dla danej obserwacji
+
+```{r}
 sp_rf <- predict_parts(m1_explain, new_passanger)
+sp_rf
+```
+
+```{r}
 plot(sp_rf)
 ```
+
+
+```{r}
+library(rpart)
+
+m2 <- rpart(survived ~ age + gender + class + embarked + fare + sibsp + parch, 
+            data = titanic_imputed, 
+            method = "class")
+
+m2_explain <- explain(model = m2, 
+                      data = titanic_imputed,
+                      y = titanic_imputed$survived, 
+                      label = "rpart",
+                      type = "classification")
+
+m1_vi <- model_parts(m1_explain)
+m2_vi <- model_parts(m2_explain)
+
+plot(m1_vi, m2_vi)
+```
+
+```{r}
+m1_age  <- model_profile(m1_explain, variables =  "age")
+m2_age  <- model_profile(m2_explain, variables =  "age")
+plot(m1_age, m2_age)
+```
+
+```{r}
+m1_new_obs <- predict_parts(m1_explain, new_passanger)
+m2_new_obs <- predict_parts(m2_explain, new_passanger)
+plot(m1_new_obs)
+plot(m2_new_obs)
+```
+
 
