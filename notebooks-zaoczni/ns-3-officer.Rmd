@@ -1,0 +1,119 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+install.packages("officer") ## do tworzenia prezentacji
+install.packages("rvg") ## do tworzenie edytowalnych wykresów z R (nie tylko ggplot2!!!!)
+library(officer)
+library(tidyverse)
+library(rvg)
+```
+
+Naszym zadaniem jest utworzenie prezentacji powerpoint z poziomu R, która będzie składać się z :
+
+- slajdu tytułowego (gdzie podamy tytuł i autora)
+- slajdu z tytułem i listą punktowaną
+- slajdu z tabelą
+- slajdu z wykresem
+- slajdu z tekstem "dziękuję za uwagę"
+
+Rozpoczynamy tworzenie prezentacji
+
+```{r}
+prezentacja <- read_pptx()
+class(prezentacja)
+```
+Z funkcją `layout_summary`
+
+```{r}
+layout_summary(prezentacja)
+```
+
+W jaki sposób tworzyć slajdy w R
+
++ obiekt klasy `rpptx` %>%
++ `add_slide()` dodajemy 1 slajd %>%
+  + `ph_with` uzupełniamy 1 %>% 
+  + `ph_with` uzupełniamy 2 %>% 
+  + `ph_with` uzupełniamy 3 %>% 
++ `add_slide()` dodajemy 2 slajd  %>% 
+  + `ph_with` uzupełniamy 1 %>% 
+  + `ph_with` uzupełniamy 2 %>% 
+  + `ph_with` uzupełniamy 3 %>% 
++ `add_slide()` dodajemy 3 slajd  %>% 
+  + `ph_with` uzupełniamy 1 %>% 
+  + `ph_with` uzupełniamy 2 %>% 
+  + `ph_with` uzupełniamy 3 %>% 
+  + `ph_with` uzupełniamy ... %>% 
++ `print()` zapisujemy slajdy do pliku
+
+Stworzyliśmy slajd tytułowy
+
+```{r}
+prezentacja <- prezentacja %>%
+  add_slide(layout = "Title Slide", master = "Office Theme") %>%
+    ph_with(value = "Pierwsza prezentacja", location = ph_location_type(type = "ctrTitle")) %>%
+    ph_with(value = "Autor: Maciej", location = ph_location_type(type = "subTitle"))
+
+prezentacja
+length(prezentacja) ## zwraca informację ile slajdów ma nasza prezentacja
+print(prezentacja, target = "../figs/prezentacja-wirds.pptx")
+```
+
+
+Tworzymy kolejny slajd z tytułem i listą punktowaną
+
+```{r}
+prezentacja <- prezentacja %>%
+  add_slide(layout = "Title and Content", master = "Office Theme") %>%
+    ph_with(value = "Struktura prezentacji", location = ph_location_type(type = "title")) %>%
+    ph_with(value = c("slajd tytułowy", "slajd z listą", "slajd z wykresem", "slajd na do widzenia"), 
+            location = ph_location_type(type = "body"))
+
+length(prezentacja) ## zwraca informację ile slajdów ma nasza prezentacja
+print(prezentacja, target = "../figs/prezentacja-wirds.pptx")
+```
+
+Stwórzmy wykres w ggplot2 i dodajmy go do slajdów. Wykres z ggplot2 ma być edytowalny!!!!
+
+
+```{r}
+mtcars_wykres <- ggplot(data = mtcars, aes(x = wt, y = mpg, color = factor(am))) + 
+  geom_point() +
+  geom_smooth(method = "lm") + 
+  labs(x = "Waga", y = "Mile na 1 galon", color = "Automatyczna\nskrzynia")
+
+## żeby stworzyć edytowalny wykres musimy użyć funkcji `rvg::dml` 
+
+mtcars_wykres_edyt <- dml(ggobj = mtcars_wykres)
+```
+
+Dodajemy wykres do slajdu
+
+```{r}
+prezentacja <- prezentacja %>%
+  add_slide(layout = "Title and Content", master = "Office Theme") %>%
+    ph_with(value = "Wykres z ggplot2", location = ph_location_type(type = "title")) %>%
+    ph_with(value = mtcars_wykres_edyt, 
+            location = ph_location_type(type = "body"))
+
+length(prezentacja) ## zwraca informację ile slajdów ma nasza prezentacja
+print(prezentacja, target = "../figs/prezentacja-wirds.pptx")
+
+```
+
+
+```{r}
+prezentacja <- prezentacja %>%
+  add_slide(layout = "Title and Content", master = "Office Theme") %>%
+    ph_with(value = "Table z danymi", location = ph_location_type(type = "title")) %>%
+    ph_with(value = mtcars[1:10,1:5], 
+            location = ph_location_type(type = "body"))
+
+length(prezentacja) ## zwraca informację ile slajdów ma nasza prezentacja
+print(prezentacja, target = "../figs/prezentacja-wirds.pptx")
+
+```
+

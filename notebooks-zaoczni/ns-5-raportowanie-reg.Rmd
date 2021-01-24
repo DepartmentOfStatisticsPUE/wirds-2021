@@ -1,0 +1,111 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+install.packages(c("sjPlot", "jtools", "texreg", "huxtable"))
+```
+
+Raportowanie modeli regresji na potrzeby publikacji wyników (np. pracy magisterskiej)
+
+```{r}
+library(sjPlot)
+library(jtools)
+library(texreg)
+library(huxtable)
+```
+
+```{r}
+data(mtcars)
+## tworzymy zmienną factor
+mtcars$cyl <- factor(x = mtcars$cyl, 
+                     levels = c(4, 6, 8), 
+                     labels = c("Cztery", "Szesc", "Osiem"))
+
+model1 <- lm(formula = mpg ~ wt, data = mtcars)
+model2 <- lm(formula = mpg ~ wt + am, data = mtcars)
+model3 <- lm(formula = mpg ~ wt + am + cyl, data = mtcars)
+```
+
+Zaczniemy od pakietu sjPlot
+
+```{r}
+tab_model(
+  model1,
+  model2,
+  model3, 
+  dv.labels = c("Model 1", "Model 2", "Model 3"), ## etykiety dla modeli
+  string.pred = "Zmienne", ## nazwa dla kolumny ze zmiennymi w modelu
+  string.intercept = "(Wyraz wolny)", ## zamiast intercept
+  string.est = "Parametry", ## nazwa kolumny z oszacowaniami parametrów (bety)
+  string.p = "p-wartość", ## p-value
+  show.ci = FALSE, ## nie chcemy przedziału ufności
+  show.se = TRUE, ## chcemy dodać błąd standardowy 
+  string.se = "Błąd", ## nadajemy nową nazwę dla se
+  show.stat = TRUE, ## pokazujemy statystykę t
+  string.stat = "Statystyka-t", ## nadajemy nazwę
+  digits = 3, ## określamy liczbę miejsc po przecinku
+  collapse.se = TRUE, ## błędy standardowe są poniżej parametrów
+  show.reflvl = TRUE, ## pokazanie poziomu odniesienia dla zmiennych jakościowych
+  prefix.labels = "varname",  ## prefix dla zmiennych jakosciowych
+  file = "../results/raport-model-regresji.html",
+  CSS = css_theme("regression")
+)
+```
+
+Pakiet `jtools` -- umożliwia export danych do języka markdown, a co za tym idzie do pdf, LaTeXa oraz MS Word
+
+$$
+z_i = x_i - \bar{x}
+$$
+$$
+z_i = \frac{x_i - \bar{x}}{s_x}
+$$
+
+```{r}
+summ(model3,  
+     confint = TRUE, 
+     pvals = FALSE,
+     digits = 3, 
+     center = TRUE,
+     scale = TRUE)
+```
+
+```{r}
+export_summs(model1, model2, digits = 4, 
+             to.file = "tex", file.name = "../results/raport-jtools.tex")
+```
+Pakiet texreg
+
+```{r}
+screenreg(l = list("Model 1" = model1, "Model 2" = model2, "Model 3" = model3), 
+          single.row = TRUE,
+          digits = 4,
+          star.symbol = "+",
+          custom.coef.names = c(
+            "(Wyraz wolny)", 
+            "Waga",
+            "Automat",
+            "Cyl: 6",
+            "Cyl: 8"
+          ),
+          groups = list("Cylindry (ref = 4)" = 4:5))
+
+```
+
+```{r}
+texreg(l = list("Model 1" = model1, "Model 2" = model2, "Model 3" = model3), 
+          single.row = TRUE,
+          digits = 4,
+          custom.coef.names = c(
+            "(Wyraz wolny)", 
+            "Waga",
+            "Automat",
+            "Cyl: 6",
+            "Cyl: 8"
+          ),
+          groups = list("Cylindry (ref = 4)" = 4:5))
+
+```
+

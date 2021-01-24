@@ -14,3 +14,7 @@ Materiały z zajęć:
 + [Aplikacja shiny](shiny/)
 + [Interaktywana tabela przestwawna](notebooks/8-pivot.Rmd)
 + [Wprowadzenie do Binder](https://mybinder.org/)
+
+Materiały z zajęć na studiach zaocznych:
+
++ [Materiały w rmd](notebooks-zaoczni/)

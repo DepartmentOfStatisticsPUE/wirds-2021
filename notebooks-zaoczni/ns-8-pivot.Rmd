@@ -1,0 +1,17 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+install.packages("rpivotTable")
+```
+
+```{r}
+library(rpivotTable)
+```
+
+```{r}
+rpivotTable(mtcars)
+```
+

@@ -1,0 +1,72 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+install.packages("tidyverse")
+library(tidyverse)
+```
+
+```{r}
+google <- read_csv("../data-raw/google-mobility.csv")
+google
+```
+```{r}
+google %>% count(sub_region_1)
+## wybieram podzbiór 
+google_wlkp_kraj <- google %>% 
+  filter(sub_region_1 %in% c("Greater Poland Voivodeship", NA)) %>%
+  mutate(sub_region_1 = ifelse(is.na(sub_region_1), "Polska", sub_region_1),
+         sub_region_2 = ifelse(is.na(sub_region_2), "ogolem", sub_region_2)) %>%
+  select(date, 
+         region = sub_region_1, 
+         powiat = sub_region_2, 
+         handel_i_rekreacja = retail_and_recreation_percent_change_from_baseline,
+         sklepy_i_apteki = grocery_and_pharmacy_percent_change_from_baseline,
+         parki = parks_percent_change_from_baseline, 
+         miejsca_pracy = workplaces_percent_change_from_baseline,
+         miejsca_zamieszkania = residential_percent_change_from_baseline)
+
+google_wlkp_kraj
+```
+
+Chcemy utworzyć wykres, na którym naniesiemy linie przedstrawiajace popularność handlu i rekreacji w powiatach wielkopolski oraz ogólem dla Polski
+
+```{r}
+wykres_wlkp <- ggplot(data = google_wlkp_kraj, aes(x = date, y = handel_i_rekreacja)) + 
+                geom_line(aes(group = powiat), alpha = 0.5) +
+                geom_smooth(method = "loess") +
+                geom_hline(yintercept = 0, color = "red", linetype = "dashed") + ## horizontal line
+                geom_vline(xintercept = c(as.Date("2020-07-01"), as.Date("2020-09-01")), color = "blue", linetype = "dotted") +  ## vertical line
+                geom_text(aes(x = as.Date("2020-09-01"), y = 90, label = "Początek roku")) + 
+                geom_text(aes(x = as.Date("2020-07-01"), y = -90, label = "Początek wakacji")) + 
+                facet_wrap(~region) +
+                labs(x = "Data", y = "Handel i rekreacja", 
+                     title = "Wskaźnik popularnosci handlu i rekreacji według Google Mobility Trends",
+                     caption = "Źródło: Opracowanie własne na podstawie Google Mobility Trends") +
+                theme_bw()
+
+ggsave(plot = wykres_wlkp, filename = "../figs/google-covid-wlkp.png", width = 20, height = 12, units = "cm")
+ggsave(plot = wykres_wlkp, filename = "../figs/google-covid-wlkp.pdf", width = 20, height = 12, units = "cm")
+```
+
+Tworzę nowy podzbiór dla województwa podlaskiego i zamiast tworzyć od nowa wykres, wykorzystuję w tym celu obiekt o nazwie `wykres_wlkp` i z funkcją `%+%` podmieniam dane na nowe dane o nazwie `google_podl_kraj`.
+
+```{r}
+google_podl_kraj <- google %>% 
+  filter(sub_region_1 %in% c("Podlaskie Voivodeship", NA)) %>%
+  mutate(sub_region_1 = ifelse(is.na(sub_region_1), "Polska", sub_region_1),
+         sub_region_2 = ifelse(is.na(sub_region_2), "ogolem", sub_region_2)) %>%
+  select(date, 
+         region = sub_region_1, 
+         powiat = sub_region_2, 
+         handel_i_rekreacja = retail_and_recreation_percent_change_from_baseline,
+         sklepy_i_apteki = grocery_and_pharmacy_percent_change_from_baseline,
+         parki = parks_percent_change_from_baseline, 
+         miejsca_pracy = workplaces_percent_change_from_baseline,
+         miejsca_zamieszkania = residential_percent_change_from_baseline)
+
+wykres_wlkp %+% google_podl_kraj
+```
+

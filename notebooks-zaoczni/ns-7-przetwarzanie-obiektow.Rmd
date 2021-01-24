@@ -1,0 +1,65 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+install.packages("parameters")
+library(broom)
+library(parameters)
+library(tidyverse)
+```
+
+Zastosujemy pakiet broom do wyciągnięcia najważniejszych rzeczy z konkretnych obietków będących wynikiem modelowania. W tym pakiecie mamy 3 najważniejsze funkcje
+
++ tidy -- do zapisania parametrów modelu w postaci data.frame
++ glance -- do zapisania miara jakości modelu w postaci data.frame
++ augment -- do dodania do ramki danych miar jakości modelu  (np. fitted, residuals)
+
+```{r}
+data(mtcars)
+mtcars$cyl <- as.factor(mtcars$cyl)
+model1 <- lm(mpg ~ cyl + hp + wt + am, data = mtcars)
+summary(model1)
+```
+
+```{r}
+tidy(model1, conf.int = T, conf.level = 0.95)
+```
+
+```{r}
+glance(model1)
+```
+Funkcja augment zapisuje do zbioru danych następujące miary:
+
++ `.fitted` -- wartości oszacowane z modelu
++ `.resid` -- reszty z modelu (y - \hat{y})
++ `.std.resid` -- reszty standaryzowane
++ `.hat` -- miara wpływu danej obserwacji
++ `.sigma` -- jak zmienia się błąd standardowy reszt jak usuniemy daną obserwację
++ `.cooksd` -- miara wpływu danej obserwacji na parametry modelu
+
+```{r}
+augment(model1)
+```
+
+Pakiet parameters
+
+```{r}
+parameters(model1) %>%
+  parameters_table(digits = 4, ci_digits = 4)
+```
+
+Nieparametryczny Bootstrap polega na:
+
+1. mamy próbę o liczebnosci n
+2. dla każdej próby bootstrapowej b lostujemy
+  - próbę o wielkości n_b = n, ze zwracaniem
+  - szacujemy model 
+  
+Argument: robust -- odporne błędy standardowe 
+
+```{r}
+parameters(model1, bootstrap = TRUE, iterations = 100)
+```
+

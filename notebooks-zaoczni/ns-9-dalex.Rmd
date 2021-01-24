@@ -1,0 +1,129 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Instalujemy pakiet DALEX
+
+```{r}
+install.packages("DALEX")
+install.packages("rpart")
+```
+
+Ładujemy pakiet DALEX
+
+```{r}
+library(DALEX)
+library(rpart)
+data(titanic_imputed)
+head(titanic_imputed)
+```
+
+Załóżmy, że chcemy zbudować model, który ma określić warunkowe prawdopodobieństwo przeżycia biorąc pod uwagę zmienne z bazy danych
+
+```{r}
+model1 <- glm(formula = survived ~ gender + age + class + embarked + fare + sibsp + parch,
+              data = titanic_imputed,
+              family = binomial())
+summary(model1)
+```
+
+```{r}
+table(titanic_imputed$class)
+table(titanic_imputed$embarked)
+```
+
+Chcemy odpowiedzieć na następujące pytanie:
+
+1. które zmienne są ważne i jak bardzo?
+2. jak wygląda zależność między poszczególnymi zmiennymi, a zmienną celu?
+3. jak należy rozumieć predykcję dla konkretnej jednostki (co się składa na określone prawdopodobieństwo)?
+
+Aby odpowiedzieć na te pytania wykorzystując pakiet DALEX należy w pierwszej kolejności stworzyć obiekt typu `explainer`
+
+```{r}
+model1_ex <- explain(model = model1,
+                     data = titanic_imputed[,-8],
+                     y = titanic_imputed$survived,
+                     label = "model 1 - regresja logistyczna",
+                     type = "classification")
+```
+
+Aby odpowiedzieć na pytanie nr 1 stosujemy funkcję o nazwie `model_parts`
+
+```{r}
+model1_waznosc <- model_parts(model1_ex)
+plot(model1_waznosc)
+```
+
+Najważniejszą zmienną z punktu widzenia klasyfikacji jest zmienna gender, następnie class a później age. Kolejne zmienne mają coraz mniejszy wpływ na błąd klasyfikacji.
+
+Odpowiadamy na drugie pytanie z wykorzystaniem funkcji `model_profile`.
+
+```{r}
+model1_gender <- model_profile(model1_ex, variable = "gender")
+plot(model1_gender)
+```
+
+```{r}
+model1_age <- model_profile(model1_ex, variable = "age")
+plot(model1_age)
+```
+
+```{r}
+model1_class <- model_profile(model1_ex, variable = "class")
+plot(model1_class)
+```
+
+Na trzecie pytanie możemy odpowiedzieć używając funkcji `predict_parts`
+
+
+```{r}
+pasazer_10 <- titanic_imputed[10,]
+pasazer_10
+```
+
+```{r}
+predict(model1, pasazer_10, type = "response")
+```
+
+```{r}
+model1_pasazer10 <- predict_parts(model1_ex, pasazer_10)
+plot(model1_pasazer10)
+```
+
+```{r}
+model1_pasazer15 <- predict_parts(model1_ex, titanic_imputed[15,])
+plot(model1_pasazer15)
+```
+
+```{r}
+model2 <- rpart(formula = survived ~ gender + age + class + embarked + fare + sibsp + parch,
+                data = titanic_imputed, 
+                method = "class")
+
+model2_ex <- explain(model = model2,
+                     data = titanic_imputed[,-8],
+                     y = titanic_imputed$survived,
+                     label = "model 2 - rpart",
+                     type = "classification")
+
+```
+
+```{r}
+model1_pasazer15_logist <- predict_parts(model1_ex, titanic_imputed[15,])
+model1_pasazer15_rpart <- predict_parts(model2_ex, titanic_imputed[15,])
+plot(model1_pasazer15_logist)
+plot(model1_pasazer15_rpart)
+```
+
+```{r}
+model1_imp <- model_parts(model1_ex)
+model2_imp <- model_parts(model2_ex)
+plot(model1_imp, model2_imp)
+```
+```{r}
+model2_fare <- model_profile(model2_ex, variable = "fare")
+plot(model2_fare)
+```
+

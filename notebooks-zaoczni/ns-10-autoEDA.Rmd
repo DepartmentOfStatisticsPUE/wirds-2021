@@ -1,0 +1,52 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+install.packages(c("summarytools", "dataMaid", "visdat"))
+```
+
+```{r}
+library(visdat)
+library(dataMaid)
+library(summarytools)
+```
+
+Pakiet dataMaid
+
+```{r}
+dataMaid::makeDataReport(data = mtcars, output = "html", render = TRUE)
+```
+
+Pakiet summarytools
+
+```{r}
+view(summarytools::dfSummary(mtcars))
+```
+
+```{r}
+view(descr(mtcars))
+```
+
+```{r}
+stby(mtcars, mtcars$am, descr)
+```
+
+Pakiet visdat
+
+```{r}
+mtcars[c(1,2,3), c(1,2,3)] <- NA
+```
+
+```{r}
+vis_dat(mtcars)
+```
+```{r}
+vis_miss(mtcars)
+```
+
+```{r}
+vis_cor(mtcars[,3:7])
+```
+

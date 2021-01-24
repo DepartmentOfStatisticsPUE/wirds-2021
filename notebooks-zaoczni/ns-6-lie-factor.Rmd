@@ -1,0 +1,50 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Wyliczamy wskaźnik przekłamania (ang. lie factor) według następujacego wzoru:
+
+$$
+\text{Lie Factor} = \frac{\text{Wielkość efektu na wykresie}}{\text{Wielkość efektu w danych źródłowych}}
+$$
+Jak należy wyliczyć wielkość efektu? Możemy skorzystać z następującego wzoru gdy porównujemy ze sobą wysokości (np. wykres słupkowy).
+
+$$
+\text{Wielkość efektu} = \left|\frac{y_2-y_1}{y_1}\right|
+$$
+
+Korzystamy z grafik / wykresów z bloga SmarterPoland.pl
+
+1. TVP po raz czwarty (zdrowie)
+
+Wyliczamy wielkość efektu w danych
+
+```{r}
+efekt_w_danych <- abs(6-5)/5
+efekt_w_danych
+```
+Wyliczamy wielkość efektu na grafice
+
+```{r}
+efekt_na_wykresie <- abs(275-137)/137
+efekt_na_wykresie
+```
+
+```{r}
+efekt_na_wykresie/efekt_w_danych 
+```
+
+2. TVP po raz pierwszy (bezrobocie)
+
+```{r}
+efekt_na_wykresie <- abs(160-135)/135
+efekt_w_danych <- abs(6.1-5.2)/5.2
+efekt_na_wykresie/efekt_w_danych 
+```
+
+
+
+
+
+
